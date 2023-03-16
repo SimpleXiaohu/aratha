@@ -20,6 +20,3 @@ Alternatively, you can use an SMT solver by setting environment variables `SOLVE
 $ export SOLVER=ostrich
 $ export OSTRICH_PATH=executable-file-of-ostrich
 ```
-## Tests
-The tests are written with [Mocha](https://mochajs.org/). To run them, run
-`npm test` from this directory.
