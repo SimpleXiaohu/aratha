@@ -1,7 +1,7 @@
 function parse(str) {
     var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str);
     if (!match) return;
-    var n = parseInt(match[1]);
+    var n = parseFloat(match[1]);
     var type = (match[2] || 'ms').toLowerCase();
     switch (type) {
         case 'years':
