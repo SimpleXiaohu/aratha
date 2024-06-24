@@ -3,25 +3,6 @@
 (function (sandbox) {
     "use strict";
 
-    // FIXME: Turn into external parameters.
-    const CP_OPTS = {
-        'mznPath': 'model.mzn',
-        'dznPath': 'data.dzn',
-        'fznPath': 'model.fzn',
-        'mznTimeout': '10',
-        'mzn2fznTimeout': '3',
-        'fznTimeout': '3',
-        'dumpTimeout': false, //timeout.mzn',
-        'mznArgs': ['--no-output-ozn'],
-        'mzn2fznArgs': ['--no-output-ozn', '-o', 'model.fzn'],
-        'fznArgs': [], //['-max-alpha', '65535'], //['-max-length', '1000'],  //'-reverse-regex', 'false',
-        'twoSteps': false,
-        'solve': 'nobj_len', //'length', 'num_len', 'typs', 'typ_len', 'str_def', 'reps'
-        'debug': true, //false, //true,
-        'abort': false,
-        'verifyModel': false
-    }
-
     const path = require("path");
     const process = require("process");
     const fs = require("fs");
@@ -56,8 +37,6 @@
     const Z3str = require("./z3str");
     const CVC4 = require("./cvc4");
     const OSTRICH = require("./ostrich");
-    const G_Strings = require("./g-strings")
-    const { get_cp_pid } = require("./cp")
 
     let varNameCounter = 0;
 
@@ -124,9 +103,6 @@
             case "ostrich":
                 solver = new OSTRICH(process.env.OSTRICH_PATH || "ostrich", "ALL");
                 break;
-            case "G-Strings":
-                solver = new G_Strings(CP_OPTS);
-                break;
             default:
                 throw new Error(`invalid solver ${SOLVER}`);
         }
@@ -157,11 +133,6 @@
         async runAnalysis(maxIterations, cb) {
             let receivedSigint = false,
                 timedOut = false;
-            process.on("SIGINT", () => {
-                receivedSigint = true;
-                console.log("analysis: received SIGINT, terminating");
-                console.log(process.kill(-get_cp_pid(), 'SIGINT'));
-            });
 
             const analysisTimeout = parseInt(process.env.ANALYSIS_TIMEOUT, 10) || 0;
             if (analysisTimeout > 0) {
