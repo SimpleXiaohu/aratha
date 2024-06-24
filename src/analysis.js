@@ -72,7 +72,7 @@
         const name = "var" + varNameCounter++;
         const concVal = inputs.hasOwnProperty(name) ? inputs[name] : getDefault(type);
         // FIXME: Check this.
-        if (process.env.SOLVER !== "G-Strings" && !new Type(type).valueConforms(concVal)) {
+        if (!new Type(type).valueConforms(concVal)) {
             throw new Error("type error: " + name + " is not of type " + type);
         }
         inputs[name] = concVal;
@@ -140,8 +140,7 @@
 
             const dseOptions = {
                 unsatCores: process.env.UNSAT_CORES === "1",
-                incremental: !(process.env.SOLVER === "G-Strings") &&
-                    !(process.env.INCREMENTAL === "0"),
+                incremental: !(process.env.INCREMENTAL === "0"),
             };
 
             sandbox.readInput = () => {
@@ -195,16 +194,14 @@
             let solvers = [];
             const solver = process.env.SOLVER || 'ostrich';
             if (solver.indexOf(',') === -1) {
-                const clog = solver === 'G-Strings' ? null :
-                    fs.createWriteStream("PCs_" + solver.id + ".smt2");
+                const clog = fs.createWriteStream("PCs_" + solver.id + ".smt2");
                 solvers.push(createSolver(clog));
                 commandLogs.push(clog);
             }
             else {
                 for (const s of solver.split(',')) {
                     process.env.SOLVER = s;
-                    const clog = s === 'G-Strings' ? null :
-                        fs.createWriteStream("PCs_" + solver.id + ".smt2");
+                    const clog = fs.createWriteStream("PCs_" + solver.id + ".smt2");
                     solvers.push(createSolver(clog));
                     commandLogs.push(clog);
                 }

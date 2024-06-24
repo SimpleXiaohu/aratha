@@ -14,7 +14,7 @@ fi
 if
   [ -z $2 ]
 then
-  s=G-Strings
+  s=ostrich
 else
   s=$2
 fi
