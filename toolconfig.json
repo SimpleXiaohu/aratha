@@ -1,0 +1,16 @@
+{
+  "Binaries" : {
+		"z3" : {
+			"path" : "/home/hudh/github/aratha/solverbin/z3"
+		},
+		"cvc5" : {
+				"path" : "/home/hudh/github/aratha/solverbin/cvc5"
+		},
+		"ostrich" : {
+				"path" : "/home/hudh/github/aratha/../ostrich/ostrich"
+		},
+		"ostrichcea" : {
+				"path" : "/home/hudh/github/aratha/../ostrich/ostrichCEA"
+		}
+  }
+}
