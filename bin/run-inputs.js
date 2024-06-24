@@ -8,7 +8,7 @@ const _ = require("lodash");
 const scripts = process.argv.slice(2).filter((s) => s.indexOf("_jalangi_") === -1);
 const timings = [];
 
-const solvers = process.env.TRY_SOLVERS ? process.env.TRY_SOLVERS.split(",") : [process.env.SMT_SOLVER || "cvc4"];
+const solvers = process.env.TRY_SOLVERS ? process.env.TRY_SOLVERS.split(",") : [process.env.SMT_SOLVER || "cvc5"];
 const analysisTimeout = parseInt(process.env.ANALYSIS_TIMEOUT, 10) || 0;
 
 let activeChild = null;
@@ -32,8 +32,8 @@ function runScript(scriptPath, solverName, options) {
         INCREMENTAL: options.incremental ? 1 : 0,
         ANALYSIS_TIMEOUT: analysisTimeout
     };
-    if (process.env.CVC4_PATH) {
-        env.CVC4_PATH = process.env.CVC4_PATH;
+    if (process.env.CVC5_PATH) {
+        env.CVC5_PATH = process.env.CVC5_PATH;
     }
     if (process.env.Z3_PATH) {
         env.Z3_PATH = process.env.Z3_PATH;

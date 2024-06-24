@@ -8,7 +8,7 @@ const path = require("path");
 const _ = require("lodash");
 const glob = require("glob");
 
-const { testCVC4, testZ3 } = require("./testUtils");
+const { testCVC5, testZ3 } = require("./testUtils");
 
 describe("the analysis", function() {
     const scriptPath = path.resolve(__dirname, "../node_modules/jalangi2/src/js/commands/jalangi.js");
@@ -21,8 +21,8 @@ describe("the analysis", function() {
     files = files.concat(glob.sync("numeric/*.js", { nosort: true, cwd: examplesDir, absolute: true, ignore: "numeric/*_jalangi_*" }));
     files.sort(collator.compare);
 
-    context("with CVC4", function() {
-        const cvc4Path = testCVC4();
+    context("with CVC5", function() {
+        const cvc5Path = testCVC5();
         _.forEach(files, function(filePath) {
             const testName = path.basename(filePath, ".js");
             it(`correctly executes ${testName}`, function(done) {
@@ -30,8 +30,8 @@ describe("the analysis", function() {
                     "node", [scriptPath, "--analysis", analysisDir, filePath], {
                         env: {
                             PATH: process.env.PATH,
-                            SOLVER: "cvc4",
-                            CVC4_PATH: cvc4Path
+                            SOLVER: "cvc5",
+                            CVC5_PATH: cvc5Path
                         }
                     }, done);
             });
