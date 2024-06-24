@@ -106,17 +106,15 @@
             default:
                 throw new Error(`invalid solver ${SOLVER}`);
         }
-        if (!solver.isCPSolver()) {
-            console.log("command log:", commandLog)
-            if (commandLog) {
-                solver.logCommands(commandLog);
-            }
-            const theoryFiles = [SOLVER + "/prelude.smt2", "common.smt2"];
-            for (let i = 0; i < theoryFiles.length; i++) {
-                theoryFiles[i] = path.resolve(__dirname, "smt2", theoryFiles[i]);
-            }
-            solver.loadFiles(theoryFiles);
+        console.log("command log:", commandLog)
+        if (commandLog) {
+            solver.logCommands(commandLog);
         }
+        const theoryFiles = [SOLVER + "/prelude.smt2", "common.smt2"];
+        for (let i = 0; i < theoryFiles.length; i++) {
+            theoryFiles[i] = path.resolve(__dirname, "smt2", theoryFiles[i]);
+        }
+        solver.loadFiles(theoryFiles);
 
         return solver;
     }

@@ -12,62 +12,62 @@ const sexpr = require("./sexpr");
 var COLLECT_NOGOODS = false
 var NOGOODS = {}
 function push_nogoods_smt(name) {
-  if (!COLLECT_NOGOODS)
-    return
-  const fs = require('fs');
-  let nogoods;
-  try {
-    nogoods = eval(
-      fs.readFileSync('nogoods.json').toString().split('\n')
-    )
-  }
-  catch (e) {
-    nogoods = []
-  }
-  let input = []
-  for (let ng of nogoods) {
+    if (!COLLECT_NOGOODS)
+        return
+    const fs = require('fs');
+    let nogoods;
     try {
-      const i = ng.indexOf("{");
-      const j = Math.min(ng.lastIndexOf("}")+1, ng.length);
-      const x = ng.slice(i, j);
-      if (x)
-        input.push(x)
+        nogoods = eval(
+            fs.readFileSync('nogoods.json').toString().split('\n')
+        )
     }
-    catch (e) {}                         
-  }
-  for (let i in input) {
-    const inp = JSON.parse(input[i])
-    let a;
-    for (let j in inp) {
-      if (j.startsWith('var') && +(name[name.length - 1]) >= +(j[j.length - 1])) {
-        const val = inp[j]
-        switch (typeof val) {
-          case "string":
-            if (a === undefined)
-              a = ['not', ['=', j, ['Str', '"' + val + '"']]]
-            else
-              a = ['or', a, ['not', ['=', j, ['Str', '"' + val + '"']]]]
-            break
-          case "number":
-            if (a === undefined)
-              a = ['not', ["=", j, ['Num', val]]]
-            else
-              a = ['or', a, ['not', ["=", j, ['Num', val]]]]
-            break
-          case "boolean":
-            if (a === undefined)
-              a = ['not', ["=", j, ['Boolean', val]]]
-            else
-              a = ['or', a, ['not', ["=", j, ['Boolean', val]]]]
-            break
+    catch (e) {
+        nogoods = []
+    }
+    let input = []
+    for (let ng of nogoods) {
+        try {
+            const i = ng.indexOf("{");
+            const j = Math.min(ng.lastIndexOf("}") + 1, ng.length);
+            const x = ng.slice(i, j);
+            if (x)
+                input.push(x)
         }
-      }      
+        catch (e) { }
     }
-    if (a !== undefined) {
-      // console.log(name, a)
-      NOGOODS[sexpr.stringify(a)] = a
+    for (let i in input) {
+        const inp = JSON.parse(input[i])
+        let a;
+        for (let j in inp) {
+            if (j.startsWith('var') && +(name[name.length - 1]) >= +(j[j.length - 1])) {
+                const val = inp[j]
+                switch (typeof val) {
+                    case "string":
+                        if (a === undefined)
+                            a = ['not', ['=', j, ['Str', '"' + val + '"']]]
+                        else
+                            a = ['or', a, ['not', ['=', j, ['Str', '"' + val + '"']]]]
+                        break
+                    case "number":
+                        if (a === undefined)
+                            a = ['not', ["=", j, ['Num', val]]]
+                        else
+                            a = ['or', a, ['not', ["=", j, ['Num', val]]]]
+                        break
+                    case "boolean":
+                        if (a === undefined)
+                            a = ['not', ["=", j, ['Boolean', val]]]
+                        else
+                            a = ['or', a, ['not', ["=", j, ['Boolean', val]]]]
+                        break
+                }
+            }
+        }
+        if (a !== undefined) {
+            // console.log(name, a)
+            NOGOODS[sexpr.stringify(a)] = a
+        }
     }
-  }
 }
 
 class ExecutionPath {
@@ -296,20 +296,14 @@ class ConstraintCollector {
     }
 
     _activateConstraint(constraint) {
-//        console.log("activating", constraint);
-        if (this.solver.isCPSolver()) {
-            this._declareVariables(constraint);
-            this.solver.addConstraint(constraint);
+        //        console.log("activating", constraint);
+        if (this.incremental || this._unsyncedIndex === 0) {
+            this.solver.push(1);
         }
-        else {
-            if (this.incremental || this._unsyncedIndex === 0) {
-              this.solver.push(1);
-            }
-            this._declareVariables(constraint);
-            this._defineConstants(constraint);
-            this._assertExtraConstraints(constraint);
-            this._assert(constraint.toFormula());
-        }
+        this._declareVariables(constraint);
+        this._defineConstants(constraint);
+        this._assertExtraConstraints(constraint);
+        this._assert(constraint.toFormula());
     }
 
     push(constraint) {
@@ -317,7 +311,7 @@ class ConstraintCollector {
         this._polarity.push(constraint.value);
     }
 
-    pop(n=1) {
+    pop(n = 1) {
         if (n < 1)
             return;
         const len = this._constraintStack.length;
@@ -334,7 +328,6 @@ class ConstraintCollector {
 
         if (idx < this._unsyncedIndex) {
             if (this.incremental) {
-                assert (!this.solver.isCPSolver());
                 this.solver.pop(this._unsyncedIndex - idx);
                 this._unsyncedIndex = idx;
             } else {
@@ -368,23 +361,16 @@ class ConstraintCollector {
                 if (!this._declaredVariables.has(expr.name)) {
                     top.add(expr.name);
                     this._declaredVariables.add(expr.name);
-                    if (this.solver.isCPSolver()) {
-                        if (expr.type !== Type.TOP)
-                            this.solver.addConstraint(new Type(expr.type).constraintFor(expr.toFormula()));
-                    }
-                    else {
-                        //huzi add
-                        const isStr = expr.type === Type.STRING
-                        this.solver.declareConst(expr.name, "Val", isStr);
-                        push_nogoods_smt(expr.name);
-                    }
+                    //huzi add
+                    const isStr = expr.type === Type.STRING
+                    this.solver.declareConst(expr.name, "Val", isStr);
+                    push_nogoods_smt(expr.name);
                 }
             } else if (expr instanceof Temporary) {
                 if (!this._declaredVariables.has(expr.name)) {
                     top.add(expr.name);
                     this._declaredVariables.add(expr.name);
-                    if (!this.solver.isCPSolver())
-                        this.solver.declareConst(expr.name, expr.sort, false);
+                    this.solver.declareConst(expr.name, expr.sort, false);
                 }
             }
         });
@@ -412,8 +398,8 @@ class ConstraintCollector {
     checkSat() {
         this._sync();
         for (let a in NOGOODS) {
-          console.log("Adding nogood", a)
-          this.solver.assert(NOGOODS[a]);
+            console.log("Adding nogood", a)
+            this.solver.assert(NOGOODS[a]);
         }
         return this.solver.checkSat();
     }
@@ -435,10 +421,8 @@ class ConstraintCollector {
                 // huzi add
                 // throw new Error(`model error: constraint ${c} failed to validate in ${JSON.stringify(model)}`);
                 console.error(`model error: constraint ${c} failed to validate in ${JSON.stringify(model)}`);
-//                console.dir(c, {depth:null});
+                //                console.dir(c, {depth:null});
                 c.value = tmp;
-                if (this.solver.isCPSolver() && this.solver.options.verifyModel)
-                    throw new Error(`model error: constraint ${c} failed to validate in ${JSON.stringify(model)}`)
                 return false;
             }
             c.value = tmp;
@@ -500,12 +484,7 @@ class ConstraintCollector {
             return { status: "sat", model: {} };
         this._fixSolverStack(constraints, prefixLength);
         var status;
-        if (this.solver.isCPSolver()) {
-            this._sync();
-            status = await this.solver.solveSat(vars);
-        }
-        else
-            status = await this.checkSat();
+        status = await this.checkSat();
         if (status !== "sat")
             return { status: status };
         return { status: "sat", model: await this.getModel() };
@@ -520,13 +499,9 @@ class DSE {
             coreCacheSize: 8
         });
         this._solver = solver;
-        if (options.incremental && solver.isCPSolver()) {
-            console.error("Warning: incremental option disabled for CP solvers.");
-            options.incremental = false;
-        }
         this._collector = new ConstraintCollector(solver, options.incremental);
         this._program = program;
-        this._inputs = [{model: {}, step: 0}];
+        this._inputs = [{ model: {}, step: 0 }];
         this._visitedPaths = new ExecutionPathSet();
         this._unsatCores = new UnsatCoreSet(options.coreCacheSize);
         this._candidateCores = new UnsatCoreSet();
@@ -548,7 +523,7 @@ class DSE {
         console.log(constraints.length + " constraints in path condition");
         if (this._visitedPaths.add(constraints) && input.step < constraints.length) {
             console.log(`adding new constraint set item #${this._itemCount} to work queue`);
-//            console.dir(constraints, {depth: null});
+            //            console.dir(constraints, {depth: null});
             Object.defineProperty(constraints, "length", { configurable: false, writable: false });
             this._workQueue.push({ id: this._itemCount++, step: input.step, constraints: constraints });
         }
@@ -581,19 +556,17 @@ class DSE {
             throw new Error("_generateInput() called with empty work queue");
         const item = this._workQueue[0];
         let result;
-        if (!this._solver.isCPSolver()) {
-            result = await this._collector.solvePrefix(
-                item.constraints, item.step, this._collector._declaredVariables
-            );
-            if (result.status !== "sat") {
-                console.log(`abandoning work item: pre-check failed at step ${item.step}: ${result.status}`);
-                // The pre-check must have succeeded with sat for all prior
-                // prefixes, so it must be that the last constraint made us
-                // unsat/unknown.
-                console.log("failed constraint: " + sexpr.stringify(item.constraints[item.step - 1].toFormula()));
-                this._workQueue.shift();
-                return;
-            }
+        result = await this._collector.solvePrefix(
+            item.constraints, item.step, this._collector._declaredVariables
+        );
+        if (result.status !== "sat") {
+            console.log(`abandoning work item: pre-check failed at step ${item.step}: ${result.status}`);
+            // The pre-check must have succeeded with sat for all prior
+            // prefixes, so it must be that the last constraint made us
+            // unsat/unknown.
+            console.log("failed constraint: " + sexpr.stringify(item.constraints[item.step - 1].toFormula()));
+            this._workQueue.shift();
+            return;
         }
         const lastConstraint = item.constraints[item.step];
         console.log("solving item #" + item.id + ", step " + item.step);
@@ -602,8 +575,8 @@ class DSE {
         // console.dir(item.constraints.slice(0, item.step), {depth: null});
         if (this._visitedPaths.hasPrefix(item.constraints.slice(0, item.step))) {
             console.error("ERROR: already visited");
-            console.dir(item.constraints.slice(0, item.step), {depth: null});
-            console.dir(this._visitedPaths, {depth: null});
+            console.dir(item.constraints.slice(0, item.step), { depth: null });
+            console.dir(this._visitedPaths, { depth: null });
             throw new Error("_generateInput() called on already visited path condition");
         }
         result = await this._collector.solvePrefix(
@@ -612,7 +585,7 @@ class DSE {
         console.log(result.status);
         lastConstraint.negate();
         if (result.status === "sat")
-            this._addInput({model: result.model, step: item.step});
+            this._addInput({ model: result.model, step: item.step });
         if (item.step >= item.constraints.length)
             this._workQueue.shift();
         else {
