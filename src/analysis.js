@@ -88,25 +88,26 @@
     class ProcessExitException extends Error { }
 
     function createSolver(commandLog = null) {
+        const TOOLCONFIG = require("../toolconfig.json");
         const SOLVER = process.env.SOLVER || "ostrich";
+        console.log(data)
         let solver;
         switch (SOLVER) {
             case "z3":
-                solver = new Z3(process.env.Z3_PATH || "z3");
+                solver = new Z3(process.env.Z3_PATH || TOOLCONFIG["z3"] || "z3");
                 break;
             case "z3str":
-                solver = new Z3str(process.env.Z3STR_PATH || "z3");
+                solver = new Z3str(process.env.Z3STR_PATH || TOOLCONFIG['z3str'] || "z3");
                 break;
             case "cvc4":
-                solver = new CVC4(process.env.CVC4_PATH || "cvc4", "QF_AUFBVDTSNIA");
+                solver = new CVC4(process.env.CVC4_PATH || TOOLCONFIG['cvc5'] || "cvc4", "QF_AUFBVDTSNIA");
                 break;
             case "ostrich":
-                solver = new OSTRICH(process.env.OSTRICH_PATH || "ostrich", "ALL");
+                solver = new OSTRICH(process.env.OSTRICH_PATH || TOOLCONFIG['ostrich'] || "ostrich", "ALL");
                 break;
             default:
                 throw new Error(`invalid solver ${SOLVER}`);
         }
-        console.log("command log:", commandLog)
         if (commandLog) {
             solver.logCommands(commandLog);
         }

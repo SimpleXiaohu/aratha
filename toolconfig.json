@@ -1,16 +1,17 @@
 {
-  "Binaries" : {
-		"z3" : {
-			"path" : "/home/hudh/github/aratha/solverbin/z3"
-		},
-		"cvc5" : {
-				"path" : "/home/hudh/github/aratha/solverbin/cvc5"
-		},
-		"ostrich" : {
-				"path" : "/home/hudh/github/aratha/../ostrich/ostrich"
-		},
-		"ostrichcea" : {
-				"path" : "/home/hudh/github/aratha/../ostrich/ostrichCEA"
-		}
+  "z3" : {
+    "path" : "/home/hudh/github/aratha/solverbin/z3/z3"
+  },
+  "cvc5" : {
+      "path" : "/home/hudh/github/aratha/solverbin/cvc5/cvc5"
+  },
+  "z3str" : {
+      "path" : "/home/hudh/github/aratha/solverbin/z3str/z3"
+  },
+  "ostrich" : {
+      "path" : "/home/hudh/github/aratha/../ostrich/ostrich"
+  },
+  "ostrichcea" : {
+      "path" : "/home/hudh/github/aratha/../ostrich/ostrichCEA"
   }
 }
