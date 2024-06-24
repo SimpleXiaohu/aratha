@@ -2,7 +2,7 @@
 
 "use strict";
 
-const RegExpParser = require("../lib/regexp");
+const RegExpParser = require("../src/regexp");
 
 const util = require("util");
 

@@ -4,7 +4,7 @@
   "description": "Multi-solver dynamic symbolic execution for JavaScript",
   "main": "index.js",
   "directories": {
-    "lib": "lib",
+    "src": "src",
     "test": "test"
   },
   "scripts": {

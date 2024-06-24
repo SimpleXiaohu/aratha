@@ -20,7 +20,7 @@ scripts.forEach((scriptPath) => {
     const uniqueInputs = _.uniqWith(inputs, (a, b) => _.isEqual(a.input, b.input));
     for (const el of uniqueInputs) {
         console.log("replaying " + el.idx);
-        child_process.spawnSync("node", ["-r", "./lib/input-reader.js", scriptPath], {
+        child_process.spawnSync("node", ["-r", "./src/input-reader.js", scriptPath], {
             env: { INPUT_FILE: inputFilename, INPUT_IDX: el.idx.toString() },
             stdio: "inherit"
         });
