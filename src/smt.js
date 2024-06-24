@@ -35,8 +35,6 @@ exports.SMTSolver = class SMTSolver {
         this.process = process;
     }
     
-    isCPSolver() { return false; }
-
     logCommands(stream) {
         this._commandLogs.push(stream);
     }
