@@ -14,7 +14,7 @@ from this directory.
 
 ### OSTRICH_PATH
 
-The default solver is G-Strings. 
+The default solver is ostrich. 
 Alternatively, you can use an SMT solver by setting environment variables `SOLVER=ostrich` and `OSTRICH_PATH` to the executable file of [ostrich](https://github.com/uuverifiers/ostrich).
 ```
 $ export SOLVER=ostrich
