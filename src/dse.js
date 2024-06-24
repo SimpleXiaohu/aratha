@@ -5,10 +5,8 @@ const assert = require("assert");
 const { BooleanConstraint, TypeConstraint } = require("./constraint");
 const { SymbolicValue, Constant, Variable, Temporary } = require("./symbolic");
 const { parseModel } = require("./model");
-const { parseSolution } = require("./cp");
 const Type = require("./type");
 const sexpr = require("./sexpr");
-const { throttle } = require("lodash");
 
 //FIXME: Really a quick and dirty workaround - only for SMT solvers atm.
 var COLLECT_NOGOODS = false
@@ -422,11 +420,7 @@ class ConstraintCollector {
 
     async getModel() {
         let model;
-        if (this.solver.isCPSolver()) {
-            model = parseSolution(this.solver.getSolution())
-        } else {
-            model = parseModel(await this.solver.getModel());
-        }
+        model = parseModel(await this.solver.getModel());
         this.verifyModel(model);
         return model;
     }
