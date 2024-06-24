@@ -11,7 +11,7 @@ ERRORS=$OUT_DIR/errors-solvers.log
 RESULTS=$OUT_DIR/results-solvers.log
 
 cd $ARATHA_DIR
-for solver in ostrich cvc4 z3
+for solver in ostrich cvc5 z3
 do
   echo "Running $solver"
   export SOLVER=$solver

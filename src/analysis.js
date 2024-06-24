@@ -35,7 +35,7 @@
     const Type = require("./type");
     const Z3 = require("./z3");
     const Z3str = require("./z3str");
-    const CVC4 = require("./cvc4");
+    const CVC5 = require("./cvc5");
     const OSTRICH = require("./ostrich");
 
     let varNameCounter = 0;
@@ -99,8 +99,8 @@
             case "z3str":
                 solver = new Z3str(process.env.Z3STR_PATH || TOOLCONFIG['z3str'] || "z3");
                 break;
-            case "cvc4":
-                solver = new CVC4(process.env.CVC4_PATH || TOOLCONFIG['cvc5'] || "cvc4", "QF_AUFBVDTSNIA");
+            case "cvc5":
+                solver = new CVC5(process.env.CVC5_PATH || TOOLCONFIG['cvc5'] || "cvc5", "QF_AUFBVDTSNIA");
                 break;
             case "ostrich":
                 solver = new OSTRICH(process.env.OSTRICH_PATH || TOOLCONFIG['ostrich'] || "ostrich", "ALL");

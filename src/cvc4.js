@@ -1,7 +1,7 @@
 const child_process = require("child_process");
 const { SMTSolver } = require("./smt");
 
-class CVC4 extends SMTSolver {
+class CVC5 extends SMTSolver {
 
     constructor(solverPath, logic) {
         const args = [
@@ -15,11 +15,11 @@ class CVC4 extends SMTSolver {
             args.push("--produce-unsat-cores");
         }
         args.push("-");
-        const cvc4 = child_process.spawn(solverPath, args);
-        super(cvc4);
+        const cvc5 = child_process.spawn(solverPath, args);
+        super(cvc5);
         this._send(["set-logic", logic]);
-        this.id = "cvc4"
+        this.id = "cvc5"
     }
 }
 
-module.exports = CVC4;
+module.exports = CVC5;
