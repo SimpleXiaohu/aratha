@@ -1,1 +1,1 @@
-require("./lib/analysis.js");
+require("./src/analysis.js");
