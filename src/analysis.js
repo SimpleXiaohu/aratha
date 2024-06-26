@@ -9,6 +9,8 @@
 
     const _ = require("lodash");
 
+    const { debugPrintln} = require("./util/print")
+
     const {
         Concolic,
         isConcolic,
@@ -207,7 +209,6 @@
                 }
             }
             try {
-                // console.log(solvers)
                 const inputLog = fs.openSync("inputlog.json", "w");
                 let first = true;
                 try {
