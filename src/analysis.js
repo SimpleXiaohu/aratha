@@ -90,20 +90,19 @@
     function createSolver(commandLog = null) {
         const TOOLCONFIG = require("../toolconfig.json");
         const SOLVER = process.env.SOLVER || "ostrich";
-        console.log(data)
         let solver;
         switch (SOLVER) {
             case "z3":
-                solver = new Z3(process.env.Z3_PATH || TOOLCONFIG["z3"] || "z3");
+                solver = new Z3(process.env.Z3_PATH || TOOLCONFIG["z3"].path || "z3");
                 break;
             case "z3str":
-                solver = new Z3str(process.env.Z3STR_PATH || TOOLCONFIG['z3str'] || "z3");
+                solver = new Z3str(process.env.Z3STR_PATH || TOOLCONFIG['z3str'].path || "z3");
                 break;
             case "cvc5":
-                solver = new CVC5(process.env.CVC5_PATH || TOOLCONFIG['cvc5'] || "cvc5", "QF_AUFBVDTSNIA");
+                solver = new CVC5(process.env.CVC5_PATH || TOOLCONFIG['cvc5'].path || "cvc5", "QF_AUFBVDTSNIA");
                 break;
             case "ostrich":
-                solver = new OSTRICH(process.env.OSTRICH_PATH || TOOLCONFIG['ostrich'] || "ostrich", "ALL");
+                solver = new OSTRICH(process.env.OSTRICH_PATH || TOOLCONFIG['ostrich'].path || "ostrich", "ALL");
                 break;
             default:
                 throw new Error(`invalid solver ${SOLVER}`);
