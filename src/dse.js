@@ -64,7 +64,6 @@ function push_nogoods_smt(name) {
             }
         }
         if (a !== undefined) {
-            // console.log(name, a)
             NOGOODS[sexpr.stringify(a)] = a
         }
     }
@@ -572,7 +571,6 @@ class DSE {
         console.log("solving item #" + item.id + ", step " + item.step);
         item.step++;
         lastConstraint.negate();
-        // console.dir(item.constraints.slice(0, item.step), {depth: null});
         if (this._visitedPaths.hasPrefix(item.constraints.slice(0, item.step))) {
             console.error("ERROR: already visited");
             console.dir(item.constraints.slice(0, item.step), { depth: null });
@@ -582,7 +580,6 @@ class DSE {
         result = await this._collector.solvePrefix(
             item.constraints, item.step, this._collector._declaredVariables
         );
-        console.log(result.status);
         lastConstraint.negate();
         if (result.status === "sat")
             this._addInput({ model: result.model, step: item.step });
