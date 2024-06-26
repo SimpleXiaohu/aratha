@@ -80,16 +80,16 @@ class Assertion {
 exports.Assertion = Assertion;
 
 class StartAnchor extends Assertion {
+    toRegexFormula() { return EMPTY; }
     // huzi add
-    // toRegexFormula() { return EMPTY; }
-    toRegexFormula() { return "re.begin-anchor"; }
+    // toRegexFormula() { return "re.begin-anchor"; }
 }
 exports.StartAnchor = StartAnchor;
 
 class EndAnchor extends Assertion {
+    toRegexFormula() { return EMPTY; }
     // huzi add
-    // toRegexFormula() { return EMPTY; }
-    toRegexFormula() { return "re.end-anchor"; }
+    // toRegexFormula() { return "re.end-anchor"; }
 }
 exports.EndAnchor = EndAnchor;
 
@@ -132,26 +132,27 @@ class Pattern {
 
     toRegexFormula() {
         const result = [];
+        if (!(this.disjunction.disjuncts[0][0] instanceof StartAnchor)) {
+            result.push(star(ALL_CLASS));
+        }
+        result.push(this.disjunction.toRegexFormula())
+        if(!(_.last(this.disjunction.disjuncts[0]) instanceof EndAnchor)) {
+            result.push(star(ALL_CLASS));
+        }
+        // TODO: not use J$ here
         // huzi add, when handle RegExp.test(a), we get smt clause (str.in.re a .*RegExp.*)
-        // if (!(this.disjunction.disjuncts[0][0] instanceof StartAnchor)) {
+        // J$.captureNum = 1;
+        // if (J$.isTest && !(this.disjunction.disjuncts[0][0] instanceof StartAnchor)) {
         //     result.push(star(ALL_CLASS));
         // }
-        // result.push(this.disjunction.toRegexFormula())
-        // if(!(_.last(this.disjunction.disjuncts[0]) instanceof EndAnchor)) {
+        // if(J$.isOstrich)
+        //     result.push(["(_ re.capture 0)", this.disjunction.toRegexFormula()])
+        // if(J$.isTest && !(_.last(this.disjunction.disjuncts[0]) instanceof EndAnchor)) {
         //     result.push(star(ALL_CLASS));
         // }
-        J$.captureNum = 1;
-        if (J$.isTest && !(this.disjunction.disjuncts[0][0] instanceof StartAnchor)) {
-            result.push(star(ALL_CLASS));
-        }
-        if(J$.isOstrich)
-            result.push(["(_ re.capture 0)", this.disjunction.toRegexFormula()])
-        if(J$.isTest && !(_.last(this.disjunction.disjuncts[0]) instanceof EndAnchor)) {
-            result.push(star(ALL_CLASS));
-        }
-        // reset state about replace_cg_all and RegExp.test
-        J$.isReference = false;
-        J$.isTest = false;
+        // // reset state about replace_cg_all and RegExp.test
+        // J$.isReference = false;
+        // J$.isTest = false;
 
         return concat(result);
     }
@@ -330,10 +331,10 @@ class Capture {
 
     toRegexFormula() {
         //huzi add
-        if(J$.isReference || J$.isOstrich)
-            return [ ["_", "re.capture", J$.captureNum++] ,this.expr.toRegexFormula()];
-        else
-            return this.expr.toRegexFormula();
+        // if(J$.isReference || J$.isOstrich)
+        //     return [ ["_", "re.capture", J$.captureNum++] ,this.expr.toRegexFormula()];
+        // else
+        return this.expr.toRegexFormula();
     }
 }
 exports.Capture = Capture;
@@ -503,7 +504,7 @@ class CaptureVisitor {
         switch (ast.constructor) {
             case Pattern: {
                 // huzi add
-                J$.captureNum = 1;
+                // J$.captureNum = 1;
                 return this.visit(ast.disjunction, strName);
             }
             case Or: {
