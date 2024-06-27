@@ -58,23 +58,21 @@ exports.SMTSolver = class SMTSolver {
         return this._getResponse();
     }
 
-    // declareConst(name, sort, ) {
+    declareConst(name, sort) {
+        this._send(["declare-const", name, sort]);
+    }
+    // declareConst(name, sort, isStr) {
     //     this._send(["declare-const", name, sort]);
     //     // huzi add, naive consider all input is string(for ostrich benchmark generation)
-    //     // this._send(["assert", ["is-Str", name]]);
+    //     if(isStr){
+    //         this._send(["assert", ["is-Str", name]]);
+    //     }
+    //     if(isStr || sort === "String"){
+    //         // the unicode \u{0000} is a special char which stand for null res in ostrich.
+    //         this._send(["assert", ["str.in_re", ["str", name],
+    //             ["re.*", ["re.range", '"\\u{0001}"', '"\\u{FFFF}"']]]])
+    //     }
     // }
-    declareConst(name, sort, isStr) {
-        this._send(["declare-const", name, sort]);
-        // huzi add, naive consider all input is string(for ostrich benchmark generation)
-        if(isStr){
-            this._send(["assert", ["is-Str", name]]);
-        }
-        if(isStr || sort === "String"){
-            // the unicode \u{0000} is a special char which stand for null res in ostrich.
-            this._send(["assert", ["str.in_re", ["str", name],
-                ["re.*", ["re.range", '"\\u{0001}"', '"\\u{FFFF}"']]]])
-        }
-    }
 
     assert(formula) {
         this._send(["assert", formula]);
