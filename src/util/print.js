@@ -1,11 +1,16 @@
+
+var debug, log = false  // TODO: add debug and log args
+
 function debugPrintln(s) {
-    console.log("Debug: " + s);
+    if(debug)
+        console.log("Debug: " + s);
 }
 
-function log(s) {
-    console.log("Log: " + s);
+function myLog(s) {
+    if(log)
+        console.log("Log: " + s);
 }
 
 
 exports.debugPrintln = debugPrintln
-exports.log = log
+exports.myLog = myLog

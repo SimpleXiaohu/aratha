@@ -29,9 +29,7 @@ class SymbolicValue {
     }
 
     toStringFormula() {
-        // huzi add
         return ["js.ToString", this.toFormula()];
-        // return this.toFormula();
     }
 
     toIntegerFormula() {
@@ -141,11 +139,11 @@ function primitiveToFormula(v) {
         case "boolean":
             return ["Boolean", v];
         case "number":
+            const val = ToInteger(v);
+            v = val >= 0 ? val.toString() : ["-", (-val).toString()];
             return ["Num", v];
         case "string":
-            // huzi add
             return ["Str", escapeString(v)];
-            // return escapeString(v);
         default:
             throw new Error("type " + typeof v + " is not primitive");
     }
@@ -208,11 +206,11 @@ class Constant extends SymbolicValue {
                     v = primitiveToFormula(v);
                 }
                 v = ["Just", v];
-//                console.log("storing", o, k, v);
+                //                console.log("storing", o, k, v);
                 result = ["store", result, escapeString(k), v];
             }
         }
-//        console.log("result", result);
+        //        console.log("result", result);
         return result;
     }
 
@@ -230,7 +228,7 @@ class Constant extends SymbolicValue {
     }
 
     getType() {
-        switch(typeof this.value) {
+        switch (typeof this.value) {
             case "undefined":
                 return Type.UNDEFINED;
             case "boolean":
@@ -320,10 +318,10 @@ class GetField extends ObjectOp {
         this.base = base;
         this.offset = offset;
         // huzi add
-        this._temps = [];
-        this.genName();
+        // this._temps = [];
+        // this.genName();
     }
-   
+
     eval(model) {
         const topBase = this.getTopBase().eval(model);
         if (typeof topBase !== "object" || topBase === "null") {
@@ -357,9 +355,9 @@ class GetField extends ObjectOp {
         this._visitChild(this.base, visitor);
         this._visitChild(this.offset, visitor);
         // huzi add
-        for (const v of this._temps) {
-            this._visitChild(v, visitor);
-        }
+        // for (const v of this._temps) {
+        //     this._visitChild(v, visitor);
+        // }
     }
 
     static simplify(base, offset) {
@@ -370,9 +368,9 @@ class GetField extends ObjectOp {
         while (node instanceof PutField || node instanceof DeleteField) {
             if (_.isEqual(node.offset, offset)) {
                 if (node instanceof PutField) {
-                    return {result: node.val};
+                    return { result: node.val };
                 } else {
-                    return {result: undefined};
+                    return { result: undefined };
                 }
             }
 
@@ -416,47 +414,54 @@ class GetField extends ObjectOp {
         return super.toStringFormula();
     }
     // huzi add
-    // getConstraints() {
-    //     if(this.base instanceof RegExpExec) 
-    //         return [["=", this._temps[0].name, this.extractFormula()]];
-    //     else
-    //         return []
+    // genName() {
+    //     const name = getTempName("regex_getField");
+    //     this._temps.push(new Temporary(name, "String"));
+    //     return name;
+    // };
+    // extractFormula() {
+    //     if (this.base instanceof RegExpExec) {
+    //         if (!(this.base.regex instanceof Constant)) {
+    //             console.log(this.base.regex);
+    //             throw new Error("can't solve for non-constant regexes");
+    //         }
+    //         const val = this.base.regex.value;
+    //         const source = _.isRegExp(val) ? val.source : val;
+    //         const regexFormula = RegExpParser.parse(source);
+    //         return ["(_ str.extract " + this.offset.value + ")",
+    //         this.base.str.toStringFormula(),
+    //         ["re.++", ["re.*?", "re.allchar"],
+    //             regexFormula.toRegexFormula()]]
+    //     } else
+    //         throw new Error["extractFormula is used unproperly"];
     // }
-    genName() {
-        const name = getTempName("regex_getField");
-        this._temps.push(new Temporary(name, "String"));
-        return name;
-    };
-    extractFormula() {
-        if(this.base instanceof RegExpExec){
-            if (!(this.base.regex instanceof Constant)) {
-                console.log(this.base.regex);
-                throw new Error("can't solve for non-constant regexes");
-            }
-            const val = this.base.regex.value;
-            const source = _.isRegExp(val) ? val.source : val;
-            const regexFormula = RegExpParser.parse(source);
-        return ["(_ str.extract "+this.offset.value+")",
-                this.base.str.toStringFormula() ,
-                ["re.++", ["re.*?", "re.allchar"], 
-                regexFormula.toRegexFormula()]]
-        }else
-            throw new Error["extractFormula is used unproperly"];
-    }
-    booleanFormula() {
-        // return ["=", this._temps[0].name, this.extractFormula()];
-        return ["not", ["str.in_re", this.extractFormula(), ["str.to_re", '"\u{0000}"']]];
-    }
+
+    // booleanFormula() {
+    //     // return ["=", this._temps[0].name, this.extractFormula()];
+    //     return ["not", ["str.in_re", this.extractFormula(), ["str.to_re", '"\u{0000}"']]];
+    // }
+
+    // toFormula() {
+    //     // huzi add, naive implementation for (String.match)[offset]
+    //     if (this.base instanceof RegExpExec) {
+    //         // return ["ite", this.booleanFormula(), 
+    //         //          ["Str", this._temps[0].name],
+    //         //         "null"]
+    //         return ["ite", this.booleanFormula(),
+    //             ["Str", this.extractFormula()],
+    //             "null"]
+    //     }
+    //     let props = this.base.toObjectFormula();
+    //     if (this.getTopBase() instanceof Variable) {
+    //         // In case our base is a temporary, we need to add a dynamic
+    //         // constraint: if the base is an object, return it with the
+    //         // modifications applied. Otherwise, return the original base.
+    //         props = ["MutableToProps", this.base.toFormula(), props];
+    //     }
+    //     return ["GetField", props, this.offset.toFormula()];
+    // }
+
     toFormula() {
-        // huzi add, naive implementation for (String.match)[offset]
-        if(this.base instanceof RegExpExec){
-            // return ["ite", this.booleanFormula(), 
-            //          ["Str", this._temps[0].name],
-            //         "null"]
-            return ["ite", this.booleanFormula(), 
-                     ["Str", this.extractFormula()],
-                    "null"]
-        }
         let props = this.base.toObjectFormula();
         if (this.getTopBase() instanceof Variable) {
             // In case our base is a temporary, we need to add a dynamic
@@ -464,6 +469,7 @@ class GetField extends ObjectOp {
             // modifications applied. Otherwise, return the original base.
             props = ["MutableToProps", this.base.toFormula(), props];
         }
+
         return ["GetField", props, this.offset.toFormula()];
     }
 
@@ -516,7 +522,7 @@ class Binary extends SymbolicValue {
 
     getType() {
         let type = Type.TOP;
-        switch(this.op) {
+        switch (this.op) {
             case "===":
             case "!==":
             case "==":
@@ -628,7 +634,7 @@ class Binary extends SymbolicValue {
 
 
         if (this.left.getType() === Type.NUMBER && this.right.getType() === Type.NUMBER) {
-            switch(op) {
+            switch (op) {
                 case ">=":
                 case "<=":
                 case ">":
@@ -641,7 +647,7 @@ class Binary extends SymbolicValue {
             return ["distinct", this.toIntegerFormula(), 0];
         }
 
-        switch(op) {
+        switch (op) {
             case "===":
             case "!==":
             case "==":
@@ -723,7 +729,7 @@ class Unary extends SymbolicValue {
     }
 
     getType() {
-        switch(this.op) {
+        switch (this.op) {
             case "!":
                 return Type.BOOLEAN;
             case "~":
@@ -806,9 +812,7 @@ class StringToString extends SymbolicValue {
     }
 
     toFormula() {
-        // huzi add
         return ["Str", this.toStringFormula()];
-        // return this.toStringFormula();
     }
 }
 exports.StringToString = StringToString;
@@ -903,8 +907,8 @@ class StringRepeat extends SymbolicValue {
         const n = this.num.toIntegerFormula();
         // huzi add
         // return ["re.to.str", ["re.loop", ["str.to_re", this.base.toStringFormula()], n, n]];
-        return ["re.to.str", [`(_ re.loop ${n} ${n})`, ["str.to_re", this.base.toStringFormula()]]];
-        
+        return [`(_ re.loop ${n} ${n})`, ["str.to_re", this.base.toStringFormula()]];
+
     }
 
     getType() {
@@ -918,7 +922,7 @@ class StringRepeat extends SymbolicValue {
 exports.StringRepeat = StringRepeat;
 
 class StringSubstr extends SymbolicValue {
-    constructor(base, start, len=new Constant(undefined)) {
+    constructor(base, start, len = new Constant(undefined)) {
         super();
         this.base = base;
         this.start = start;
@@ -951,7 +955,7 @@ class StringSubstr extends SymbolicValue {
 exports.StringSubstr = StringSubstr;
 
 class StringSubstring extends SymbolicValue {
-    constructor(base, start, end=new Constant(undefined)) {
+    constructor(base, start, end = new Constant(undefined)) {
         super();
         this.base = base;
         this.start = start;
@@ -984,7 +988,7 @@ class StringSubstring extends SymbolicValue {
 exports.StringSubstring = StringSubstring;
 
 class StringSlice extends SymbolicValue {
-    constructor(base, start, end=new Constant(undefined)) {
+    constructor(base, start, end = new Constant(undefined)) {
         super();
         this.base = base;
         this.start = start;
@@ -1135,8 +1139,8 @@ class ArrayIncludes extends SymbolicValue {
     }
 
     toBooleanFormula() {
-       //TODO:
-       return [];
+        //TODO:
+        return [];
     }
 
     getType() {
@@ -1370,7 +1374,7 @@ class NumberIsNaN extends SymbolicValue {
 exports.NumberIsNaN = NumberIsNaN;
 
 class NumberToFixed extends SymbolicValue {
-    constructor(base, fracDigits=new Constant(0)) {
+    constructor(base, fracDigits = new Constant(0)) {
         super();
         this.base = base;
         this.fracDigits = fracDigits;
@@ -1575,7 +1579,7 @@ class RegExpInstance extends SymbolicValue {
 }
 
 let namer = 0;
-exports.resetNameCounter = function() {
+exports.resetNameCounter = function () {
     namer = 0;
 };
 
@@ -1611,17 +1615,17 @@ class RegExpTest extends SymbolicValue {
         return RegExp.prototype.test.call(this.base.eval(model), this.str.eval(model));
     }
 
- 
+
     toBooleanFormula() {
         if (!(this.base instanceof Constant)) {
             console.log(this.base);
             throw new Error("can't solve for non-constant regexes");
         }
         const val = this.base.value;
-        const regexFormula = RegExpParser.parse(_.isRegExp(val) ? val.source : val);  
+        const regexFormula = RegExpParser.parse(_.isRegExp(val) ? val.source : val);
         // huzi add, when handle RegExp.test(a), we get smt clause (str.in_re a .*RegExp.*)
+        // J$.isTest = true;
         const testStr = this.str.toStringFormula();
-        J$.isTest = true;
         const regString = regexFormula.toRegexFormula();
         return ["str.in_re", testStr, regString];
     }
@@ -1642,7 +1646,6 @@ exports.Temporary = Temporary;
 
 const { CaptureVisitor } = require("./regexpast");
 
-const { result } = require("lodash");
 
 
 class RegExpExec extends SymbolicValue {
@@ -1659,22 +1662,14 @@ class RegExpExec extends SymbolicValue {
             this._temps.push(new Temporary(name, "String"));
             return name;
         };
-        // const genCapture = () => {
-        //     const name = getTempName("regex_capture");
-        //     const v = new Variable(name, Type.STRING | Type.UNDEFINED);
-        //     this._caps.push(v);
-        //     return name;
-        // };
-        // huzi add
-        // const visitor = new CaptureVisitor(genName, genCapture);
-        // this._formula = visitor.visit(this.getRegexAST(), genName());
-        const val = this.regex.value;
-        const reg = _.isRegExp(val) ? val.source : val;
-        // when handle String.match function, we firstly use String test to check if 
-        // the match result is null
-        J$.isTest = true;
-        // this._formula = ["str.in_re", genName(), RegExpParser.parse(reg).toRegexFormula()];
-        this._regex =  RegExpParser.parse(reg).toRegexFormula();
+        const genCapture = () => {
+            const name = getTempName("regex_capture");
+            const v = new Variable(name, Type.STRING | Type.UNDEFINED);
+            this._caps.push(v);
+            return name;
+        };
+        const visitor = new CaptureVisitor(genName, genCapture);
+        this._formula = visitor.visit(this.getRegexAST(), genName());
     }
 
     visit(visitor) {
@@ -1708,16 +1703,17 @@ class RegExpExec extends SymbolicValue {
 
     getConstraints() {
         // huzi add
+        // return []
         return [
-            // ["=", ["GetProperties", String(this._resultObjId)], this.toObjectFormula()],
-            // this._formula
+            ["=", ["GetProperties", String(this._resultObjId)], this.toObjectFormula()],
+            this._formula
         ];
     }
 
     toBooleanFormula() {
+        return ["=", ["Str", this._temps[0].name], this.str.toFormula()];
         // huzi add
-        // return ["=", ["Str", this._temps[0].name], this.str.toFormula()];
-        return ["str.in_re", ["str", this.str.toFormula()], this._regex];
+        // return ["str.in_re", ["str", this.str.toFormula()], this._regex];
     }
 
     toObjectFormula() {
@@ -1730,30 +1726,30 @@ class RegExpExec extends SymbolicValue {
 
     toFormula() {
         // huzi add
-        return ["ite", this.toBooleanFormula(), ["Str", this.str.toFormula()], "null"];
-        // return ["ite", this.toBooleanFormula(), ["Obj", String(this._resultObjId)], "null"];
+        // return ["ite", this.toBooleanFormula(), ["Str", this.str.toFormula()], "null"];
+        return ["ite", this.toBooleanFormula(), ["Obj", String(this._resultObjId)], "null"];
     }
 }
 exports.RegExpExec = RegExpExec;
 
 // huzi add 
-function ostrichReplacement(repString){
-    const splitStr = "hhhhhhhhhhhh"
-    repString = repString.slice(1,-1);
-    const repArr = repString.replace(/\$(\d+)/g, 
-        splitStr+"_ re.reference $1"+splitStr).split(splitStr);
-    const rep = ["re.++"]
-    repArr.forEach(str => {
-        if(str !== ""){
-            if(/re\.reference/.test(str)){
-                rep.push([str])
-            }else{
-                rep.push(["str.to_re", "\"" + str + "\""])
-            }
-        }
-    });
-    return rep;
-}
+// function ostrichReplacement(repString) {
+//     const splitStr = "hhhhhhhhhhhh"
+//     repString = repString.slice(1, -1);
+//     const repArr = repString.replace(/\$(\d+)/g,
+//         splitStr + "_ re.reference $1" + splitStr).split(splitStr);
+//     const rep = ["re.++"]
+//     repArr.forEach(str => {
+//         if (str !== "") {
+//             if (/re\.reference/.test(str)) {
+//                 rep.push([str])
+//             } else {
+//                 rep.push(["str.to_re", "\"" + str + "\""])
+//             }
+//         }
+//     });
+//     return rep;
+// }
 class StringReplace extends SymbolicValue {
     constructor(base, searchString, replacement) {
         super();
@@ -1773,37 +1769,41 @@ class StringReplace extends SymbolicValue {
         return String.prototype.replace.call(this.base.eval(model), this.searchString.eval(model), this.replacement.eval(model));
     }
 
+    // toStringFormula() {
+    //     // huzi add
+    //     const searchRegex = this.searchString.value
+    //     if (_.isRegExp(searchRegex)) {
+    //         const regexFormula = RegExpParser.parse(searchRegex.source);
+    //         var repString = this.replacement.toStringFormula();
+    //         if (searchRegex.global) {
+    //             // whether the replacement contains $n
+    //             const isRf = /\$\d+/.test(repString);
+    //             if (isRf) {
+    //                 // naive parse for reference
+    //                 J$.isReference = true
+    //                 const rep = ostrichReplacement(repString)
+    //                 return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), rep];
+    //             } else {
+    //                 const regexFormula = RegExpParser.parse(searchRegex.source);
+    //                 return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to_re", repString]];
+    //             }
+    //         } else {
+    //             const isRf = /\$\d+/.test(repString);
+    //             if (isRf) {
+    //                 // naive parse for reference
+    //                 J$.isReference = true
+    //                 const rep = ostrichReplacement(repString)
+    //                 return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), rep];
+    //             } else
+    //                 return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to_re", repString]];
+    //         }
+    //     } else {
+    //         return ["str.replace", this.base.toStringFormula(), this.searchString.toStringFormula(), this.replacement.toStringFormula()];
+    //     }
+    // }
+
     toStringFormula() {
-        // huzi add
-        const searchRegex = this.searchString.value
-        if(_.isRegExp(searchRegex)){
-            const regexFormula = RegExpParser.parse(searchRegex.source);
-            var repString = this.replacement.toStringFormula();
-            if(searchRegex.global){
-                // whether the replacement contains $n
-                const isRf = /\$\d+/.test(repString);
-                if(isRf){
-                    // naive parse for reference
-                    J$.isReference = true
-                    const rep = ostrichReplacement(repString)
-                    return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), rep];    
-                }else{
-                    const regexFormula = RegExpParser.parse(searchRegex.source);
-                    return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to_re" ,repString]];    
-                }
-            }else{
-                const isRf = /\$\d+/.test(repString);
-                if(isRf){
-                    // naive parse for reference
-                    J$.isReference = true
-                    const rep = ostrichReplacement(repString)
-                    return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), rep];
-                }else
-                    return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to_re" ,repString]];    
-            }
-        }else{
-            return ["str.replace", this.base.toStringFormula(), this.searchString.toStringFormula(), this.replacement.toStringFormula()];
-        }
+        return ["str.replace", this.base.toStringFormula(), this.searchString.toStringFormula(), this.replacement.toStringFormula()];
     }
 
     getType() {

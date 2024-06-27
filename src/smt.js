@@ -5,6 +5,7 @@ const fs = require("fs");
 const _ = require("lodash");
 
 const sexpr = require("./sexpr");
+const { myLog } = require("./util/print");
 
 exports.SMTSolver = class SMTSolver {
 
@@ -102,7 +103,7 @@ exports.SMTSolver = class SMTSolver {
     }
 
     _send(command) {
-        var a = sexpr.stringify(command);
+        myLog("sending command: " + sexpr.stringify(command));
         this._write(sexpr.stringify(command) + "\n");
     }
 
@@ -110,9 +111,7 @@ exports.SMTSolver = class SMTSolver {
         for (let i = 0; i < this._commandLogs.length; i++) {
             this._commandLogs[i].write(output, "utf8");
         }
-// Enable to see the SMT-LIB commands
-    //    console.error(output);
-    // huzi note, pass the input to solver
+        // huzi note, pass the input to solver
         this.process.stdin.write(output);
     }
 

@@ -29,7 +29,7 @@ function literal(s) {
 const EMPTY = literal("");
 
 function range(a, b) {
-    if(a === b) {
+    if (a === b) {
         return literal(a);
     }
 
@@ -93,10 +93,10 @@ class EndAnchor extends Assertion {
 }
 exports.EndAnchor = EndAnchor;
 
-class WordBoundary extends Assertion {}
+class WordBoundary extends Assertion { }
 exports.WordBoundary = WordBoundary;
 
-class NegatedWordBoundary extends WordBoundary {}
+class NegatedWordBoundary extends WordBoundary { }
 exports.NegatedWordBoundary = NegatedWordBoundary;
 
 class Lookahead extends Assertion {
@@ -117,7 +117,7 @@ class Lookahead extends Assertion {
 }
 exports.Lookahead = Lookahead;
 
-class NegatedLookahead extends Lookahead {}
+class NegatedLookahead extends Lookahead { }
 exports.NegatedLookahead = NegatedLookahead;
 
 class Pattern {
@@ -136,7 +136,7 @@ class Pattern {
             result.push(star(ALL_CLASS));
         }
         result.push(this.disjunction.toRegexFormula())
-        if(!(_.last(this.disjunction.disjuncts[0]) instanceof EndAnchor)) {
+        if (!(_.last(this.disjunction.disjuncts[0]) instanceof EndAnchor)) {
             result.push(star(ALL_CLASS));
         }
         // TODO: not use J$ here
@@ -178,7 +178,7 @@ class Or {
         for (let i = 0; i < concat.length; i++) {
             const part = concat[i];
             // if (part instanceof StartAnchor || part instanceof EndAnchor || part instanceof WordBoundary || part instanceof NegatedWordBoundary) {
-                // continue
+            // continue
             // huzi add
             if (part instanceof WordBoundary || part instanceof NegatedWordBoundary) {
                 continue;
@@ -251,11 +251,11 @@ class Star extends Quantifier {
     toRegexFormula() {
         // huzi add
         // return star(this.subject.toRegexFormula());
-        if (this.lazy) {
-            return ["re.*?", this.subject.toRegexFormula()];
-        } else {
-            return ["re.*", this.subject.toRegexFormula()];
-        }
+        // if (this.lazy) {
+        //     return ["re.*?", this.subject.toRegexFormula()];
+        // } else {
+        return ["re.*", this.subject.toRegexFormula()];
+        // }
     }
 }
 exports.Star = Star;
@@ -295,7 +295,7 @@ class Repeat extends Quantifier {
                 return ["re.+", regex];
             } else {
                 return ["re.++", [`(_ re.loop ${this.min} ${this.min})`,
-                // return ["re.++", ["re.loop", regex, this.min, this.min],
+                    // return ["re.++", ["re.loop", regex, this.min, this.min],
                     regex
                 ]];
             }
@@ -470,7 +470,7 @@ exports.CharRange = CharRange;
 
 const DIGIT_CLASS = range("0", "9");
 class DigitClass {
-    constructor(negated=false) {
+    constructor(negated = false) {
         this.negated = negated;
     }
 
@@ -482,7 +482,7 @@ exports.DigitClass = DigitClass;
 
 const WORD_CLASS = union([range("a", "z"), range("A", "Z")]);
 class WordClass {
-    constructor(negated=false) {
+    constructor(negated = false) {
         this.negated = negated;
     }
 
@@ -563,14 +563,14 @@ class CaptureVisitor {
                 // FIXME: introduce a new string variable at the end, in order
                 // to correctly handle expressions like (a)*, where only the
                 // last iteration should be captured.
+                return ["and", ["str.in_re", strName, ast.toRegexFormula()],
+                    this.visit(ast.subject, strName)
+                ];
                 // huzi add
-                // return ["and", ["str.in_re", strName, ast.toRegexFormula()],
-                //     this.visit(ast.subject, strName)
-                // ];
-                return ["str.in_re", strName, 
-                            ["re.++",
-                                ["re.*?", "re.allchar"], 
-                            ast.toRegexFormula(), "re.all"]];
+                // return ["str.in_re", strName,
+                //     ["re.++",
+                //         ["re.*?", "re.allchar"],
+                //         ast.toRegexFormula(), "re.all"]];
             case Lookahead:
             case NegatedLookahead:
             case NonCapture:
@@ -580,12 +580,12 @@ class CaptureVisitor {
                 return ["and", ["=", name, ["Str", strName]], this.visit(ast.expr, strName)];
             }
             default:
+                return ["str.in_re", strName, ast.toRegexFormula()];
                 // huzi add 
-                // return ["str.in_re", strName, ast.toRegexFormula()];
-                return ["str.in_re", strName, 
-                            ["re.++",
-                                ["re.*?", "re.allchar"], 
-                            ast.toRegexFormula(), "re.all"]];
+                // return ["str.in_re", strName,
+                //     ["re.++",
+                //         ["re.*?", "re.allchar"],
+                //         ast.toRegexFormula(), "re.all"]];
         }
     }
 
