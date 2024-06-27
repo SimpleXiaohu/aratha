@@ -1,8 +1,10 @@
 "use strict";
 
 const _ = require("lodash");
+const { myLog } = require("./util/print");
 
 function parseNumericExpr(expr) {
+    myLog("parseNumericExpr: " + expr);
     if (typeof expr === "string")
         return parseFloat(expr, 10);
 
