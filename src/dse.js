@@ -361,15 +361,18 @@ class ConstraintCollector {
                     top.add(expr.name);
                     this._declaredVariables.add(expr.name);
                     //huzi add
-                    const isStr = expr.type === Type.STRING
-                    this.solver.declareConst(expr.name, "Val", isStr);
+                    // const isStr = expr.type === Type.STRING
+                    // this.solver.declareConst(expr.name, "Val", isStr);
+                    this.solver.declareConst(expr.name, "Val");
+                    if (expr.type !== Type.TOP)
+                        this.solver.assert(new Type(expr.type).constraintFor(expr.toFormula()));
                     push_nogoods_smt(expr.name);
                 }
             } else if (expr instanceof Temporary) {
                 if (!this._declaredVariables.has(expr.name)) {
                     top.add(expr.name);
                     this._declaredVariables.add(expr.name);
-                    this.solver.declareConst(expr.name, expr.sort, false);
+                    this.solver.declareConst(expr.name, expr.sort);
                 }
             }
         });
