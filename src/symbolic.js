@@ -445,7 +445,7 @@ class GetField extends ObjectOp {
     }
     booleanFormula() {
         // return ["=", this._temps[0].name, this.extractFormula()];
-        return ["not", ["str.in.re", this.extractFormula(), ["str.to.re", '"\u{0000}"']]];
+        return ["not", ["str.in_re", this.extractFormula(), ["str.to_re", '"\u{0000}"']]];
     }
     toFormula() {
         // huzi add, naive implementation for (String.match)[offset]
@@ -902,8 +902,8 @@ class StringRepeat extends SymbolicValue {
     toStringFormula() {
         const n = this.num.toIntegerFormula();
         // huzi add
-        // return ["re.to.str", ["re.loop", ["str.to.re", this.base.toStringFormula()], n, n]];
-        return ["re.to.str", [`(_ re.loop ${n} ${n})`, ["str.to.re", this.base.toStringFormula()]]];
+        // return ["re.to.str", ["re.loop", ["str.to_re", this.base.toStringFormula()], n, n]];
+        return ["re.to.str", [`(_ re.loop ${n} ${n})`, ["str.to_re", this.base.toStringFormula()]]];
         
     }
 
@@ -1566,7 +1566,7 @@ class RegExpInstance extends SymbolicValue {
         }
         const val = this.regexp.value;
         const regexFormula = RegExpParser.parse(_.isRegExp(val) ? val.source : val);
-        return [["str.in.re", this.instance.toStringFormula(), regexFormula.toRegexFormula()]];
+        return [["str.in_re", this.instance.toStringFormula(), regexFormula.toRegexFormula()]];
     }
 
     toFormula() {
@@ -1619,11 +1619,11 @@ class RegExpTest extends SymbolicValue {
         }
         const val = this.base.value;
         const regexFormula = RegExpParser.parse(_.isRegExp(val) ? val.source : val);  
-        // huzi add, when handle RegExp.test(a), we get smt clause (str.in.re a .*RegExp.*)
+        // huzi add, when handle RegExp.test(a), we get smt clause (str.in_re a .*RegExp.*)
         const testStr = this.str.toStringFormula();
         J$.isTest = true;
         const regString = regexFormula.toRegexFormula();
-        return ["str.in.re", testStr, regString];
+        return ["str.in_re", testStr, regString];
     }
 
     toFormula() {
@@ -1673,7 +1673,7 @@ class RegExpExec extends SymbolicValue {
         // when handle String.match function, we firstly use String test to check if 
         // the match result is null
         J$.isTest = true;
-        // this._formula = ["str.in.re", genName(), RegExpParser.parse(reg).toRegexFormula()];
+        // this._formula = ["str.in_re", genName(), RegExpParser.parse(reg).toRegexFormula()];
         this._regex =  RegExpParser.parse(reg).toRegexFormula();
     }
 
@@ -1717,7 +1717,7 @@ class RegExpExec extends SymbolicValue {
     toBooleanFormula() {
         // huzi add
         // return ["=", ["Str", this._temps[0].name], this.str.toFormula()];
-        return ["str.in.re", ["str", this.str.toFormula()], this._regex];
+        return ["str.in_re", ["str", this.str.toFormula()], this._regex];
     }
 
     toObjectFormula() {
@@ -1748,7 +1748,7 @@ function ostrichReplacement(repString){
             if(/re\.reference/.test(str)){
                 rep.push([str])
             }else{
-                rep.push(["str.to.re", "\"" + str + "\""])
+                rep.push(["str.to_re", "\"" + str + "\""])
             }
         }
     });
@@ -1789,7 +1789,7 @@ class StringReplace extends SymbolicValue {
                     return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), rep];    
                 }else{
                     const regexFormula = RegExpParser.parse(searchRegex.source);
-                    return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to.re" ,repString]];    
+                    return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to_re" ,repString]];    
                 }
             }else{
                 const isRf = /\$\d+/.test(repString);
@@ -1799,7 +1799,7 @@ class StringReplace extends SymbolicValue {
                     const rep = ostrichReplacement(repString)
                     return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), rep];
                 }else
-                    return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to.re" ,repString]];    
+                    return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to_re" ,repString]];    
             }
         }else{
             return ["str.replace", this.base.toStringFormula(), this.searchString.toStringFormula(), this.replacement.toStringFormula()];

@@ -23,7 +23,7 @@ function inter(formulas) {
 }
 
 function literal(s) {
-    return ["str.to.re", escapeString(s)];
+    return ["str.to_re", escapeString(s)];
 }
 
 const EMPTY = literal("");
@@ -140,7 +140,7 @@ class Pattern {
             result.push(star(ALL_CLASS));
         }
         // TODO: not use J$ here
-        // huzi add, when handle RegExp.test(a), we get smt clause (str.in.re a .*RegExp.*)
+        // huzi add, when handle RegExp.test(a), we get smt clause (str.in_re a .*RegExp.*)
         // J$.captureNum = 1;
         // if (J$.isTest && !(this.disjunction.disjuncts[0][0] instanceof StartAnchor)) {
         //     result.push(star(ALL_CLASS));
@@ -525,7 +525,7 @@ class CaptureVisitor {
 
                     cursor.push([
                         "ite",
-                        ["str.in.re", strName, ast._concatToFormula(alt)],
+                        ["str.in_re", strName, ast._concatToFormula(alt)],
                         then,
                         else_
                     ]);
@@ -564,10 +564,10 @@ class CaptureVisitor {
                 // to correctly handle expressions like (a)*, where only the
                 // last iteration should be captured.
                 // huzi add
-                // return ["and", ["str.in.re", strName, ast.toRegexFormula()],
+                // return ["and", ["str.in_re", strName, ast.toRegexFormula()],
                 //     this.visit(ast.subject, strName)
                 // ];
-                return ["str.in.re", strName, 
+                return ["str.in_re", strName, 
                             ["re.++",
                                 ["re.*?", "re.allchar"], 
                             ast.toRegexFormula(), "re.all"]];
@@ -581,8 +581,8 @@ class CaptureVisitor {
             }
             default:
                 // huzi add 
-                // return ["str.in.re", strName, ast.toRegexFormula()];
-                return ["str.in.re", strName, 
+                // return ["str.in_re", strName, ast.toRegexFormula()];
+                return ["str.in_re", strName, 
                             ["re.++",
                                 ["re.*?", "re.allchar"], 
                             ast.toRegexFormula(), "re.all"]];

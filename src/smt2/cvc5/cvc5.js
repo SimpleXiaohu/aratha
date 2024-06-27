@@ -8,8 +8,7 @@ class CVC5 extends SMTSolver {
             "--lang=smt2",
             "--strings-exp",
             "--incremental",
-            "--tlimit-per=10000",
-            "--strings-guess-model"
+            "--tlimit-per=10000"
         ];
         if (process.env.UNSAT_CORES === "1") {
             args.push("--produce-unsat-cores");
