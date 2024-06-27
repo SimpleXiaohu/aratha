@@ -1,8 +1,19 @@
+(declare-datatype Val (
+    (undefined)
+    (null)
+    (Boolean (bool Bool))
+    (Str (str String))
+    (Num (num Int))
+    (Obj (id Int))))
+(declare-datatype MaybeVal (
+    (Nothing)
+    (Just (just Val))))
+
 (define-sort Properties () (Array String MaybeVal))
 (declare-fun GetProperties (Int) Properties)
 (define-fun EmptyObject () Properties ((as const Properties) Nothing))
 (define-fun StringToObject ((s String)) Properties (store EmptyObject "length" (Just (Num (str.len s)))))
-(define-fun NumberToString ((x Int)) String (ite (>= x 0) (int.to.str x) (str.++ "-" (int.to.str (- x)))))
+(define-fun NumberToString ((x Int)) String (ite (>= x 0) (str.from_int x) (str.++ "-" (str.from_int (- x)))))
 (define-fun js.ToString ((x Val)) String
     (ite (is-Str x) (str x)
     (ite (is-undefined x) "undefined"
@@ -19,8 +30,8 @@
         (ite (is-Just v) (just v) undefined)))
 (define-fun StringToNumber ((x String)) Int
     (ite (= x "") 0
-    (ite (str.prefixof "-" x) (- (str.to.int (str.substr x 1 (- (str.len x) 1))))
-    (str.to.int x))))
+    (ite (str.prefixof "-" x) (- (str.to_int (str.substr x 1 (- (str.len x) 1))))
+    (str.to_int x))))
 (define-fun js.ToNumber ((x Val)) Int
     (ite (is-Num x) (num x)
     (ite (is-undefined x) 0
@@ -34,7 +45,7 @@
 (define-fun IsNumber ((x Val)) Bool (and
     (not (is-undefined x))
     (not (is-Obj x))
-    (=> (is-Str x) (let ((sx (str x))) (or (distinct (str.to.int sx) (- 1)) (= sx "") (= sx "-1"))))))
+    (=> (is-Str x) (let ((sx (str x))) (or (distinct (str.to_int sx) (- 1)) (= sx "") (= sx "-1"))))))
 (define-fun AbsRelComp ((x Val) (y Val)) Bool
     (let ((px (ToPrimitive x)) (py (ToPrimitive y)))
     (and (=> (not (and (is-Str px) (is-Str py))) (< (js.ToNumber px) (js.ToNumber py)))
