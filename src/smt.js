@@ -71,7 +71,7 @@ exports.SMTSolver = class SMTSolver {
         }
         if(isStr || sort === "String"){
             // the unicode \u{0000} is a special char which stand for null res in ostrich.
-            this._send(["assert", ["str.in.re", ["str", name],
+            this._send(["assert", ["str.in_re", ["str", name],
                 ["re.*", ["re.range", '"\\u{0001}"', '"\\u{FFFF}"']]]])
         }
     }
