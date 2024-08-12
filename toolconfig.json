@@ -6,10 +6,10 @@
       "path" : "/home/hudh/github/aratha/solverbin/cvc5/cvc5"
   },
   "z3str" : {
-      "path" : "/home/hudh/github/aratha/solverbin/z3str/z3"
+      "path" : "/home/hudh/github/aratha/solverbin/z3str3/z3"
   },
   "ostrich" : {
-      "path" : "/home/hudh/github/aratha/../ostrich/ostrich"
+      "path" : "/home/hudh/github/aratha/solverbin/ostrich/ostrich"
   },
   "ostrichcea" : {
       "path" : "/home/hudh/github/aratha/../ostrich/ostrichCEA"

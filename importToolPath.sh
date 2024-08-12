@@ -10,10 +10,10 @@ cat << EOF > "$tPath/toolconfig.json"
       "path" : "$tPath/solverbin/cvc5/cvc5"
   },
   "z3str" : {
-      "path" : "$tPath/solverbin/z3str/z3"
+      "path" : "$tPath/solverbin/z3str3/z3"
   },
   "ostrich" : {
-      "path" : "$tPath/../ostrich/ostrich"
+      "path" : "$tPath/solverbin/ostrich/ostrich"
   },
   "ostrichcea" : {
       "path" : "$tPath/../ostrich/ostrichCEA"
