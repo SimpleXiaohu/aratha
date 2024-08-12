@@ -8,3 +8,5 @@ data.dzn
 model.fzn
 model.mzn
 node_modules
+*_jalangi_.json
+*_jalangi_.js
