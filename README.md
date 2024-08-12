@@ -1,4 +1,6 @@
-# Aratha based on ostrich
+# Aratha_Redos
+
+A tool to analyze regular expressions for ReDoS vulnerabilities in JavaScript.
 
 ## Running the analysis
 
@@ -10,13 +12,32 @@ from this directory. To analyze a script, run
 ```
 $ npm run analyze -- <path to script>
 ```
-from this directory.
 
-### OSTRICH_PATH
 
-The default solver is ostrich. 
-Alternatively, you can use an SMT solver by setting environment variables `SOLVER=ostrich` and `OSTRICH_PATH` to the executable file of [ostrich](https://github.com/uuverifiers/ostrich).
+### Arguments
+
 ```
-$ export SOLVER=ostrich
-$ export OSTRICH_PATH=executable-file-of-ostrich
+$ SOLVER=<solver> npm run analyze -- <path to script>
 ```
+Four solvers are available: cvc5, z3, z3str3, and ostrich. The default solver is ostrich.
+
+### A simple example
+
+To analyze the script `string_test\redos.js`, run 
+```
+$ npm run analyze -- string_test\redos.js
+```
+
+### Runing the tests
+
+To run the tests, run
+```
+$ npm test
+```
+
+### On going
+
+We are currently working on including more features and improving the performance of the tool.
+
+
+
