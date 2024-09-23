@@ -2,7 +2,7 @@
 
 
 const _ = require("lodash");
-
+const { execSync } = require('child_process');
 const { doBinaryOp, doUnaryOp } = require("./ops");
 const { escapeString } = require("./smtlib");
 const Type = require("./type");
@@ -1555,6 +1555,7 @@ class RegExpInstance extends SymbolicValue {
     constructor(regexp, instanceName) {
         super();
         this.regexp = regexp;
+        console.log("regexp", regexp);
         this.instance = new Variable("regexp." + instanceName);
     }
 
@@ -1570,7 +1571,9 @@ class RegExpInstance extends SymbolicValue {
         }
         const val = this.regexp.value;
         const regexFormula = RegExpParser.parse(_.isRegExp(val) ? val.source : val);
-        return [["str.in_re", this.instance.toStringFormula(), regexFormula.toRegexFormula()]];
+        const temp = [["str.in_re", this.instance.toStringFormula(), regexFormula.toRegexFormula()]];
+        console.log("temp", temp);
+        return temp;
     }
 
     toFormula() {
@@ -1646,6 +1649,7 @@ exports.Temporary = Temporary;
 
 const { CaptureVisitor } = require("./regexpast");
 
+const TOOLCONFIG = require("../toolconfig.json");
 
 
 class RegExpExec extends SymbolicValue {
@@ -1653,6 +1657,16 @@ class RegExpExec extends SymbolicValue {
         super();
         this.regex = regex;
         this.str = str;
+
+        console.log("regexp", regex);
+
+        this.constraint = "";
+
+        // 调用命令"java -jar /home/supermaxine/Test.jar [base64 of regex]"，返回一个字符串，即为约束
+        const command = "java -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -jar "+TOOLCONFIG["ReDoSHunter4Symbolic"].path+" \"" + Buffer.from(regex.value.toString()).toString('base64') + "\""
+        console.log("command:\n", command, "\n\n");
+        this.constraint = execSync(command).toString();
+        console.log("\n\nregex constraint:\n", this.constraint, "\n\n");
 
         this._temps = [];
         this._caps = [];

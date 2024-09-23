@@ -12,6 +12,7 @@ exports.SMTSolver = class SMTSolver {
     constructor(process) {
         this._callbackQueue = [];
         this._commandLogs = [];
+        this.output_log = "";
 
         process.stdout.setEncoding("utf8");
         process.stderr.setEncoding("utf8");
@@ -112,6 +113,13 @@ exports.SMTSolver = class SMTSolver {
             this._commandLogs[i].write(output, "utf8");
         }
         // huzi note, pass the input to solver
+        this.output_log += output + "\n";
+        this.process.stdin.write(output);
+    }
+
+    writeRegexConstraint(output) {
+        output = output.replace("str.in.re", "str.in_re")+ "\n";
+        this.output_log += output + "\n";
         this.process.stdin.write(output);
     }
 
