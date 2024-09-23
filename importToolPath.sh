@@ -20,6 +20,6 @@ cat << EOF > "$tPath/toolconfig.json"
   },
   "ReDoSHunter4Symbolic" : {
     "path" : "$tPath/solverbin/ReDoSHunter4Symbolic/Main.jar"
-  },
+  }
 }
 EOF
