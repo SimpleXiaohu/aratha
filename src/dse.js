@@ -3,7 +3,7 @@
 const _ = require("lodash");
 const assert = require("assert");
 const { BooleanConstraint, TypeConstraint } = require("./constraint");
-const { SymbolicValue, Constant, Variable, Temporary } = require("./symbolic");
+const { SymbolicValue, Constant, Variable, Temporary, RegExpExec } = require("./symbolic");
 const { parseModel } = require("./model");
 const Type = require("./type");
 const sexpr = require("./sexpr");
@@ -374,6 +374,9 @@ class ConstraintCollector {
                     this._declaredVariables.add(expr.name);
                     this.solver.declareConst(expr.name, expr.sort);
                 }
+            } else if (expr instanceof RegExpExec) {
+                // console.log("RegExpExec", expr)
+                this.solver.writeRegexConstraint(expr.constraint+"\n"+"(assert = "+ expr.str.name +" result )\n")
             }
         });
     }
