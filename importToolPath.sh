@@ -17,6 +17,9 @@ cat << EOF > "$tPath/toolconfig.json"
   },
   "ostrichcea" : {
       "path" : "$tPath/../ostrich/ostrichCEA"
-  }
+  },
+  "ReDoSHunter4Symbolic" : {
+    "path" : "$tPath/solverbin/ReDoSHunter4Symbolic/Main.jar"
+  },
 }
 EOF
