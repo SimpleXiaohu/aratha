@@ -2,6 +2,12 @@
 
 A tool to analyze regular expressions for ReDoS vulnerabilities in JavaScript.
 
+## Before Running
+You should install the path of related tools by the following cmd:
+```
+$ ./importToolPath.sh
+```
+
 ## Running the analysis
 
 First, install the dependencies by running
