@@ -1,6 +1,6 @@
 const child_process = require("child_process");
 
-const { SMTSolver } = require("../../smt");
+const { SMTSolver } = require("../smt");
 
 class Z3str extends SMTSolver {
     constructor(solverPath) {
