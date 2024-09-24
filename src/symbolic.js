@@ -1624,7 +1624,6 @@ class RegExpTest extends SymbolicValue {
         const val = this.base.value;
         const regexFormula = RegExpParser.parse(_.isRegExp(val) ? val.source : val);
         // huzi add, when handle RegExp.test(a), we get smt clause (str.in_re a .*RegExp.*)
-        // J$.isTest = true;
         const testStr = this.str.toStringFormula();
         const regString = regexFormula.toRegexFormula();
         return ["str.in_re", testStr, regString];
@@ -1768,39 +1767,6 @@ class StringReplace extends SymbolicValue {
     eval(model) {
         return String.prototype.replace.call(this.base.eval(model), this.searchString.eval(model), this.replacement.eval(model));
     }
-
-    // toStringFormula() {
-    //     // huzi add
-    //     const searchRegex = this.searchString.value
-    //     if (_.isRegExp(searchRegex)) {
-    //         const regexFormula = RegExpParser.parse(searchRegex.source);
-    //         var repString = this.replacement.toStringFormula();
-    //         if (searchRegex.global) {
-    //             // whether the replacement contains $n
-    //             const isRf = /\$\d+/.test(repString);
-    //             if (isRf) {
-    //                 // naive parse for reference
-    //                 J$.isReference = true
-    //                 const rep = ostrichReplacement(repString)
-    //                 return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), rep];
-    //             } else {
-    //                 const regexFormula = RegExpParser.parse(searchRegex.source);
-    //                 return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to_re", repString]];
-    //             }
-    //         } else {
-    //             const isRf = /\$\d+/.test(repString);
-    //             if (isRf) {
-    //                 // naive parse for reference
-    //                 J$.isReference = true
-    //                 const rep = ostrichReplacement(repString)
-    //                 return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), rep];
-    //             } else
-    //                 return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to_re", repString]];
-    //         }
-    //     } else {
-    //         return ["str.replace", this.base.toStringFormula(), this.searchString.toStringFormula(), this.replacement.toStringFormula()];
-    //     }
-    // }
 
     toStringFormula() {
         return ["str.replace", this.base.toStringFormula(), this.searchString.toStringFormula(), this.replacement.toStringFormula()];
