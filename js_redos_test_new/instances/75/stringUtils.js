@@ -1,5 +1,4 @@
 // import settings from '#src/config/settings.js';
-import settings from "./settings.js";
 
 export default class StringUtils {
   static capitalize([first, ...rest], lowerRest = false) {
@@ -48,10 +47,10 @@ export default class StringUtils {
   static stripHtml(str) {
     return str
       .replace(/<.*?>/g, '')
-      // .replace(/&nbsp;/g, ' ')
-      // .replace(/&amp;/g, '&')
-      // .replace(/&gt;/g, '>')
-      // .replace(/&lt;/g, '<');
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&gt;/g, '>')
+      .replace(/&lt;/g, '<');
   }
 
   static normalizedTokens(str) {
@@ -74,6 +73,6 @@ export default class StringUtils {
   static formatTag(tag) {
     if (!tag) return '';
 
-    return settings.tags[tag] || tag.replace(/^./, tag[0].toUpperCase());
+  //   return settings.tags[tag] || tag.replace(/^./, tag[0].toUpperCase());
   }
 }

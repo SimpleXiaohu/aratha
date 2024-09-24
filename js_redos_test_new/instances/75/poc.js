@@ -9,6 +9,7 @@ str += "\n@";
 
 console.log(StringUtils.stripHtml(str));
 
-// real    0m5.059s
-// user    0m5.013s
-// sys     0m0.031s
+
+// real    0m5.281s
+// user    0m5.234s
+// sys     0m0.020s
