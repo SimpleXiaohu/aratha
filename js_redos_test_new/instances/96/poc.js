@@ -9,6 +9,8 @@ str += "◎(";
 
 console.log(processBoxShadow(str));
 
-// real    0m19.615s
-// user    0m19.549s
-// sys     0m0.030s
+//在运行至正则表达式所在行之后报错
+
+// real    0m20.067s
+// user    0m20.023s
+// sys     0m0.020s
