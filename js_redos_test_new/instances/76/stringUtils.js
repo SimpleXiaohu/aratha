@@ -1,4 +1,4 @@
-import settings from '#src/config/settings.js';
+// import settings from '#src/config/settings.js';
 
 export default class StringUtils {
   static capitalize([first, ...rest], lowerRest = false) {
@@ -73,6 +73,6 @@ export default class StringUtils {
   static formatTag(tag) {
     if (!tag) return '';
 
-    return settings.tags[tag] || tag.replace(/^./, tag[0].toUpperCase());
+  //   return settings.tags[tag] || tag.replace(/^./, tag[0].toUpperCase());
   }
 }

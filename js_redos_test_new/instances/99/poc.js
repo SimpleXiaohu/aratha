@@ -9,6 +9,8 @@ str += "\u0000";
 
 console.log(processBoxShadow(str));
 
-// real    0m6.880s
-// user    0m6.826s
-// sys     0m0.030s
+//在运行至正则表达式所在行之后报错
+
+// real    0m6.374s
+// user    0m6.344s
+// sys     0m0.010s
