@@ -1,5 +1,5 @@
 const child_process = require("child_process");
-const { SMTSolver } = require("../../smt");
+const { SMTSolver } = require("../smt");
 
 class CVC5 extends SMTSolver {
 

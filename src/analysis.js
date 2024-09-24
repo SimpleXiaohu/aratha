@@ -33,10 +33,10 @@
     } = require("./symbolic");
     const { getBuiltinShim } = require("./functionmodels");
     const Type = require("./type");
-    const Z3 = require("./z3");
-    const Z3str = require("./z3str");
-    const CVC5 = require("./cvc5");
-    const OSTRICH = require("./ostrich");
+    const Z3 = require("./smt2/z3/z3");
+    const Z3str = require("./smt2/z3str/z3str");
+    const CVC5 = require("./smt2/cvc5/cvc5");
+    const OSTRICH = require("./smt2/ostrich/ostrich");
 
     let varNameCounter = 0;
 
