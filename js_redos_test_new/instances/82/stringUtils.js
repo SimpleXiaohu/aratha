@@ -1,4 +1,4 @@
-import settings from './settings.js';
+// import settings from './settings.js';
 
 export default class StringUtils {
   static capitalize([first, ...rest], lowerRest = false) {
@@ -33,7 +33,7 @@ export default class StringUtils {
       .replace(/[`*]/g, '')
       .replace(/\n/g, '')
       .replace(/\[(.*)\]\(.*\)/g, '$1')
-      // .replace(/_(.*?)_/g, '$1');
+      .replace(/_(.*?)_/g, '$1');
   }
 
   static stripHtmlParagraphsAndLinks(str) {
@@ -73,6 +73,6 @@ export default class StringUtils {
   static formatTag(tag) {
     if (!tag) return '';
 
-    return settings.tags[tag] || tag.replace(/^./, tag[0].toUpperCase());
+  //   return settings.tags[tag] || tag.replace(/^./, tag[0].toUpperCase());
   }
 }
