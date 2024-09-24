@@ -1,7 +1,6 @@
 "use strict";
 
 const _ = require("lodash");
-const assert = require("assert");
 const { BooleanConstraint, TypeConstraint } = require("./constraint");
 const { SymbolicValue, Constant, Variable, Temporary } = require("./symbolic");
 const { parseModel } = require("./model");
@@ -141,139 +140,12 @@ class ExecutionPathSet {
 }
 exports.ExecutionPathSet = ExecutionPathSet;
 
-function normalizeVarNames(p, names) {
-    if (_.isArray(p)) {
-        return p.map((x) => normalizeVarNames(x, names));
-    } else if (_.isString(p)) {
-        const result = p.match(/var\d+/);
-        if (result !== null) {
-            if (names.has(p)) {
-                return names.get(p);
-            } else {
-                const newName = "revar" + names.size;
-                names.set(p, newName);
-                return newName;
-            }
-        }
-    } else {
-        throw new Error("unknown term: " + p);
-    }
-    return p;
-}
-
-function parseAssertions(assertions) {
-    const parser = new sexpr.Parser();
-    const parsed = [];
-    assertions.forEach((s) => {
-        parser.parse(s, (p) => parsed.push(p));
-    });
-    return parsed;
-}
-
-function matchCoreStmts(core, query, names) {
-    // console.log("matching deeper");
-    if (core.size === 0) {
-        // console.log("successfully matched", query);
-        return true;
-    }
-    const attempted = new Set();
-    for (const queryStmt of query) {
-        const newNames = new Map(names);
-        const normalizedQuery = sexpr.stringify(normalizeVarNames(queryStmt, newNames));
-        if (attempted.has(normalizedQuery)) {
-            continue;
-        }
-        // console.log("attempting to match", normalizedQuery, "against", core);
-        // console.log("newNames=", newNames);
-        if (core.delete(normalizedQuery)) {
-            // console.log("successfully removed " + normalizedQuery);
-            const didMatch = matchCoreStmts(core, query, newNames);
-            core.add(normalizedQuery);
-            if (didMatch) {
-                return true;
-            }
-            // console.log("retrying match");
-        }
-        attempted.add(normalizedQuery);
-    }
-    // console.log("matching failed on", query);
-    return false;
-}
-
-function coreMatches(core, query) {
-    if (core.size > query.length) {
-        console.log("core bigger than query: ", core.size, " > ", query.length);
-        return false;
-    }
-    return matchCoreStmts(new Set(core), parseAssertions(query.map(sexpr.stringify)), new Map());
-}
-
-function normalizeCore(assertions) {
-    const names = new Map();
-    return new Set(parseAssertions(assertions).map(_.flow([(x) => normalizeVarNames(x, names), sexpr.stringify])));
-}
-
-function isSuperset(superset, subset) {
-    if (subset.size > superset.size) {
-        return false;
-    }
-    for (const elem of subset) {
-        if (!superset.has(elem)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-class UnsatCoreSet {
-    constructor(maxSize = Infinity) {
-        this._cores = [];
-        this.maxSize = maxSize;
-    }
-
-    add(core) {
-        core = normalizeCore(core);
-        if (!this._has(core)) {
-            this._cores.push(core);
-            if (this._cores.length > this.maxSize) {
-                this._cores.shift();
-            }
-            return core;
-        }
-    }
-
-    has(core) {
-        return this._has(normalizeCore(core));
-    }
-
-    _has(core) {
-        for (const x of this._cores) {
-            if (isSuperset(core, x)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    match(assertions) {
-        for (let i = 0; i < this._cores.length; i++) {
-            const core = this._cores[i];
-            if (coreMatches(core, assertions)) {
-                console.log("core", core, "matches", assertions);
-                return true;
-            }
-        }
-        return false;
-    }
-}
-
 class ConstraintCollector {
     constructor(solver, incremental = false) {
         this.solver = solver;
         this.incremental = incremental;
         this._constraintStack = [];
         this._polarity = [];
-        // this._assertionCount = 0;
         this._unsyncedIndex = 0;
 
         this._declaredVariables = new Set();
@@ -433,31 +305,8 @@ class ConstraintCollector {
     }
 
     _assert(formula) {
-        // const topLevel = _.last(this._solverStack);
-        // const name = "p" + this._assertionCount++;
-        // topLevel.assertionsByName.set(name, sexpr.stringify(formula));
-        // formula = ["!", formula, ":named", name];
         this.solver.assert(formula);
     }
-
-    // getNamedFormula(name) {
-    //     for (const level of this._solverStack) {
-    //         const assertion = level.assertionsByName.get(name);
-    //         if (assertion !== undefined) {
-    //             return assertion;
-    //         }
-    //     }
-    //     throw new Error("unknown formula name " + name);
-    // }
-
-    // async getUnsatCore() {
-    //     const coreNames = await this.solver.getUnsatCore();
-    //     const core = new Set();
-    //     for (let i = 0; i < coreNames.length; ++i) {
-    //         core.add(this.getNamedFormula(coreNames[i]));
-    //     }
-    //     return core;
-    // }
 
     // Make sure that the stack consists of length levels, with each level
     // corresponding to the first length constraints.
@@ -497,18 +346,13 @@ class DSE {
     constructor(solver, program, options) {
         _.defaults(options, {
             incremental: true,
-            unsatCores: false,
-            coreCacheSize: 8
         });
         this._solver = solver;
         this._collector = new ConstraintCollector(solver, options.incremental);
         this._program = program;
         this._inputs = [{ model: {}, step: 0 }];
         this._visitedPaths = new ExecutionPathSet();
-        this._unsatCores = new UnsatCoreSet(options.coreCacheSize);
-        this._candidateCores = new UnsatCoreSet();
         this._workQueue = [];
-        this.useUnsatCores = options.unsatCores;
         this._itemCount = 0;
     }
 
@@ -516,7 +360,6 @@ class DSE {
         const input = await this._nextInput();
         if (input === undefined)
             return false;
-        //console.log("new input by", this._solver.id)
         console.log("testing input: ", input);
         const path = await this._program(input.model);
         console.log("execution complete");
@@ -525,7 +368,7 @@ class DSE {
         console.log(constraints.length + " constraints in path condition");
         if (this._visitedPaths.add(constraints) && input.step < constraints.length) {
             console.log(`adding new constraint set item #${this._itemCount} to work queue`);
-            //            console.dir(constraints, {depth: null});
+                    //    console.dir(constraints, {depth: null});
             Object.defineProperty(constraints, "length", { configurable: false, writable: false });
             this._workQueue.push({ id: this._itemCount++, step: input.step, constraints: constraints });
         }
@@ -544,14 +387,6 @@ class DSE {
     }
 
     _addInput(input) { this._inputs.push(input); }
-
-    // _inUnsatCore(assertions) {
-    //     if (!this.useUnsatCores) {
-    //         return false;
-    //     }
-    //     console.log("checking unsat cores");
-    //     return this._unsatCores.match(assertions);
-    // }
 
     async _generateInput() {
         if (this._workQueue.length === 0)

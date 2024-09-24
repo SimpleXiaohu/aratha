@@ -139,7 +139,6 @@
             }
 
             const dseOptions = {
-                unsatCores: process.env.UNSAT_CORES === "1",
                 incremental: !(process.env.INCREMENTAL === "0"),
             };
 
@@ -190,6 +189,7 @@
                     return arr[0];
                 }
             };
+            
             let commandLogs = [];
             let solvers = [];
             const solver = process.env.SOLVER || 'ostrich';
@@ -206,78 +206,75 @@
                     commandLogs.push(clog);
                 }
             }
+            const inputLog = fs.openSync("inputlog.json", "w");
+            let first = true;
             try {
-                const inputLog = fs.openSync("inputlog.json", "w");
-                let first = true;
-                try {
-                    fs.writeSync(inputLog, "[\n");
-                    let searchers = {};
-                    for (const s of solvers) {
-                        searchers[s.id] = new DSE(s, async (newInput) => {
-                            if (!first) {
-                                fs.writeSync(inputLog, ",\n");
-                            }
-                            first = false;
-                            var isCircular = require('is-circular');
-                            if (isCircular(newInput)) {
-                                console.log("Warning! Circular object detected. Ignored input")
-                                newInput = {}
-                            }
-                            fs.writeSync(inputLog, JSON.stringify(newInput));
-                            fs.fsyncSync(inputLog);
-                            this.inputs = newInput;
-                            this.path = new ExecutionPath();
-                            resetNameCounter();
-                            try {
-                                cb();
-                            }
-                            catch (e) {
-                                console.log("run terminated with exception:", e);
-                            }
-                            // Delete the cached copy of the script so it can be reloaded.
-                            const inputFilename = process.argv[1];
-                            delete require.cache[require.resolve(inputFilename)];
-                            return this.path;
-                        }, dseOptions);
+                fs.writeSync(inputLog, "[\n");
+                let searchers = {};
+                const dseProgram = async (newInput) => {
+                    if (!first) {
+                        fs.writeSync(inputLog, ",\n");
                     }
-                    for (let i = 0; Object.keys(searchers).length &&
-                        i < maxIterations && !receivedSigint && !timedOut; i++) {
-                        //Promise.race([...])
-                        for (let s in searchers) {
-                            varNameCounter = 0;
-                            try {
-                                const ok = await searchers[s].execute();
-                                console.log(s, "finished!", ok);
-                                if (ok)
-                                    break;
-                            }
-                            catch (error) {
-                                console.log(error);
-                            }
+                    first = false;
+                    var isCircular = require('is-circular');
+                    if (isCircular(newInput)) {
+                        console.log("Warning! Circular object detected. Ignored input")
+                        newInput = {}
+                    }
+                    fs.writeSync(inputLog, JSON.stringify(newInput));
+                    fs.fsyncSync(inputLog);
+                    this.inputs = newInput;
+                    this.path = new ExecutionPath();
+                    resetNameCounter();
+                    try {
+                        cb();
+                    }
+                    catch (e) {
+                        console.log("run terminated with exception:", e);
+                    }
+                    // Delete the cached copy of the script so it can be reloaded.
+                    const inputFilename = process.argv[1];
+                    delete require.cache[require.resolve(inputFilename)];
+                    return this.path;
+                }
+                for (const s of solvers) {
+                    searchers[s.id] = new DSE(s, dseProgram, dseOptions);
+                }
+                for (let i = 0; Object.keys(searchers).length &&
+                    i < maxIterations && !receivedSigint && !timedOut; i++) {
+                    for (let s in searchers) {
+                        varNameCounter = 0;
+                        try {
+                            const ok = await searchers[s].execute();
+                            console.log(s, "finished!", ok);
+                            if (ok)
+                                break;
                         }
-                        for (let s in searchers) {
-                            if (searchers[s].isDone()) {
-                                console.log("finished: no more constraints to solve");
-                                delete searchers[s];
-                            } else if (i >= maxIterations) {
-                                console.log("finished: reached iteration limit");
-                                delete searchers[s];
-                            } else if (receivedSigint) {
-                                console.log("terminated: received SIGINT");
-                                delete searchers[s];
-                            } else if (timedOut) {
-                                console.log("terminated: timed out");
-                                delete searchers[s];
-                            }
+                        catch (error) {
+                            console.console.error(s, "terminated with exception:", error);
                         }
                     }
-                } finally {
-                    for (const s of solvers)
-                        s.close();
-                    fs.writeSync(inputLog, "\n]\n");
-                    fs.closeSync(inputLog);
+                    for (let s in searchers) {
+                        if (searchers[s].isDone()) {
+                            console.log("finished: no more constraints to solve");
+                            delete searchers[s];
+                        } else if (i >= maxIterations) {
+                            console.log("finished: reached iteration limit");
+                            delete searchers[s];
+                        } else if (receivedSigint) {
+                            console.log("terminated: received SIGINT");
+                            delete searchers[s];
+                        } else if (timedOut) {
+                            console.log("terminated: timed out");
+                            delete searchers[s];
+                        }
+                    }
                 }
             } finally {
+                for (const s of solvers)
+                    s.close();
+                fs.writeSync(inputLog, "\n]\n");
+                fs.closeSync(inputLog);
                 for (const c of commandLogs)
                     if (c)
                         c.end();
