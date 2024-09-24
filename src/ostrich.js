@@ -14,6 +14,12 @@ class OSTRICH extends SMTSolver {
         if (process.env.UNSAT_CORES === "1") {
             args.push("+unsatCore");
         }
+        if (process.env.OSTRICHXSS !== undefined) {
+            args.push("-Xss" + process.env.OSTRICHXSS);
+        }
+        if (process.env.OSTRICHXMS !== undefined) {
+            args.push("-Xms" + process.env.OSTRICHXMS);
+        }
         const ostrich = child_process.spawn(solverPath, args);
         super(ostrich);
         this._send(["set-logic", logic]);

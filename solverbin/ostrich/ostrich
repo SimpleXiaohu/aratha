@@ -13,7 +13,8 @@ TARGET=`echo $BASEDIR/target/scala-*/ostrich-assembly*.jar`
 LIBDIR=$BASEDIR/lib
 SCALA=scala
 JAVA=java
-export JAVA_OPTS="-Xss20000k -Xmx2000m"
+# JAVA_OPTS="-Xss20000k -Xmx2000m"
+JAVA_OPTS=""
 
 princessParams=()
 ostrichSolver=ostrich.OstrichStringTheory
@@ -34,11 +35,18 @@ for p; do
         +cea)
             ostrichSolver=ostrich.cesolver.stringtheory.CEStringTheory
             ;;
+        -Xss* | -Xmx*)
+            JAVA_OPTS="$JAVA_OPTS $p"
+            ;;
         *)
             princessParams+=("$p")
             ;;
     esac
 done
+
+if [ x"$JAVA_OPTS" = x"" ]; then
+    JAVA_OPTS="-Xss20000k -Xmx2000m"
+fi
 
 exec $JAVA $JAVA_OPTS -cp $TARGET \
      ostrich.OstrichMain -stringSolver=$ostrichSolver:$ostrichParams \
