@@ -1,5 +1,7 @@
 /* global J$ */
 
+const { myLog } = require("./util/print");
+
 (function (sandbox) {
     "use strict";
 
@@ -284,6 +286,7 @@
 
         conditional(iid, result) {
             if (isConcolic(result)) {
+                myLog("conditional: ", result);
                 const concVal = getConcrete(result);
                 const symVal = getSymbolic(result);
                 this.path.addConstraint(symVal, !!concVal);
@@ -319,6 +322,7 @@
             // that all modern browsers iterate in insertion order, so we may be
             // able to do something useful after all.
             if (isConcolic(val)) {
+                myLog("forinObject: " + val);
                 return { result: getConcrete(val) };
             }
         }
@@ -329,18 +333,21 @@
             // if we tracked what names were introduced, we don't know when we
             // can release them in the same scope.
             if (isConcolic(val)) {
+                myLog("with: " + val);
                 return { result: getConcrete(val) };
             }
         }
 
         binaryPre(iid, op, left, right) {
             if (isConcolic(left) || isConcolic(right)) {
+                myLog("binaryPre skip");
                 return { op: op, left: left, right: right, skip: true };
             }
         }
 
         binary(iid, op, left, right) {
             if (isConcolic(left) || isConcolic(right)) {
+                myLog("binary: " , left , " " , op , " " , right);
                 if (op === "instanceof") { // We can't handle prototypes, so we have to concretize instanceof.
                     return { result: getConcrete(left) instanceof getConcrete(right) };
                 }
@@ -355,12 +362,14 @@
 
         unaryPre(iid, op, left) {
             if (isConcolic(left)) {
+                myLog("unaryPre skip");
                 return { op: op, left: left, skip: true };
             }
         }
 
         unary(iid, op, left) {
             if (isConcolic(left)) {
+                myLog("unary: " , op , " " , left);
                 const concResult = doUnaryOp(op, getConcrete(left));
                 return { result: new Concolic(concResult, new Unary(op, getSymbolic(left))) };
             }
@@ -368,6 +377,7 @@
 
         invokeFunPre(iid, f, base, args, isConstructor) {
             if (isConcolic(f)) {
+                myLog("invokeFunPre: " , f , " " , base , " " , args);
                 const symF = getSymbolic(f);
                 if (symF instanceof GetField && !(symF.offset instanceof Constant)) {
                     const keyVal = String(symF.offset.eval(this.inputs));
@@ -436,12 +446,14 @@
             }
 
             if (isConcolic(base) || isConcolic(offset)) {
+                myLog("getFieldPre skip");
                 return { base: base, offset: offset, skip: true };
             }
         }
 
         getField(iid, base, offset) {
             if (isConcolic(base) || isConcolic(offset)) {
+                myLog("getField: " , base , " " , offset);
                 const cbase = getConcrete(base);
                 const coffset = getConcrete(offset);
                 const sbase = getSymbolic(base);
@@ -464,7 +476,7 @@
             }
 
             if (isConcolic(base)) {
-                //                console.dir(["putFieldPre", base, offset, val], {depth:null});
+                myLog("putFieldPre: " , base , " " , offset , " " , val);
                 const baseConcVal = getConcrete(base);
                 const baseType = typeof baseConcVal;
                 const isValid = baseType !== "undefined" && baseType !== "null";
@@ -479,6 +491,11 @@
             }
 
             return { base: base, offset: getConcrete(offset), val: val };
+        }
+
+        write(iid, name, val, lhs, isGlobal, isScriptLocal) {
+            myLog("write: " , name , " " , val);
+            return { result: val };
         }
 
         onReady(cb) {
