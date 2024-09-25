@@ -128,6 +128,7 @@
     }
 
     class Jalangi2DSEAnalysis {
+
         async runAnalysis(maxIterations, cb) {
             let receivedSigint = false,
                 timedOut = false;
@@ -189,7 +190,7 @@
                     return arr[0];
                 }
             };
-            
+
             let commandLogs = [];
             let solvers = [];
             const solver = process.env.SOLVER || 'ostrich';
@@ -407,16 +408,18 @@
                 return { f: shim, base: base, args: args };
             } else if (shim === null) {
                 console.warn("concretizing arguments to unmodelled native function", concF);
+                // Bug: This is not correct. When we concretize the base, we may change the global object!!!
                 return {
                     f: concF,
                     base: concretize(base),
                     args: _.map(args, concretize)
                 };
             }
-
+            
             // console.warn("concretizing globals: call to uninstrumented/unknown function", f);
             // concretize(global);
             console.warn("concretizing arguments to uninstrumented/unknown native function", concF);
+            // Bug: This is not correct. When we concretize the base, we may change the global object!!!
             return {
                 f: concF,
                 base: concretize(base),
@@ -486,6 +489,6 @@
         }
     }
 
-
     sandbox.analysis = new Jalangi2DSEAnalysis();
+    
 })(J$);
