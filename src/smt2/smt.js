@@ -103,7 +103,7 @@ exports.SMTSolver = class SMTSolver {
     }
 
     _send(command) {
-        myLog("sending command: " + sexpr.stringify(command));
+        // myLog("sending command: " + sexpr.stringify(command));
         this._write(sexpr.stringify(command) + "\n");
     }
 
