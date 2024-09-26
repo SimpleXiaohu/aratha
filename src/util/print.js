@@ -7,9 +7,9 @@ if (process.env.LOG==='true') {
     log = true
 }
 
-function debugPrintln(s) {
+function debugPrintln(...s) {
     if(debug)
-        console.log("Debug: " + s);
+        console.log("Debug: " , ...s);
 }
 
 function myLog(...s) {
