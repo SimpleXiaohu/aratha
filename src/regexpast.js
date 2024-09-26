@@ -139,20 +139,6 @@ class Pattern {
         if (!(_.last(this.disjunction.disjuncts[0]) instanceof EndAnchor)) {
             result.push(star(ALL_CLASS));
         }
-        // TODO: not use J$ here
-        // huzi add, when handle RegExp.test(a), we get smt clause (str.in_re a .*RegExp.*)
-        // J$.captureNum = 1;
-        // if (J$.isTest && !(this.disjunction.disjuncts[0][0] instanceof StartAnchor)) {
-        //     result.push(star(ALL_CLASS));
-        // }
-        // if(J$.isOstrich)
-        //     result.push(["(_ re.capture 0)", this.disjunction.toRegexFormula()])
-        // if(J$.isTest && !(_.last(this.disjunction.disjuncts[0]) instanceof EndAnchor)) {
-        //     result.push(star(ALL_CLASS));
-        // }
-        // // reset state about replace_cg_all and RegExp.test
-        // J$.isReference = false;
-        // J$.isTest = false;
 
         return concat(result);
     }
@@ -330,10 +316,6 @@ class Capture {
     }
 
     toRegexFormula() {
-        //huzi add
-        // if(J$.isReference || J$.isOstrich)
-        //     return [ ["_", "re.capture", J$.captureNum++] ,this.expr.toRegexFormula()];
-        // else
         return this.expr.toRegexFormula();
     }
 }
@@ -503,8 +485,6 @@ class CaptureVisitor {
     visit(ast, strName) {
         switch (ast.constructor) {
             case Pattern: {
-                // huzi add
-                // J$.captureNum = 1;
                 return this.visit(ast.disjunction, strName);
             }
             case Or: {

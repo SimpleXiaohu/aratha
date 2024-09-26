@@ -4,8 +4,8 @@ const fs = require("fs");
 
 const _ = require("lodash");
 
-const sexpr = require("./sexpr");
-const { myLog } = require("./util/print");
+const sexpr = require("../sexpr");
+const { myLog } = require("../util/print");
 
 exports.SMTSolver = class SMTSolver {
 
@@ -104,7 +104,7 @@ exports.SMTSolver = class SMTSolver {
     }
 
     _send(command) {
-        myLog("sending command: " + sexpr.stringify(command));
+        // myLog("sending command: " + sexpr.stringify(command));
         this._write(sexpr.stringify(command) + "\n");
     }
 
