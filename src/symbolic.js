@@ -1554,6 +1554,7 @@ const RegExpParser = require("./regexp");
 class RegExpInstance extends SymbolicValue {
     constructor(regexp, instanceName) {
         super();
+        debugPrintln("Creating new RegExpInstance ", regexp);
         this.regexp = regexp;
         this.instance = new Variable("regexp." + instanceName);
     }
@@ -1600,6 +1601,7 @@ exports.StringSearch = StringSearch;
 
 class RegExpTest extends SymbolicValue {
     constructor(base, str) {
+        debugPrintln("Creating new RegExpTest ", base, str);
         super();
         this.base = base;
         this.str = str;
@@ -1644,11 +1646,13 @@ class Temporary {
 exports.Temporary = Temporary;
 
 const { CaptureVisitor } = require("./regexpast");
+const { debugPrintln } = require("./util/print");
 
 
 
 class RegExpExec extends SymbolicValue {
     constructor(regex, str) {
+        debugPrintln("Creating new RegExpExec ", regex, str);
         super();
         this.regex = regex;
         this.str = str;
@@ -1969,6 +1973,7 @@ exports.NewBoolean = NewBoolean;
 class NewRegExp extends SymbolicValue {
     constructor(concRegExp, pattern, flags) {
         super();
+        debugPrintln("Creating new NewRegExp ", concRegExp, pattern, flags);
         this.id = getObjectId(concRegExp);
         this.pattern = pattern;
         this.flags = flags;
