@@ -1554,6 +1554,7 @@ const RegExpParser = require("./regexp");
 class RegExpInstance extends SymbolicValue {
     constructor(regexp, instanceName) {
         super();
+        debugPrintln("Creating new RegExpInstance ", regexp);
         this.regexp = regexp;
         console.log("regexp", regexp);
         this.instance = new Variable("regexp." + instanceName);
@@ -1603,6 +1604,7 @@ exports.StringSearch = StringSearch;
 
 class RegExpTest extends SymbolicValue {
     constructor(base, str) {
+        debugPrintln("Creating new RegExpTest ", base, str);
         super();
         this.base = base;
         this.str = str;
@@ -1627,7 +1629,6 @@ class RegExpTest extends SymbolicValue {
         const val = this.base.value;
         const regexFormula = RegExpParser.parse(_.isRegExp(val) ? val.source : val);
         // huzi add, when handle RegExp.test(a), we get smt clause (str.in_re a .*RegExp.*)
-        // J$.isTest = true;
         const testStr = this.str.toStringFormula();
         const regString = regexFormula.toRegexFormula();
         return ["str.in_re", testStr, regString];
@@ -1648,12 +1649,14 @@ class Temporary {
 exports.Temporary = Temporary;
 
 const { CaptureVisitor } = require("./regexpast");
+const { debugPrintln } = require("./util/print");
 
 const TOOLCONFIG = require("../toolconfig.json");
 
 
 class RegExpExec extends SymbolicValue {
     constructor(regex, str) {
+        debugPrintln("Creating new RegExpExec ", regex, str);
         super();
         this.regex = regex;
         this.str = str;
@@ -1782,39 +1785,6 @@ class StringReplace extends SymbolicValue {
     eval(model) {
         return String.prototype.replace.call(this.base.eval(model), this.searchString.eval(model), this.replacement.eval(model));
     }
-
-    // toStringFormula() {
-    //     // huzi add
-    //     const searchRegex = this.searchString.value
-    //     if (_.isRegExp(searchRegex)) {
-    //         const regexFormula = RegExpParser.parse(searchRegex.source);
-    //         var repString = this.replacement.toStringFormula();
-    //         if (searchRegex.global) {
-    //             // whether the replacement contains $n
-    //             const isRf = /\$\d+/.test(repString);
-    //             if (isRf) {
-    //                 // naive parse for reference
-    //                 J$.isReference = true
-    //                 const rep = ostrichReplacement(repString)
-    //                 return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), rep];
-    //             } else {
-    //                 const regexFormula = RegExpParser.parse(searchRegex.source);
-    //                 return ["str.replace_cg_all", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to_re", repString]];
-    //             }
-    //         } else {
-    //             const isRf = /\$\d+/.test(repString);
-    //             if (isRf) {
-    //                 // naive parse for reference
-    //                 J$.isReference = true
-    //                 const rep = ostrichReplacement(repString)
-    //                 return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), rep];
-    //             } else
-    //                 return ["str.replace_cg", this.base.toStringFormula(), regexFormula.toRegexFormula(), ["str.to_re", repString]];
-    //         }
-    //     } else {
-    //         return ["str.replace", this.base.toStringFormula(), this.searchString.toStringFormula(), this.replacement.toStringFormula()];
-    //     }
-    // }
 
     toStringFormula() {
         return ["str.replace", this.base.toStringFormula(), this.searchString.toStringFormula(), this.replacement.toStringFormula()];
@@ -2017,6 +1987,7 @@ exports.NewBoolean = NewBoolean;
 class NewRegExp extends SymbolicValue {
     constructor(concRegExp, pattern, flags) {
         super();
+        debugPrintln("Creating new NewRegExp ", concRegExp, pattern, flags);
         this.id = getObjectId(concRegExp);
         this.pattern = pattern;
         this.flags = flags;

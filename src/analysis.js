@@ -1,5 +1,7 @@
 /* global J$ */
 
+const { myLog } = require("./util/print");
+
 (function (sandbox) {
     "use strict";
 
@@ -33,10 +35,10 @@
     } = require("./symbolic");
     const { getBuiltinShim } = require("./functionmodels");
     const Type = require("./type");
-    const Z3 = require("./z3");
-    const Z3str = require("./z3str");
-    const CVC5 = require("./cvc5");
-    const OSTRICH = require("./ostrich");
+    const Z3 = require("./smt2/z3/z3");
+    const Z3str = require("./smt2/z3str/z3str");
+    const CVC5 = require("./smt2/cvc5/cvc5");
+    const OSTRICH = require("./smt2/ostrich/ostrich");
 
     let varNameCounter = 0;
 
@@ -128,6 +130,7 @@
     }
 
     class Jalangi2DSEAnalysis {
+
         async runAnalysis(maxIterations, cb) {
             let receivedSigint = false,
                 timedOut = false;
@@ -139,7 +142,6 @@
             }
 
             const dseOptions = {
-                unsatCores: process.env.UNSAT_CORES === "1",
                 incremental: !(process.env.INCREMENTAL === "0"),
             };
 
@@ -190,6 +192,7 @@
                     return arr[0];
                 }
             };
+
             let commandLogs = [];
             let solvers = [];
             const solver = process.env.SOLVER || 'ostrich';
@@ -206,78 +209,75 @@
                     commandLogs.push(clog);
                 }
             }
+            const inputLog = fs.openSync("inputlog.json", "w");
+            let first = true;
             try {
-                const inputLog = fs.openSync("inputlog.json", "w");
-                let first = true;
-                try {
-                    fs.writeSync(inputLog, "[\n");
-                    let searchers = {};
-                    for (const s of solvers) {
-                        searchers[s.id] = new DSE(s, async (newInput) => {
-                            if (!first) {
-                                fs.writeSync(inputLog, ",\n");
-                            }
-                            first = false;
-                            var isCircular = require('is-circular');
-                            if (isCircular(newInput)) {
-                                console.log("Warning! Circular object detected. Ignored input")
-                                newInput = {}
-                            }
-                            fs.writeSync(inputLog, JSON.stringify(newInput));
-                            fs.fsyncSync(inputLog);
-                            this.inputs = newInput;
-                            this.path = new ExecutionPath();
-                            resetNameCounter();
-                            try {
-                                cb();
-                            }
-                            catch (e) {
-                                console.log("run terminated with exception:", e);
-                            }
-                            // Delete the cached copy of the script so it can be reloaded.
-                            const inputFilename = process.argv[1];
-                            delete require.cache[require.resolve(inputFilename)];
-                            return this.path;
-                        }, dseOptions);
+                fs.writeSync(inputLog, "[\n");
+                let searchers = {};
+                const dseProgram = async (newInput) => {
+                    if (!first) {
+                        fs.writeSync(inputLog, ",\n");
                     }
-                    for (let i = 0; Object.keys(searchers).length &&
-                        i < maxIterations && !receivedSigint && !timedOut; i++) {
-                        //Promise.race([...])
-                        for (let s in searchers) {
-                            varNameCounter = 0;
-                            try {
-                                const ok = await searchers[s].execute();
-                                console.log(s, "finished!", ok);
-                                if (ok)
-                                    break;
-                            }
-                            catch (error) {
-                                console.log(error);
-                            }
+                    first = false;
+                    var isCircular = require('is-circular');
+                    if (isCircular(newInput)) {
+                        console.log("Warning! Circular object detected. Ignored input")
+                        newInput = {}
+                    }
+                    fs.writeSync(inputLog, JSON.stringify(newInput));
+                    fs.fsyncSync(inputLog);
+                    this.inputs = newInput;
+                    this.path = new ExecutionPath();
+                    resetNameCounter();
+                    try {
+                        cb();
+                    }
+                    catch (e) {
+                        console.log("run terminated with exception:", e);
+                    }
+                    // Delete the cached copy of the script so it can be reloaded.
+                    const inputFilename = process.argv[1];
+                    delete require.cache[require.resolve(inputFilename)];
+                    return this.path;
+                }
+                for (const s of solvers) {
+                    searchers[s.id] = new DSE(s, dseProgram, dseOptions);
+                }
+                for (let i = 0; Object.keys(searchers).length &&
+                    i < maxIterations && !receivedSigint && !timedOut; i++) {
+                    for (let s in searchers) {
+                        varNameCounter = 0;
+                        try {
+                            const ok = await searchers[s].execute();
+                            console.log(s, "finished!", ok);
+                            if (ok)
+                                break;
                         }
-                        for (let s in searchers) {
-                            if (searchers[s].isDone()) {
-                                console.log("finished: no more constraints to solve");
-                                delete searchers[s];
-                            } else if (i >= maxIterations) {
-                                console.log("finished: reached iteration limit");
-                                delete searchers[s];
-                            } else if (receivedSigint) {
-                                console.log("terminated: received SIGINT");
-                                delete searchers[s];
-                            } else if (timedOut) {
-                                console.log("terminated: timed out");
-                                delete searchers[s];
-                            }
+                        catch (error) {
+                            console.console.error(s, "terminated with exception:", error);
                         }
                     }
-                } finally {
-                    for (const s of solvers)
-                        s.close();
-                    fs.writeSync(inputLog, "\n]\n");
-                    fs.closeSync(inputLog);
+                    for (let s in searchers) {
+                        if (searchers[s].isDone()) {
+                            console.log("finished: no more constraints to solve");
+                            delete searchers[s];
+                        } else if (i >= maxIterations) {
+                            console.log("finished: reached iteration limit");
+                            delete searchers[s];
+                        } else if (receivedSigint) {
+                            console.log("terminated: received SIGINT");
+                            delete searchers[s];
+                        } else if (timedOut) {
+                            console.log("terminated: timed out");
+                            delete searchers[s];
+                        }
+                    }
                 }
             } finally {
+                for (const s of solvers)
+                    s.close();
+                fs.writeSync(inputLog, "\n]\n");
+                fs.closeSync(inputLog);
                 for (const c of commandLogs)
                     if (c)
                         c.end();
@@ -286,6 +286,7 @@
 
         conditional(iid, result) {
             if (isConcolic(result)) {
+                myLog("conditional: ", result);
                 const concVal = getConcrete(result);
                 const symVal = getSymbolic(result);
                 this.path.addConstraint(symVal, !!concVal);
@@ -321,6 +322,7 @@
             // that all modern browsers iterate in insertion order, so we may be
             // able to do something useful after all.
             if (isConcolic(val)) {
+                myLog("forinObject: " + val);
                 return { result: getConcrete(val) };
             }
         }
@@ -331,18 +333,21 @@
             // if we tracked what names were introduced, we don't know when we
             // can release them in the same scope.
             if (isConcolic(val)) {
+                myLog("with: " + val);
                 return { result: getConcrete(val) };
             }
         }
 
         binaryPre(iid, op, left, right) {
             if (isConcolic(left) || isConcolic(right)) {
+                myLog("binaryPre skip");
                 return { op: op, left: left, right: right, skip: true };
             }
         }
 
         binary(iid, op, left, right) {
             if (isConcolic(left) || isConcolic(right)) {
+                myLog("binary: " , left , " " , op , " " , right);
                 if (op === "instanceof") { // We can't handle prototypes, so we have to concretize instanceof.
                     return { result: getConcrete(left) instanceof getConcrete(right) };
                 }
@@ -357,12 +362,14 @@
 
         unaryPre(iid, op, left) {
             if (isConcolic(left)) {
+                myLog("unaryPre skip");
                 return { op: op, left: left, skip: true };
             }
         }
 
         unary(iid, op, left) {
             if (isConcolic(left)) {
+                myLog("unary: " , op , " " , left);
                 const concResult = doUnaryOp(op, getConcrete(left));
                 return { result: new Concolic(concResult, new Unary(op, getSymbolic(left))) };
             }
@@ -370,6 +377,7 @@
 
         invokeFunPre(iid, f, base, args, isConstructor) {
             if (isConcolic(f)) {
+                myLog("invokeFunPre: " , f , " " , base , " " , args);
                 const symF = getSymbolic(f);
                 if (symF instanceof GetField && !(symF.offset instanceof Constant)) {
                     const keyVal = String(symF.offset.eval(this.inputs));
@@ -410,16 +418,18 @@
                 return { f: shim, base: base, args: args };
             } else if (shim === null) {
                 console.warn("concretizing arguments to unmodelled native function", concF);
+                // Bug: This is not correct. When we concretize the base, we may change the global object!!!
                 return {
                     f: concF,
                     base: concretize(base),
                     args: _.map(args, concretize)
                 };
             }
-
+            
             // console.warn("concretizing globals: call to uninstrumented/unknown function", f);
             // concretize(global);
             console.warn("concretizing arguments to uninstrumented/unknown native function", concF);
+            // Bug: This is not correct. When we concretize the base, we may change the global object!!!
             return {
                 f: concF,
                 base: concretize(base),
@@ -436,12 +446,14 @@
             }
 
             if (isConcolic(base) || isConcolic(offset)) {
+                myLog("getFieldPre skip");
                 return { base: base, offset: offset, skip: true };
             }
         }
 
         getField(iid, base, offset) {
             if (isConcolic(base) || isConcolic(offset)) {
+                myLog("getField: " , base , " " , offset);
                 const cbase = getConcrete(base);
                 const coffset = getConcrete(offset);
                 const sbase = getSymbolic(base);
@@ -464,7 +476,7 @@
             }
 
             if (isConcolic(base)) {
-                //                console.dir(["putFieldPre", base, offset, val], {depth:null});
+                myLog("putFieldPre: " , base , " " , offset , " " , val);
                 const baseConcVal = getConcrete(base);
                 const baseType = typeof baseConcVal;
                 const isValid = baseType !== "undefined" && baseType !== "null";
@@ -481,6 +493,11 @@
             return { base: base, offset: getConcrete(offset), val: val };
         }
 
+        write(iid, name, val, lhs, isGlobal, isScriptLocal) {
+            myLog("write: " , name , " " , val);
+            return { result: val };
+        }
+
         onReady(cb) {
             const MAX_ITERATIONS = 1024;
             this.runAnalysis(MAX_ITERATIONS, cb).catch((e) => {
@@ -489,11 +506,6 @@
         }
     }
 
-
     sandbox.analysis = new Jalangi2DSEAnalysis();
-    // huzi add
-    sandbox.isOstrich = true;   // we generate special capture-group syntax for ostrich
-    sandbox.isTest = false;     // whether the parser of RegExp is about RegExp.test
-    sandbox.isReference = false;   // whether replacement of function replace contains reference
-    sandbox.captureNum = 1;      // for ostrich replace_cg_all benchmark generation
+    
 })(J$);
