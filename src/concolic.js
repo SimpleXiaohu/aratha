@@ -45,32 +45,10 @@ function concretize(val) {
             if (!_.isObject(obj))
                 continue;
 
-            // delete val[SYMBOLIC];
-            delete obj[SYMBOLIC];
-            // let entries;
-            // try {
-            //     entries = Object.entries(obj);
-            // } catch (e) {
-            //     // BUG: Node.js's TTY object (on Windows, at least) throws an
-            //     // error if you try to use Object.entries() on it. As such, this
-            //     // needs to be wrapped in order to swallow that error.
-            //     entries = [];
-            // }
-
-            // for (const [k, v] of entries) {
-            //     // NOTE: Need to concretize every property, not just the own
-            //     // ones. This could be slow if we examine many objects.
-            //     const concVal = getConcrete(v);
-            //     try {
-            //         val[k] = concVal;
-            //     } catch (e) {
-            //         // Swallow TypeErrors from trying to assign to non-writeable
-            //         // properties.
-            //     }
             for (const prop in obj) {
                 const flags = Object.getOwnPropertyDescriptor(obj, prop);
                 const concVal = getConcrete(obj[prop]);
-                if (flags.writable) {
+                if (flags && flags.writable) {
                     obj[prop] = concVal;
                 }
                 if (_.isObject(concVal) && !seen.has(concVal)) {
@@ -94,16 +72,6 @@ function shallowConcretize(val) {
     // throw new Error(val);
     val = getConcrete(val);
     if (_.isObject(val)) {
-        // for (const [k, v] of Object.entries(val)) {
-        //     if (isConcolic(v)) {
-        //         try {
-        //             val[k] = getConcrete(v);
-        //         } catch (e) {
-        //             // Swallow TypeErrors from trying to assign to non-writeable
-        //             // properties.
-        //         }
-        //     }
-        // }
         for (const prop in val) {
             const flags = Object.getOwnPropertyDescriptor(val, prop);
             if (flags.writable) {
