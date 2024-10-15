@@ -32,6 +32,7 @@
     "nyc": "^14.1.1"
   },
   "dependencies": {
+    "acorn": "^8.12.1",
     "is-circular": "^1.0.2",
     "jalangi2": "^0.2.6",
     "lockfile": "^1.0.4",

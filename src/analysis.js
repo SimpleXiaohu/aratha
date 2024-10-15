@@ -91,7 +91,7 @@ const { myLog } = require("./util/print");
 
     function createSolver(commandLog = null) {
         const TOOLCONFIG = require("../toolconfig.json");
-        const SOLVER = process.env.SOLVER || "ostrich";
+        const SOLVER = process.env.SOLVER || "cvc5";
         let solver;
         switch (SOLVER) {
             case "z3":

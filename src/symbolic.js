@@ -1572,9 +1572,10 @@ class RegExpInstance extends SymbolicValue {
         }
         const val = this.regexp.value;
         const regexFormula = RegExpParser.parse(_.isRegExp(val) ? val.source : val);
-        const temp = [["str.in_re", this.instance.toStringFormula(), regexFormula.toRegexFormula()]];
-        console.log("temp", temp);
-        return temp;
+        // const temp = [["str.in_re", this.instance.toStringFormula(), regexFormula.toRegexFormula()]];
+        // console.log("temp", temp);
+        // return temp;
+        return [["str.in_re", this.instance.toStringFormula(), regexFormula.toRegexFormula()]];
     }
 
     toFormula() {
@@ -1665,11 +1666,11 @@ class RegExpExec extends SymbolicValue {
 
         this.constraint = "";
 
-        // 调用命令"java -jar /home/supermaxine/Test.jar [base64 of regex]"，返回一个字符串，即为约束
-        const command = "java -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -jar "+TOOLCONFIG["ReDoSHunter4Symbolic"].path+" \"" + Buffer.from(regex.value.toString()).toString('base64') + "\""
-        console.log("command:\n", command, "\n\n");
-        this.constraint = execSync(command).toString();
-        console.log("\n\nregex constraint:\n", this.constraint, "\n\n");
+        // // 调用命令"java -jar /home/supermaxine/Test.jar [base64 of regex]"，返回一个字符串，即为约束
+        // const command = "java -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -jar "+TOOLCONFIG["ReDoSHunter4Symbolic"].path+" \"" + Buffer.from(regex.value.toString()).toString('base64') + "\""
+        // console.log("command:\n", command, "\n\n");
+        // this.constraint = execSync(command).toString();
+        // console.log("\n\nregex constraint:\n", this.constraint, "\n\n");
 
         this._temps = [];
         this._caps = [];

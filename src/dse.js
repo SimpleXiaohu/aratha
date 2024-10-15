@@ -246,10 +246,11 @@ class ConstraintCollector {
                     this._declaredVariables.add(expr.name);
                     this.solver.declareConst(expr.name, expr.sort);
                 }
-            } else if (expr instanceof RegExpExec) {
-                // console.log("RegExpExec", expr)
-                this.solver.writeRegexConstraint(expr.constraint+"\n"+"(assert = "+ expr.str.name +" result )\n")
             }
+            // else if (expr instanceof RegExpExec) {
+            //     // console.log("RegExpExec", expr)
+            //     this.solver.writeRegexConstraint(expr.constraint+"\n"+"(assert = "+ expr.str.name +" result )\n")
+            // }
         });
     }
 
