@@ -4,6 +4,10 @@
     "@babel/preset-typescript",
     "@babel/preset-flow"
   ],
+  "plugins": [
+    "@babel/plugin-transform-logical-assignment-operators",
+    "./plugins/logicalExp.js"
+  ],
   "parserOpts": {
     "sourceType": "unambiguous",
     "plugins": [
