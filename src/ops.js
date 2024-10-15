@@ -72,7 +72,7 @@ exports.doBinaryOp = function(op, left, right) {
         default:
             throw new Error(op + " not found");
     }
-
+    
     return result;
 };
 
