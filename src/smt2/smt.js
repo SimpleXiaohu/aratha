@@ -62,6 +62,12 @@ exports.SMTSolver = class SMTSolver {
     declareConst(name, sort) {
         this._send(["declare-const", name, sort]);
     }
+
+    addSmtLog(log) {
+        if (process.env.SMTLOG){
+            this._send(["set-info", ":description", '"log:', log, '"'])
+        }
+    }
     // declareConst(name, sort, isStr) {
     //     this._send(["declare-const", name, sort]);
     //     // huzi add, naive consider all input is string(for ostrich benchmark generation)
