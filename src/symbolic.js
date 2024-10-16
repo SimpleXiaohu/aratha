@@ -1645,7 +1645,7 @@ class Temporary {
 }
 exports.Temporary = Temporary;
 
-const { CaptureVisitor } = require("./regexpast");
+const { CaptureVisitor, CheckCaptureVisitor } = require("./regexpast");
 const { debugPrintln } = require("./util/print");
 
 
@@ -1672,7 +1672,15 @@ class RegExpExec extends SymbolicValue {
             return name;
         };
         const visitor = new CaptureVisitor(genName, genCapture);
-        this._formula = visitor.visit(this.getRegexAST(), genName());
+        const checkCapture = new CheckCaptureVisitor()
+        const regexAst = this.getRegexAST()
+        regexAst.visit(checkCapture.visitor)
+        if (checkCapture._containsCapture)
+            this._formula = visitor.visit(regexAst, genName());
+        else {
+            const wholeExec = genName()
+            this._formula = ["str.in_re", wholeExec, regexAst.toRegexFormula()]
+        }
     }
 
     visit(visitor) {
@@ -1705,8 +1713,6 @@ class RegExpExec extends SymbolicValue {
     }
 
     getConstraints() {
-        // huzi add
-        // return []
         return [
             ["=", ["GetProperties", String(this._resultObjId)], this.toObjectFormula()],
             this._formula
@@ -1715,8 +1721,6 @@ class RegExpExec extends SymbolicValue {
 
     toBooleanFormula() {
         return ["=", ["Str", this._temps[0].name], this.str.toFormula()];
-        // huzi add
-        // return ["str.in_re", ["str", this.str.toFormula()], this._regex];
     }
 
     toObjectFormula() {
@@ -1728,31 +1732,11 @@ class RegExpExec extends SymbolicValue {
     }
 
     toFormula() {
-        // huzi add
-        // return ["ite", this.toBooleanFormula(), ["Str", this.str.toFormula()], "null"];
         return ["ite", this.toBooleanFormula(), ["Obj", String(this._resultObjId)], "null"];
     }
 }
 exports.RegExpExec = RegExpExec;
 
-// huzi add 
-// function ostrichReplacement(repString) {
-//     const splitStr = "hhhhhhhhhhhh"
-//     repString = repString.slice(1, -1);
-//     const repArr = repString.replace(/\$(\d+)/g,
-//         splitStr + "_ re.reference $1" + splitStr).split(splitStr);
-//     const rep = ["re.++"]
-//     repArr.forEach(str => {
-//         if (str !== "") {
-//             if (/re\.reference/.test(str)) {
-//                 rep.push([str])
-//             } else {
-//                 rep.push(["str.to_re", "\"" + str + "\""])
-//             }
-//         }
-//     });
-//     return rep;
-// }
 class StringReplace extends SymbolicValue {
     constructor(base, searchString, replacement) {
         super();

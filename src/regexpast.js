@@ -68,6 +68,10 @@ class Literal {
         this.str = str;
     }
 
+    visit(visitor) {
+        visitor(this)
+    }
+
     toRegexFormula() {
         return literal(this.str);
     }
@@ -153,8 +157,15 @@ class Or {
     visit(visitor) {
         visitor(this);
         for (const child of this.disjuncts) {
-            if (child.visit)
-                child.visit(visitor);
+            switch(child.constructor) {
+                case Array:
+                    for (const grandChildren of child)
+                        grandChildren.visit(visitor)
+                    break;
+                default:
+                    if (child.visit)
+                        child.visit(visitor);
+            }
         }
     }
 
@@ -249,12 +260,11 @@ exports.Star = Star;
 class Plus extends Quantifier {
     toRegexFormula() {
         // huzi add
-        if (this.lazy) {
-            // return ["re.+?", this.subject.toRegexFormula()];
-            return ["re.opt", ["re.+", this.subject.toRegexFormula()]];
-        } else {
-            return ["re.+", this.subject.toRegexFormula()];
-        }
+        // if (this.lazy) {
+        //     return ["re.+?", this.subject.toRegexFormula()];
+        // } else {
+        return ["re.+", this.subject.toRegexFormula()];
+        // }
     }
 }
 exports.Plus = Plus;
@@ -267,12 +277,12 @@ class Opt extends Quantifier {
 exports.Opt = Opt;
 
 class Repeat extends Quantifier {
+
     constructor(min, max, subject = null) {
         super(subject);
         this.min = min;
         this.max = max;
     }
-
     toRegexFormula() {
         const regex = this.subject.toRegexFormula();
         if (this.max === null) {
@@ -281,14 +291,13 @@ class Repeat extends Quantifier {
             } else if (this.min === 1) {
                 return ["re.+", regex];
             } else {
-                return ["re.++", [`(_ re.loop ${this.min} ${this.min})`,
-                    // return ["re.++", ["re.loop", regex, this.min, this.min],
-                    regex
-                ]];
+                return ["re.++", 
+                    [`(_ re.loop ${this.min} ${this.min})`, regex],
+                    ["re.*", regex]
+                ];
             }
         } else {
             return [`(_ re.loop ${this.min} ${this.max})`, regex];
-            // return ["re.loop", regex, this.min, this.max];
         }
     }
 }
@@ -483,6 +492,8 @@ class CaptureVisitor {
         this.captureIdx = 0;
     }
 
+    handle 
+
     visit(ast, strName) {
         switch (ast.constructor) {
             case Pattern: {
@@ -537,36 +548,74 @@ class CaptureVisitor {
                 }
                 return result;
             }
-            case Star:
+            case Star: {
+                const newExec1 = this._genName()
+                const newExec2 = this._genName()
+                return ["and",
+                    ["=", strName, ["str.++", newExec1, newExec2]],
+                    ["str.in_re", newExec1, ["re.*", ast.subject.toRegexFormula()]],
+                    ["str.in_re", newExec2, ["re.opt", ast.subject.toRegexFormula()]],
+                    this.visit(ast.subject, newExec2)
+                ]
+            }
             case Plus:
-            case Opt:
-            case Repeat:
+                {
+                    const newExec1 = this._genName()
+                    const newExec2 = this._genName()
+                    return ["and",
+                        ["=", strName, ["str.++", newExec1, newExec2]],
+                        ["str.in_re", newExec1, ["re.*", ast.subject.toRegexFormula()]],
+                        ["str.in_re", newExec2, ast.subject.toRegexFormula()],
+                        this.visit(ast.subject, newExec2)
+                    ]
+                }
+            case Opt: {
+                const newExec = this._genName()
+                return ["and", 
+                    ["str.in_re", newExec, ast.subject.toRegexFormula()],
+                    this.visit(ast.subject, strName),
+                    ["or", ["=", strName, newExec], ["=", strName, '""']]
+                ]
+            }
+            case Repeat: {
                 // FIXME: introduce a new string variable at the end, in order
                 // to correctly handle expressions like (a)*, where only the
                 // last iteration should be captured.
-                return ["and", ["str.in_re", strName, ast.toRegexFormula()],
-                    this.visit(ast.subject, strName)
-                ];
-                // huzi add
-                // return ["str.in_re", strName,
-                //     ["re.++",
-                //         ["re.*?", "re.allchar"],
-                //         ast.toRegexFormula(), "re.all"]];
+                if (ast.max === null) {
+                    if (ast.min === 0) // a{0,inf}
+                        return this.visit(Star(ast.subject), strName)
+                    else if (ast.min === 1) // a{1, inf}
+                        return this.visit(Plus(ast.subject), strName)
+                }
+                // do not handle {0,0} because it is meaningless
+                const newExec1 = this._genName()
+                const newExec2 = this._genName()
+                const newMin = ast.min > 0 ? ast.min - 1: ast.min 
+                const newMax = ast.max > 0 ? ast.max - 1: ast.max
+                const exec2Constraints = ast.min > 0 ? 
+                    ast.subject.toRegexFormula() :
+                    ["re.opt", ast.subject.toRegexFormula()]
+                return ["and",
+                    ["=", strName, ["str.++", newExec1, newExec2]],
+                    ["str.in_re", newExec1, [`(_ re.loop ${newMin}  ${newMax})`, ast.subject.toRegexFormula()]],
+                    ["str.in_re", newExec2, exec2Constraints],
+                    this.visit(ast.subject, newExec2)
+                ]
+            }
             case Lookahead:
             case NegatedLookahead:
             case NonCapture:
                 return this.visit(ast.expr, strName);
             case Capture: {
                 const name = this._nextCaptureName();
-                return ["and", ["=", name, ["Str", strName]], this.visit(ast.expr, strName)];
+                // return ["and", ["=", name, ["Str", strName]], this.visit(ast.expr, strName)];
+                return ["ite", ["=", strName, '""'],
+                    ["is-undefined", name],
+                    ["=", name, ["Str", strName]]
+                ]
             }
             default:
                 return ["str.in_re", strName, ast.toRegexFormula()];
-                // huzi add 
-                // return ["str.in_re", strName,
-                //     ["re.++",
-                //         ["re.*?", "re.allchar"],
-                //         ast.toRegexFormula(), "re.all"]];
         }
     }
 
@@ -576,5 +625,21 @@ class CaptureVisitor {
         return capture;
     }
 }
+class CheckCaptureVisitor {
+    constructor () {
+        this._containsCapture = false
+        this.visitor = this.visitor.bind(this)
+    }
+    visitor(node) {
+        switch (node.constructor) {
+            case Capture:
+                this._containsCapture = true
+                break;
+            default:
+                break;
+        }
+    }
+}
 exports.CaptureVisitor = CaptureVisitor;
+exports.CheckCaptureVisitor = CheckCaptureVisitor;
 
