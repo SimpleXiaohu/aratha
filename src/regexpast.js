@@ -250,7 +250,8 @@ class Plus extends Quantifier {
     toRegexFormula() {
         // huzi add
         if (this.lazy) {
-            return ["re.+?", this.subject.toRegexFormula()];
+            // return ["re.+?", this.subject.toRegexFormula()];
+            return ["re.opt", ["re.+", this.subject.toRegexFormula()]];
         } else {
             return ["re.+", this.subject.toRegexFormula()];
         }

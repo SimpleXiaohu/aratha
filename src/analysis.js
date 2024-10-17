@@ -1,6 +1,6 @@
 /* global J$ */
 
-const { myLog } = require("./util/print");
+const { myLog, debugPrintln } = require("./util/print");
 
 (function (sandbox) {
     "use strict";
@@ -130,7 +130,6 @@ const { myLog } = require("./util/print");
     }
 
     class Jalangi2DSEAnalysis {
-
         async runAnalysis(maxIterations, cb) {
             let receivedSigint = false,
                 timedOut = false;
@@ -237,6 +236,7 @@ const { myLog } = require("./util/print");
                     }
                     // Delete the cached copy of the script so it can be reloaded.
                     const inputFilename = process.argv[1];
+                    debugPrintln("Running", inputFilename, "and collect constraints");
                     delete require.cache[require.resolve(inputFilename)];
                     return this.path;
                 }
@@ -254,7 +254,8 @@ const { myLog } = require("./util/print");
                                 break;
                         }
                         catch (error) {
-                            console.console.error(s, "terminated with exception:", error);
+                            console.trace(error);
+                            // console.console.error(s, "terminated with exception:", error);
                         }
                     }
                     for (let s in searchers) {
@@ -377,7 +378,7 @@ const { myLog } = require("./util/print");
 
         invokeFunPre(iid, f, base, args, isConstructor) {
             if (isConcolic(f)) {
-                myLog("invokeFunPre: " , f , " " , base , " " , args);
+                myLog("invokeFunPre: concolic f");
                 const symF = getSymbolic(f);
                 if (symF instanceof GetField && !(symF.offset instanceof Constant)) {
                     const keyVal = String(symF.offset.eval(this.inputs));
@@ -413,22 +414,12 @@ const { myLog } = require("./util/print");
             }
 
             const shim = getBuiltinShim(concF, isConstructor);
-            //            console.log(concF, isConstructor, shim)
             if (shim) {
+                myLog("invokeFunPre shim: " , shim);
                 return { f: shim, base: base, args: args };
-            } else if (shim === null) {
-                console.warn("concretizing arguments to unmodelled native function", concF);
-                // Bug: This is not correct. When we concretize the base, we may change the global object!!!
-                return {
-                    f: concF,
-                    base: concretize(base),
-                    args: _.map(args, concretize)
-                };
-            }
+            } 
             
-            // console.warn("concretizing globals: call to uninstrumented/unknown function", f);
-            // concretize(global);
-            console.warn("concretizing arguments to uninstrumented/unknown native function", concF);
+            myLog("concretizing arguments to uninstrumented/unknown native function", concF);
             // Bug: This is not correct. When we concretize the base, we may change the global object!!!
             return {
                 f: concF,

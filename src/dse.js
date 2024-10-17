@@ -297,6 +297,7 @@ class ConstraintCollector {
             const result = c.isTrueIn(model);
             if (!result) {
                 // huzi add
+                console.error(`the expected value is ${c.value}`)
                 // throw new Error(`model error: constraint ${c} failed to validate in ${JSON.stringify(model)}`);
                 console.error(`model error: constraint ${c} failed to validate in ${JSON.stringify(model)}`);
                 //                console.dir(c, {depth:null});
@@ -369,9 +370,9 @@ class DSE {
         console.log("execution complete");
 
         const constraints = path.constraints;
-        console.log(constraints.length + " constraints in path condition");
         if (this._visitedPaths.add(constraints) && input.step < constraints.length) {
             console.log(`adding new constraint set item #${this._itemCount} to work queue`);
+            console.log(constraints.length + " constraints in path condition");
                     //    console.dir(constraints, {depth: 2});
             Object.defineProperty(constraints, "length", { configurable: false, writable: false });
             this._workQueue.push({ id: this._itemCount++, step: input.step, constraints: constraints });
@@ -401,7 +402,7 @@ class DSE {
             item.constraints, item.step, this._collector._declaredVariables
         );
         if (result.status !== "sat") {
-            console.log(`abandoning work item: pre-check failed at step ${item.step}: ${result.status}`);
+            console.log(`abandoning work item ${item.id}: pre-check failed at step ${item.step}: ${result.status}`);
             // The pre-check must have succeeded with sat for all prior
             // prefixes, so it must be that the last constraint made us
             // unsat/unknown.
@@ -410,6 +411,7 @@ class DSE {
             return;
         }
         const lastConstraint = item.constraints[item.step];
+        this._solver.addSmtLog("solving item #" + item.id + ", step " + item.step)
         console.log("solving item #" + item.id + ", step " + item.step);
         item.step++;
         lastConstraint.negate();
@@ -425,9 +427,9 @@ class DSE {
         lastConstraint.negate();
         if (result.status === "sat")
             this._addInput({ model: result.model, step: item.step });
-        if (item.step >= item.constraints.length)
+        if (item.step >= item.constraints.length){
             this._workQueue.shift();
-        else {
+        } else {
             this._workQueue.shift();
             this._workQueue.push(item);
         }
