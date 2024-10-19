@@ -1777,8 +1777,6 @@ class RegExpExec extends SymbolicValue {
     }
 
     getConstraints() {
-        // huzi add
-        // return []
         return [
             ["=", ["GetProperties", String(this._resultObjId)], this.toObjectFormula()],
             this._formula
@@ -1787,8 +1785,6 @@ class RegExpExec extends SymbolicValue {
 
     toBooleanFormula() {
         return ["=", ["Str", this._temps[0].name], this.str.toFormula()];
-        // huzi add
-        // return ["str.in_re", ["str", this.str.toFormula()], this._regex];
     }
 
     toObjectFormula() {
@@ -1800,31 +1796,11 @@ class RegExpExec extends SymbolicValue {
     }
 
     toFormula() {
-        // huzi add
-        // return ["ite", this.toBooleanFormula(), ["Str", this.str.toFormula()], "null"];
         return ["ite", this.toBooleanFormula(), ["Obj", String(this._resultObjId)], "null"];
     }
 }
 exports.RegExpExec = RegExpExec;
 
-// huzi add 
-// function ostrichReplacement(repString) {
-//     const splitStr = "hhhhhhhhhhhh"
-//     repString = repString.slice(1, -1);
-//     const repArr = repString.replace(/\$(\d+)/g,
-//         splitStr + "_ re.reference $1" + splitStr).split(splitStr);
-//     const rep = ["re.++"]
-//     repArr.forEach(str => {
-//         if (str !== "") {
-//             if (/re\.reference/.test(str)) {
-//                 rep.push([str])
-//             } else {
-//                 rep.push(["str.to_re", "\"" + str + "\""])
-//             }
-//         }
-//     });
-//     return rep;
-// }
 class StringReplace extends SymbolicValue {
     constructor(base, searchString, replacement) {
         super();
