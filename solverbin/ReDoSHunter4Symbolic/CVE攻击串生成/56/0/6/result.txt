@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"1"+"0000000_"*1024+"A!◎!◎!◎!A!◎!◎!◎!"
+prefix :SmtNode{intersectionRegexes=[1]}
+prefix : (str.to.re "\x31")
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[\d+, \d+], next=SmtNode{intersectionRegexes=[_], next=SmtNode{intersectionRegexes=[]}}}}
+infix : (re.inter (re.+ (re.range "0" "9") ) (re.+ (re.range "0" "9") ) )  (str.to.re "\x5f") 
+suffix :SmtNode{intersectionRegexes=[A!◎!◎!◎!A!◎!◎!◎!]}
+suffix : (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x25ce")  (str.to.re "\x21"))))))))))))))))

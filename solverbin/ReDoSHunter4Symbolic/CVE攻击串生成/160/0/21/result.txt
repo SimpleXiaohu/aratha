@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"1"+"\t\t\t"*5000+""
+prefix :SmtNode{intersectionRegexes=[1]}
+prefix : (str.to.re "\x31")
+infix :SmtNode{intersectionRegexes=[.*, (.*)(\t(.*)\t(.*)\t)(.*), .*]}
+infix :(re.inter (re.* re.allchar )  (re.++ (re.* re.allchar ) (re.++  (re.++  (str.to.re "\x5c\x74") (re.++ (re.* re.allchar ) (re.++  (str.to.re "\x5c\x74") (re.++ (re.* re.allchar )  (str.to.re "\x5c\x74"))))) (re.* re.allchar ))) (re.* re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

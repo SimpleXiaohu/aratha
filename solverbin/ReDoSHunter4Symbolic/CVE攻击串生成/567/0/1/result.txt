@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"Opera/0.0"+"00"*5000+"!\n!\n"
+prefix :SmtNode{intersectionRegexes=[((Opera)\/(\d+)\.)(\d+)]}
+prefix : (re.++  (re.++  (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x70") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x72")  (str.to.re "\x61"))))) (re.++  (str.to.re "\x5c\x2f") (re.++ (re.+ (re.range "0" "9") )  (str.to.re "\x5c\x2e")))) (re.+ (re.range "0" "9") ))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)(.+), .+]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.+ re.allchar )) (re.+ re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[!
+!
+]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x21")  (str.to.re "\x0a"))))

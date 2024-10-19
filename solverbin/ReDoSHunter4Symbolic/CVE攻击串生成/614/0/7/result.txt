@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"Darwin/111"+"0"*10000+""
+prefix :SmtNode{intersectionRegexes=[Darwin/111]}
+prefix : (re.++  (str.to.re "\x44") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x77") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x31")  (str.to.re "\x31"))))))))))
+infix :SmtNode{intersectionRegexes=[([0-9]+)&(([0-9]+)()([^
+]*))&([^
+]*)&(.+)]}
+infix : (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

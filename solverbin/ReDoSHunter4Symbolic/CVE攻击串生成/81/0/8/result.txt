@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"version/A"+".a"*5000+"@"
+prefix :SmtNode{intersectionRegexes=[(version\/)([\.\w]+)]}
+prefix : (re.++  (re.++  (str.to.re "\x76") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e")  (str.to.re "\x5c\x2f")))))))) (re.+  (re.union  (str.to.re "\x5c\x2e") (re.union (re.range "a" "z") (re.range "A" "Z") (re.range "0" "9") (str.to.re "_"))) ))
+infix :SmtNode{intersectionRegexes=[[\.\w]+, ([\.\w]+)(.+), .+]}
+infix :(re.inter (re.+  (re.union  (str.to.re "\x5c\x2e") (re.union (re.range "a" "z") (re.range "A" "Z") (re.range "0" "9") (str.to.re "_"))) )  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2e") (re.union (re.range "a" "z") (re.range "A" "Z") (re.range "0" "9") (str.to.re "_"))) ) (re.+ re.allchar )) (re.+ re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

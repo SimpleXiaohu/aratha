@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"android1; Barnes&Noble"+" "*5000+"@"
+prefix :SmtNode{intersectionRegexes=[android1; Barnes&Noble]}
+prefix : (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x42") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x26") (re.++  (str.to.re "\x4e") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x6c")  (str.to.re "\x65"))))))))))))))))))))))
+infix :SmtNode{intersectionRegexes=[(\s+)(.*), (\s+)(V?)(.*)]}
+infix :(re.inter  (re.++ (re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.* re.allchar ))  (re.++ (re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.++ (re.opt  (str.to.re "\x56") ) (re.* re.allchar ))) )
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

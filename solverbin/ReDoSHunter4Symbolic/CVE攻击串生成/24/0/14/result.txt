@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :" "+"\t "*5000+"!\n!\n!"
+prefix :SmtNode{intersectionRegexes=[(\s+)]}
+prefix :(re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) )
+infix :SmtNode{intersectionRegexes=[\s+, (\s+)((.|\n)*)(\s+), \s+]}
+infix :(re.inter (re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) )  (re.++ (re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.++ (re.*  (re.union re.allchar  (str.to.re "\x5c\x6e")) ) (re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ))) (re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) )
+suffix :SmtNode{intersectionRegexes=[!
+!
+!]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a")  (str.to.re "\x21")))))

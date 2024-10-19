@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"iPod;CPUOS 1_"+"0"*20000+""
+prefix :SmtNode{intersectionRegexes=[iPod;CPUOS 1_]}
+prefix : (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x55") (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x31")  (str.to.re "\x5f")))))))))))))
+infix :SmtNode{intersectionRegexes=[([0-9]+)&(([0-9]+)((_([0-9]+))?)([^
+]*))&([^
+]*)&(.+)]}
+infix : (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++ (re.opt  (re.++  (str.to.re "\x5f") (re.+ (re.range "\x30" "\x39") )) ) (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

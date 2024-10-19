@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :";Karbonn\u0000"+" "*10000+"◎;◎;◎"
+prefix :SmtNode{intersectionRegexes=[(; *Karbonn[ _]?)([^\/;]+)]}
+prefix : (re.++  (re.++  (str.to.re "\x3b") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x4b") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x6e") (re.opt  (re.union  (str.to.re "\x20")  (str.to.re "\x5f")) )))))))))) (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ))
+infix :SmtNode{intersectionRegexes=[([^\/;]+)&(([^\/;]+)()( *))&( *)&(.+)]}
+infix : (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (re.*  (str.to.re "\x20") ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[◎;◎;◎]}
+suffix : (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x3b")  (str.to.re "\x25ce")))))

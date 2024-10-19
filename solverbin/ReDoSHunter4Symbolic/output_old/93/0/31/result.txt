@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"Android-0.0;"+" "*10000+"@"
+prefix :SmtNode{intersectionRegexes=[Android-0.0;]}
+prefix : (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x30") (re.++ re.allchar (re.++  (str.to.re "\x30")  (str.to.re "\x3b"))))))))))))
+infix :SmtNode{intersectionRegexes=[( *)&(( *)()([^
+]+))&([^
+]+)&(.+)]}
+infix : (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (str.to.re "\x20") ) (re.++  (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.++ (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

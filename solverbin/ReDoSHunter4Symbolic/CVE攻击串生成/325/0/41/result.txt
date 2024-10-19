@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"Chrome/1 MMS/11"+"000"*5000+" "
+prefix :SmtNode{intersectionRegexes=[Chrome/1 MMS/11]}
+prefix : (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6d") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31")  (str.to.re "\x31")))))))))))))))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)(.)(\d+), \d+]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.++ re.allchar (re.+ (re.range "0" "9") ))) (re.+ (re.range "0" "9") ) )
+suffix :SmtNode{intersectionRegexes=[000[\s\S]*＆～(\d+)]}
+suffix : (re.inter  (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) )))) (re.comp (re.+ (re.range "0" "9") )))

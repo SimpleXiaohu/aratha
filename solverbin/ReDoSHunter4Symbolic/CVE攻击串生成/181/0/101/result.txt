@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"<1 "+"'"*32+"@"
+prefix :SmtNode{intersectionRegexes=[<1 ]}
+prefix : (re.++  (str.to.re "\x3c") (re.++  (str.to.re "\x31")  (str.to.re "\x20")))
+infix :SmtNode{intersectionRegexes=['[^']*, ']}
+infix :(re.inter  (re.++  (str.to.re "\x27") (re.*  (str.to.re "\x27") ))  (str.to.re "\x27") )
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

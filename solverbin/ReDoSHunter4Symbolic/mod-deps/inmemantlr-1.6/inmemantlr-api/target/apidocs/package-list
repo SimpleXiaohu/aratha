@@ -1,0 +1,10 @@
+org.snt.inmemantlr
+org.snt.inmemantlr.comp
+org.snt.inmemantlr.exceptions
+org.snt.inmemantlr.grammar
+org.snt.inmemantlr.listener
+org.snt.inmemantlr.memobjects
+org.snt.inmemantlr.stream
+org.snt.inmemantlr.tool
+org.snt.inmemantlr.tree
+org.snt.inmemantlr.utils

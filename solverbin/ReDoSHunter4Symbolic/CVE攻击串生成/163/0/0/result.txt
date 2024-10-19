@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :""+"0"*10000+" "
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[[0-9]*, ([0-9]*)([.]?)([0-9]+), [0-9]+]}
+infix :(re.inter (re.* (re.range "\x30" "\x39") )  (re.++ (re.* (re.range "\x30" "\x39") ) (re.++ (re.opt  (str.to.re "\x2e") ) (re.+ (re.range "\x30" "\x39") ))) (re.+ (re.range "\x30" "\x39") ) )
+suffix :SmtNode{intersectionRegexes=[0[\s\S]*＆～([0-9]+), 0[\s\S]*＆～(([0-9]+)(%))]}
+suffix :(re.inter  (re.inter  (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) )) (re.comp (re.+ (re.range "\x30" "\x39") )))  (re.inter  (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) )) (re.comp  (re.++ (re.+ (re.range "\x30" "\x39") )  (str.to.re "\x25")))) )

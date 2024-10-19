@@ -1,0 +1,11 @@
+Vulnerable
+Attack String :"Mozilla\u0000"+"\u0000Android\u0000GSA/0.0.0"*5000+"!1!"
+prefix :SmtNode{intersectionRegexes=[(Mozilla)(.+)]}
+prefix : (re.++  (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x7a") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x6c")  (str.to.re "\x61"))))))) (re.+ re.allchar ))
+infix :SmtNode{intersectionRegexes=[(([^
+]+)([0-9]+))&(([^
+]+)(Android[^
+]+(GSA)\/([0-9]+)\.([0-9]+)\.)([0-9]+))&(.+)]}
+infix : (re.++  (re.++ (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.+ (re.range "\x30" "\x39") )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x64") (re.++ (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x47") (re.++  (str.to.re "\x53")  (str.to.re "\x41"))) (re.++  (str.to.re "\x5c\x2f") (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x5c\x2e") (re.++ (re.+ (re.range "\x30" "\x39") )  (str.to.re "\x5c\x2e")))))))))))))) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[!1!]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x31")  (str.to.re "\x21")))

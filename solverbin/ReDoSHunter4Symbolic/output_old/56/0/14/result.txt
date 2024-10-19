@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"HTC"+" "*10000+""
+prefix :SmtNode{intersectionRegexes=[HTC]}
+prefix : (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x54")  (str.to.re "\x43")))
+infix :SmtNode{intersectionRegexes=[[^;]+, ([^;]+)( *),  *]}
+infix :(re.inter (re.+  (str.to.re "\x3b") )  (re.++ (re.+  (str.to.re "\x3b") ) (re.*  (str.to.re "\x20") )) (re.*  (str.to.re "\x20") ) )
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

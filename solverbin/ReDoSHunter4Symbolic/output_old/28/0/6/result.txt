@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"jPodder v0.0"+"00"*10000+"!1!"
+prefix :SmtNode{intersectionRegexes=[((podracer|jPodder) v ?(\d+)\.)(\d+)]}
+prefix : (re.++  (re.++  (re.union  (re.++  (str.to.re "\x70") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x65")  (str.to.re "\x72"))))))))  (re.++  (str.to.re "\x6a") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x65")  (str.to.re "\x72")))))))) (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x76") (re.++ (re.opt  (str.to.re "\x20") ) (re.++ (re.+ (re.range "0" "9") )  (str.to.re "\x5c\x2e")))))) (re.+ (re.range "0" "9") ))
+infix :SmtNode{intersectionRegexes=[(([0-9]+)([0-9]+))&(([0-9]+)(\.?)([0-9]+))&(.+)]}
+infix : (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.+ (re.range "\x30" "\x39") )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++ (re.opt  (str.to.re "\x5c\x2e") ) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[!1!]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x31")  (str.to.re "\x21")))

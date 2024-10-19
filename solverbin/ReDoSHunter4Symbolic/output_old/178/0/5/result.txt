@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"Darwin/91"+"0"*20000+"!\n!\n"
+prefix :SmtNode{intersectionRegexes=[Darwin/91]}
+prefix : (re.++  (str.to.re "\x44") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x77") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x39")  (str.to.re "\x31")))))))))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)(.*), .*]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.* re.allchar )) (re.* re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[!
+!
+]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x21")  (str.to.re "\x0a"))))

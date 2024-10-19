@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :";"+" "*10000+"@"
+prefix :SmtNode{intersectionRegexes=[;]}
+prefix : (str.to.re "\x3b")
+infix :SmtNode{intersectionRegexes=[( *)&(( *)()([^\/]+))&([^\/]+)&(.+)]}
+infix : (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (str.to.re "\x20") ) (re.++  (re.+  (str.to.re "\x5c\x2f") ))) (re.++  (str.to.re "\x26") (re.++ (re.+  (str.to.re "\x5c\x2f") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

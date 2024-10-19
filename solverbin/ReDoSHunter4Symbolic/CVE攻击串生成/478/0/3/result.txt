@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :";Pantech"+"\u0000"*10000+"◎;\n◎;\n"
+prefix :SmtNode{intersectionRegexes=[;Pantech]}
+prefix : (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x63")  (str.to.re "\x68"))))))))
+infix :SmtNode{intersectionRegexes=[(([^\/;]+)([^
+]*))&(([^\/;]+)()([^
+]*))&(.+)]}
+infix : (re.++  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[◎;
+◎;
+]}
+suffix : (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x3b")  (str.to.re "\x0a"))))))

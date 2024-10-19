@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"/؀"+"؀"*1024+" "
+prefix :SmtNode{intersectionRegexes=[([\/؀-ۿ]+\s*)([؀-ۿ]+)]}
+prefix : (re.++  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f") (re.range "\x600" "\x6ff")) ) (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) )) (re.+ (re.range "\x600" "\x6ff") ))
+infix :SmtNode{intersectionRegexes=[(\s*[؀-ۿ]+){1,2}, [؀-ۿ]+]}
+infix :(re.inter  (re.union   (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))  (re.++  (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))    (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") )))) (re.+ (re.range "\x600" "\x6ff") ) )
+suffix :SmtNode{intersectionRegexes=[؀[\s\S]*＆～((\s*[؀-ۿ]+){1,2})]}
+suffix : (re.inter  (re.++  (str.to.re "\x600") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) )) (re.comp  (re.union   (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))  (re.++  (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))    (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))))))

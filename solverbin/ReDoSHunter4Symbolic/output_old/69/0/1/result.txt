@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :""+"T-Mobile myTouch_3G_"*5000+"/A"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[T-Mobile myTouch_3G_]}}
+infix :  (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x6d") (re.++  (str.to.re "\x79") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x75") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x5f") (re.++  (str.to.re "\x33") (re.++  (str.to.re "\x47")  (str.to.re "\x5f"))))))))))))))))))))
+suffix :SmtNode{intersectionRegexes=[/A]}
+suffix : (re.++  (str.to.re "\x2f")  (str.to.re "\x41"))

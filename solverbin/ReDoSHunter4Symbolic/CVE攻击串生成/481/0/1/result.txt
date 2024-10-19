@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :";POMP \u0000"+" "*5000+"◎\n◎\n◎"
+prefix :SmtNode{intersectionRegexes=[(; *(POMP)[ \-_])(.+)]}
+prefix : (re.++  (re.++  (str.to.re "\x3b") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x4d")  (str.to.re "\x50"))))  (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x5c\x2d")  (str.to.re "\x5f")))))) (re.+ re.allchar ))
+infix :SmtNode{intersectionRegexes=[.+, (.+)( *),  *]}
+infix :(re.inter (re.+ re.allchar )  (re.++ (re.+ re.allchar ) (re.*  (str.to.re "\x20") )) (re.*  (str.to.re "\x20") ) )
+suffix :SmtNode{intersectionRegexes=[◎
+◎
+◎]}
+suffix : (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0a")  (str.to.re "\x25ce")))))

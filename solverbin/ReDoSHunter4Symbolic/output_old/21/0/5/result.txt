@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"PodCruncher"+"00"*5000+"!"
+prefix :SmtNode{intersectionRegexes=[PodCruncher]}
+prefix : (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x75") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x65")  (str.to.re "\x72")))))))))))
+infix :SmtNode{intersectionRegexes=[(\d+)(\d+), (\d+)(\.?)(\d+)]}
+infix :(re.inter  (re.++ (re.+ (re.range "0" "9") ) (re.+ (re.range "0" "9") ))  (re.++ (re.+ (re.range "0" "9") ) (re.++ (re.opt  (str.to.re "\x5c\x2e") ) (re.+ (re.range "0" "9") ))) )
+suffix :SmtNode{intersectionRegexes=[!]}
+suffix : (str.to.re "\x21")

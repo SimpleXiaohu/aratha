@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :""+"A"*10000+"~"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[A]}}
+infix :  (str.to.re "\x41")
+suffix :SmtNode{intersectionRegexes=[~]}
+suffix : (str.to.re "\x7e")

@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"iPhone"+"Mac OS X"*5000+"!1!"
+prefix :SmtNode{intersectionRegexes=[iPhone]}
+prefix : (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e")  (str.to.re "\x65"))))))
+infix :SmtNode{intersectionRegexes=[.*, (.*)(Mac OS X)(.*), .*]}
+infix :(re.inter (re.* re.allchar )  (re.++ (re.* re.allchar ) (re.++  (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x20")  (str.to.re "\x58")))))))) (re.* re.allchar ))) (re.* re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[!1!]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x31")  (str.to.re "\x21")))

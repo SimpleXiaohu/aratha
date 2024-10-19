@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"android\u0000mipad "+"\t\t"*5000+""
+prefix :SmtNode{intersectionRegexes=[(android.+mi[\-\s_]*(pad)[\s_]?)([\s\w]+)]}
+prefix : (re.++  (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x64") (re.++ (re.+ re.allchar ) (re.++  (str.to.re "\x6d") (re.++  (str.to.re "\x69") (re.++ (re.*  (re.union  (str.to.re "\x5c\x2d") (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))  (str.to.re "\x5f"))) ) (re.++  (re.++  (str.to.re "\x70") (re.++  (str.to.re "\x61")  (str.to.re "\x64"))) (re.opt  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))  (str.to.re "\x5f")) ))))))))))))) (re.+  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.union (re.range "a" "z") (re.range "A" "Z") (re.range "0" "9") (str.to.re "_"))) ))
+infix :SmtNode{intersectionRegexes=[((([ 
+	]|[A-Za-z0-9_])+)([ 
+	]+))&((([ 
+	]|[A-Za-z0-9_])+)()([ 
+	]+))&(.+)]}
+infix : (re.++  (re.++ (re.+  (re.union  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b"))))))  (re.union (re.range "\x41" "\x5a") (re.union (re.range "\x61" "\x7a") (re.union (re.range "\x30" "\x39")  (str.to.re "\x5f"))))) ) (re.+  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b"))))))  (re.union (re.range "\x41" "\x5a") (re.union (re.range "\x61" "\x7a") (re.union (re.range "\x30" "\x39")  (str.to.re "\x5f"))))) ) (re.++  (re.+  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

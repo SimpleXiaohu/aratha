@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"""+"${${"A"}"*32+""${"""
+prefix :SmtNode{intersectionRegexes=["]}
+prefix : (str.to.re "\x22")
+infix :SmtNode{intersectionRegexes=[${${"A"}]}
+infix : (re.++  (re.++  (str.to.re "\x7b") (re.++  (re.++  (str.to.re "\x7b") (re.++  (str.to.re "\x22") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x22")  (str.to.re "\x7d"))))))))
+suffix :SmtNode{intersectionRegexes=["${""]}
+suffix : (re.++  (str.to.re "\x22") (re.++  (re.++  (str.to.re "\x7b") (re.++  (str.to.re "\x22")  (str.to.re "\x22")))))

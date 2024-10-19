@@ -1,0 +1,14 @@
+Vulnerable
+Attack String :"\t "+"\t"*5000+"!"
+prefix :SmtNode{intersectionRegexes=[(\s+)((((.|\n)*)＆[\s\S]{1,}))]}
+prefix : (re.++ (re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) )  (re.inter (re.*  (re.union re.allchar  (str.to.re "\x5c\x6e")) )  (re.++   (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) (re.*   (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))))
+infix :SmtNode{intersectionRegexes=[(([^
+]|
+)*)&((([^
+]|
+)*)()([ 
+	]+))&([ 
+	]+)&(.+)]}
+infix : (re.++ (re.*  (re.union  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d"))  (str.to.re "\x0a")) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d"))  (str.to.re "\x0a")) ) (re.++  (re.+  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) ))) (re.++  (str.to.re "\x26") (re.++ (re.+  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[!]}
+suffix : (str.to.re "\x21")

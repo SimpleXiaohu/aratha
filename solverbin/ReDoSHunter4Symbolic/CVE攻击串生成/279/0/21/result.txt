@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"/"+"؀؀"*5000+"A"
+prefix :SmtNode{intersectionRegexes=[([\/؀-ۿ]+)]}
+prefix :(re.+  (re.union  (str.to.re "\x5c\x2f") (re.range "\x600" "\x6ff")) )
+infix :SmtNode{intersectionRegexes=[[\/؀-ۿ]+, ([\/؀-ۿ]+)((\s*[؀-ۿ]+){1,2}), (\s*[؀-ۿ]+){1,2}]}
+infix :(re.inter (re.+  (re.union  (str.to.re "\x5c\x2f") (re.range "\x600" "\x6ff")) )  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f") (re.range "\x600" "\x6ff")) )  (re.union   (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))  (re.++  (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))    (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") )))))  (re.union   (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))  (re.++  (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))    (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") )))) )
+suffix :SmtNode{intersectionRegexes=[A]}
+suffix : (str.to.re "\x41")

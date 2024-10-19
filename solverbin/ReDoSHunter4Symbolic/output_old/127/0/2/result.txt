@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"Fennec/0.0"+"00"*10000+" "
+prefix :SmtNode{intersectionRegexes=[((Fennec)\/(\d+)\.)(\d+)]}
+prefix : (re.++  (re.++  (re.++  (str.to.re "\x46") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x65")  (str.to.re "\x63")))))) (re.++  (str.to.re "\x5c\x2f") (re.++ (re.+ (re.range "0" "9") )  (str.to.re "\x5c\x2e")))) (re.+ (re.range "0" "9") ))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)(\.?[ab]?)(\d+), \d+]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.++  (re.++ (re.opt  (str.to.re "\x5c\x2e") ) (re.opt  (re.union  (str.to.re "\x61")  (str.to.re "\x62")) )) (re.+ (re.range "0" "9") ))) (re.+ (re.range "0" "9") ) )
+suffix :SmtNode{intersectionRegexes=[00[\s\S]*＆～(\d+), 00[\s\S]*＆～((\d+)([a-z]*))]}
+suffix :(re.inter  (re.inter  (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))) (re.comp (re.+ (re.range "0" "9") )))  (re.inter  (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))) (re.comp  (re.++ (re.+ (re.range "0" "9") ) (re.* (re.range "\x61" "\x7a") )))) )

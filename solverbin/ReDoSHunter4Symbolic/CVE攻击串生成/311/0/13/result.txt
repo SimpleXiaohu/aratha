@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"Mozilla "+"MobileInstagram\u00000"*5000+"@"
+prefix :SmtNode{intersectionRegexes=[(Mozilla)(((.*)＆[\s\S]{1,}))]}
+prefix : (re.++  (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x7a") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x6c")  (str.to.re "\x61")))))))  (re.inter (re.* re.allchar )  (re.++   (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) (re.*   (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))))
+infix :SmtNode{intersectionRegexes=[(([^
+]*)([0-9]+))&(([^
+]*)(Mobile[^
+]*(Instagram)[^
+])([0-9]+))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.+ (re.range "\x30" "\x39") )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x65") (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x49") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x67") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x61")  (str.to.re "\x6d")))))))))  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")))))))))) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

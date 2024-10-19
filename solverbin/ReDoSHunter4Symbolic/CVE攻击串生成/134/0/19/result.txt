@@ -1,0 +1,15 @@
+Vulnerable
+Attack String :"   [] "\u0000 \u0000"+"\\\u0000\u0000"*32+" ] ◎"!\n◎ "!\n"!\n ] ◎"!\n◎ "!\n"!\n"
+prefix :SmtNode{intersectionRegexes=[(([^ ]*) [^ ]* ([^ ]*) \[([^\]]*)\] "(\S+) +)([^\"]|\\.)]}
+prefix : (re.++  (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x20") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x20") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x5c\x5b") (re.++ (re.*  (str.to.re "\x5c\x5d") ) (re.++  (str.to.re "\x5c\x5d") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x22") (re.++ (re.+ (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")))) ) (re.+  (str.to.re "\x20") )))))))))))))  (re.union  (str.to.re "\x5c\x22")  (re.++  (str.to.re "\x5c\x5c") re.allchar)))
+infix :SmtNode{intersectionRegexes=[()&(.{0,})], next=SmtNode{intersectionRegexes=[((\\[^
+])+([^\"])+)&(([^\"])+)&(\\.*)&(.{0,})], next=SmtNode{intersectionRegexes=[]}}}
+infix : (re.++  (re.++  (str.to.re "\x26")  (re.++ "" (re.* "" ))))  (re.++  (re.++ (re.+  (re.++  (str.to.re "\x5c\x5c")  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d"))) ) (re.+  (str.to.re "\x5c\x22") )) (re.++  (str.to.re "\x26") (re.++ (re.+  (str.to.re "\x5c\x22") ) (re.++  (str.to.re "\x26") (re.++  (re.++  (str.to.re "\x5c\x5c") (re.* re.allchar )) (re.++  (str.to.re "\x26")  (re.++ "" (re.* "" )))))))) 
+suffix :SmtNode{intersectionRegexes=[ ] ◎"!
+◎ "!
+"!
+ ] ◎"!
+◎ "!
+"!
+]}
+suffix : (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x5d") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x22") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x22") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x22") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x5d") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x22") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x22") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x22") (re.++  (str.to.re "\x21")  (str.to.re "\x0a"))))))))))))))))))))))))))))))

@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"htc "+"\t\t"*5000+"~A~"
+prefix :SmtNode{intersectionRegexes=[((htc))([\s;\-_]+)]}
+prefix : (re.++  (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x74")  (str.to.re "\x63"))) (re.+  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.union  (str.to.re "\x3b") (re.union  (str.to.re "\x5c\x2d")  (str.to.re "\x5f")))) ))
+infix :SmtNode{intersectionRegexes=[(([ 
+	]|;|\-|_)+)&((([ 
+	]|;|\-|_)+)()(([ 
+	]|[A-Za-z0-9_])+))&(([ 
+	]|[A-Za-z0-9_])+)&(.+)]}
+infix : (re.++ (re.+  (re.union  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) (re.union  (str.to.re "\x3b") (re.union  (str.to.re "\x5c\x2d")  (str.to.re "\x5f")))) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) (re.union  (str.to.re "\x3b") (re.union  (str.to.re "\x5c\x2d")  (str.to.re "\x5f")))) ) (re.++  (re.+  (re.union  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b"))))))  (re.union (re.range "\x41" "\x5a") (re.union (re.range "\x61" "\x7a") (re.union (re.range "\x30" "\x39")  (str.to.re "\x5f"))))) ))) (re.++  (str.to.re "\x26") (re.++ (re.+  (re.union  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b"))))))  (re.union (re.range "\x41" "\x5a") (re.union (re.range "\x61" "\x7a") (re.union (re.range "\x30" "\x39")  (str.to.re "\x5f"))))) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[~A~]}
+suffix : (re.++  (str.to.re "\x7e") (re.++  (str.to.re "\x41")  (str.to.re "\x7e")))

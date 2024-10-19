@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :""+"iPod"*10000+"\n@"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[iPod]}}
+infix :  (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x6f")  (str.to.re "\x64"))))
+suffix :SmtNode{intersectionRegexes=[
+@]}
+suffix : (re.++  (str.to.re "\x0a")  (str.to.re "\x40"))

@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :";AQUA-"+" "*10000+""
+prefix :SmtNode{intersectionRegexes=[;AQUA-]}
+prefix : (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x51") (re.++  (str.to.re "\x55") (re.++  (str.to.re "\x41")  (str.to.re "\x2d"))))))
+infix :SmtNode{intersectionRegexes=[([^\/;]+)&(([^\/;]+)()( *))&( *)&(.+)]}
+infix : (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (re.*  (str.to.re "\x20") ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

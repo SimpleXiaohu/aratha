@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :";MEIZU \u0000"+" "*5000+"◎\n◎\n◎"
+prefix :SmtNode{intersectionRegexes=[(; *(meizu_|MEIZU ))(.+)]}
+prefix : (re.++  (re.++  (str.to.re "\x3b") (re.++ (re.*  (str.to.re "\x20") )  (re.union  (re.++  (str.to.re "\x6d") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x7a") (re.++  (str.to.re "\x75")  (str.to.re "\x5f"))))))  (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x45") (re.++  (str.to.re "\x49") (re.++  (str.to.re "\x5a") (re.++  (str.to.re "\x55")  (str.to.re "\x20"))))))))) (re.+ re.allchar ))
+infix :SmtNode{intersectionRegexes=[([^
+]+)&(([^
+]+)()( *))&( *)&(.+)]}
+infix : (re.++ (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.*  (str.to.re "\x20") ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[◎
+◎
+◎]}
+suffix : (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0a")  (str.to.re "\x25ce")))))

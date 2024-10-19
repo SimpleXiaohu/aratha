@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"A"+"A"*32+"aAa"
+prefix :SmtNode{intersectionRegexes=[(\/?)([0-9\-A-Z_]+)]}
+prefix : (re.++ (re.opt  (str.to.re "\x5c\x2f") ) (re.+  (re.union (re.range "\x30" "\x39") (re.union  (str.to.re "\x5c\x2d") (re.union (re.range "\x41" "\x5a")  (str.to.re "\x5f")))) ))
+infix :SmtNode{intersectionRegexes=[([0-9\-A-Z_]+\/?)+, [0-9\-A-Z_]+]}
+infix :(re.inter (re.+  (re.++ (re.+  (re.union (re.range "\x30" "\x39") (re.union  (str.to.re "\x5c\x2d") (re.union (re.range "\x41" "\x5a")  (str.to.re "\x5f")))) ) (re.opt  (str.to.re "\x5c\x2f") )) ) (re.+  (re.union (re.range "\x30" "\x39") (re.union  (str.to.re "\x5c\x2d") (re.union (re.range "\x41" "\x5a")  (str.to.re "\x5f")))) ) )
+suffix :SmtNode{intersectionRegexes=[aAa]}
+suffix : (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x41")  (str.to.re "\x61")))

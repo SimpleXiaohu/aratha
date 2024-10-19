@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :";VS60\u0000"+" "*5000+""
+prefix :SmtNode{intersectionRegexes=[(; *VS[6-9][0-9]+)([^\/;]+)]}
+prefix : (re.++  (re.++  (str.to.re "\x3b") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x56") (re.++  (str.to.re "\x53") (re.++ (re.range "\x36" "\x39") (re.+ (re.range "\x30" "\x39") )))))) (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ))
+infix :SmtNode{intersectionRegexes=[([^\/;]+)&(([^\/;]+)()( *))&( *)&(.+)]}
+infix : (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (re.*  (str.to.re "\x20") ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :
