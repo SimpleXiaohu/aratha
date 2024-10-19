@@ -160,7 +160,8 @@ class Or {
             switch(child.constructor) {
                 case Array:
                     for (const grandChildren of child)
-                        grandChildren.visit(visitor)
+                        if (grandChildren.visit)
+                            grandChildren.visit(visitor)
                     break;
                 default:
                     if (child.visit)
