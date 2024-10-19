@@ -12,3 +12,5 @@ node_modules
 *_jalangi_.js
 1.*
 PCs_undefined.smt2
+solverbin/cvc5win64/lib/libcvc5.a
+solverbin/z3-4.13.3-x64-win/bin/libz3.pdb
