@@ -3087,16 +3087,130 @@
 (declare-const regex_capture_49 Val)
 (assert (or (is-undefined regex_capture_49) (is-Str regex_capture_49)))
 (assert (= (GetProperties 105) (store (store (store EmptyObject "0" (Just (Str regex_exec_37))) "1" (Just regex_capture_41)) "2" (Just regex_capture_49))))
-(assert (and (= regex_exec_37 (str.++ regex_exec_38 regex_exec_39 regex_exec_40 regex_exec_46 regex_exec_50)) (str.in_re regex_exec_38 (str.to_re "")) (str.in_re regex_exec_39 (str.to_re "git+ssh://")) (and (= regex_capture_41 (Str regex_exec_40)) (and (= regex_exec_40 (str.++ regex_exec_42 regex_exec_43 regex_exec_44 regex_exec_45)) (and (str.in_re regex_exec_42 (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))) (str.in_re regex_exec_42 (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))) (str.in_re regex_exec_43 (str.to_re ":")) (and (str.in_re regex_exec_44 (re.+ (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))) (str.in_re regex_exec_44 (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))) (and (str.in_re regex_exec_45 (re.opt (str.to_re ".git"))) (str.in_re regex_exec_45 (str.to_re ".git"))))) (and (str.in_re regex_exec_46 (re.opt (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}"))))) (and (= regex_exec_46 (str.++ regex_exec_47 regex_exec_48)) (str.in_re regex_exec_47 (str.to_re "#")) (and (= regex_capture_49 (Str regex_exec_48)) (and (str.in_re regex_exec_48 (re.* (re.range "\u{0}" "\u{ffff}"))) (str.in_re regex_exec_48 (re.range "\u{0}" "\u{ffff}")))))) (str.in_re regex_exec_50 (str.to_re ""))))
+(assert (and 
+  (= regex_exec_37 (str.++ regex_exec_38 regex_exec_39 regex_exec_40 regex_exec_46 regex_exec_50)) 
+  (str.in_re regex_exec_38 (str.to_re "")) 
+  (str.in_re regex_exec_39 (str.to_re "git+ssh://")) 
+  (and 
+    (= regex_capture_41 (Str regex_exec_40)) 
+    (and 
+      (= regex_exec_40 (str.++ regex_exec_42 regex_exec_43 regex_exec_44 regex_exec_45)) 
+      (and 
+        (str.in_re regex_exec_42 (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))) 
+        ; (str.in_re regex_exec_42 (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))
+      ) 
+      (str.in_re regex_exec_43 (str.to_re ":")) 
+      (and 
+        (str.in_re regex_exec_44 (re.+ (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))) 
+        ; (str.in_re regex_exec_44 (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))
+      ) 
+      (and 
+        (str.in_re regex_exec_45 (re.opt (str.to_re ".git"))) 
+        ; (str.in_re regex_exec_45 (str.to_re ".git"))
+      )
+    )
+  ) 
+  (and 
+    (str.in_re regex_exec_46 (re.opt (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}"))))) 
+    (and 
+      (= regex_exec_46 (str.++ regex_exec_47 regex_exec_48)) 
+      (str.in_re regex_exec_47 (str.to_re "#")) 
+      (and 
+        (= regex_capture_49 (Str regex_exec_48)) 
+        (and 
+          (str.in_re regex_exec_48 (re.* (re.range "\u{0}" "\u{ffff}"))) 
+          ; (str.in_re regex_exec_48 (re.range "\u{0}" "\u{ffff}"))
+        )
+      )
+    )
+  ) 
+  (str.in_re regex_exec_50 (str.to_re ""))
+))
 ; (assert (= (Str regex_exec_37) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))))
 (assert (= (Str regex_exec_37) var0))
 (push 1)
 (assert (= (GetProperties 105) (store (store (store EmptyObject "0" (Just (Str regex_exec_37))) "1" (Just regex_capture_41)) "2" (Just regex_capture_49))))
-(assert (and (= regex_exec_37 (str.++ regex_exec_38 regex_exec_39 regex_exec_40 regex_exec_46 regex_exec_50)) (str.in_re regex_exec_38 (str.to_re "")) (str.in_re regex_exec_39 (str.to_re "git+ssh://")) (and (= regex_capture_41 (Str regex_exec_40)) (and (= regex_exec_40 (str.++ regex_exec_42 regex_exec_43 regex_exec_44 regex_exec_45)) (and (str.in_re regex_exec_42 (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))) (str.in_re regex_exec_42 (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))) (str.in_re regex_exec_43 (str.to_re ":")) (and (str.in_re regex_exec_44 (re.+ (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))) (str.in_re regex_exec_44 (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))) (and (str.in_re regex_exec_45 (re.opt (str.to_re ".git"))) (str.in_re regex_exec_45 (str.to_re ".git"))))) (and (str.in_re regex_exec_46 (re.opt (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}"))))) (and (= regex_exec_46 (str.++ regex_exec_47 regex_exec_48)) (str.in_re regex_exec_47 (str.to_re "#")) (and (= regex_capture_49 (Str regex_exec_48)) (and (str.in_re regex_exec_48 (re.* (re.range "\u{0}" "\u{ffff}"))) (str.in_re regex_exec_48 (re.range "\u{0}" "\u{ffff}")))))) (str.in_re regex_exec_50 (str.to_re ""))))
+(assert (and 
+  (= regex_exec_37 (str.++ regex_exec_38 regex_exec_39 regex_exec_40 regex_exec_46 regex_exec_50)) 
+  (str.in_re regex_exec_38 (str.to_re "")) 
+  (str.in_re regex_exec_39 (str.to_re "git+ssh://")) 
+  (and 
+    (= regex_capture_41 (Str regex_exec_40)) 
+    (and 
+      (= regex_exec_40 (str.++ regex_exec_42 regex_exec_43 regex_exec_44 regex_exec_45)) 
+      (and 
+        (str.in_re regex_exec_42 (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))) 
+        ; (str.in_re regex_exec_42 (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))
+      ) 
+      (str.in_re regex_exec_43 (str.to_re ":")) 
+      (and 
+        (str.in_re regex_exec_44 (re.+ (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))) 
+        ; (str.in_re regex_exec_44 (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))
+      ) 
+      (and 
+        (str.in_re regex_exec_45 (re.opt (str.to_re ".git"))) 
+        ; (str.in_re regex_exec_45 (str.to_re ".git"))
+      )
+    )
+  ) 
+  (and 
+    (str.in_re regex_exec_46 (re.opt (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}"))))) 
+    (and 
+      (= regex_exec_46 (str.++ regex_exec_47 regex_exec_48)) 
+      (str.in_re regex_exec_47 (str.to_re "#")) 
+      (and 
+        (= regex_capture_49 (Str regex_exec_48)) 
+        (and 
+          (str.in_re regex_exec_48 (re.* (re.range "\u{0}" "\u{ffff}"))) 
+          ; (str.in_re regex_exec_48 (re.range "\u{0}" "\u{ffff}"))
+        )
+      )
+    )
+  ) 
+  (str.in_re regex_exec_50 (str.to_re ""))
+))
 ; (assert (not (or (is-undefined (ite (= (Str regex_exec_37) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 105) null)) (is-null (ite (= (Str regex_exec_37) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 105) null)))))
 (push 1)
 (assert (= (GetProperties 105) (store (store (store EmptyObject "0" (Just (Str regex_exec_37))) "1" (Just regex_capture_41)) "2" (Just regex_capture_49))))
-(assert (and (= regex_exec_37 (str.++ regex_exec_38 regex_exec_39 regex_exec_40 regex_exec_46 regex_exec_50)) (str.in_re regex_exec_38 (str.to_re "")) (str.in_re regex_exec_39 (str.to_re "git+ssh://")) (and (= regex_capture_41 (Str regex_exec_40)) (and (= regex_exec_40 (str.++ regex_exec_42 regex_exec_43 regex_exec_44 regex_exec_45)) (and (str.in_re regex_exec_42 (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))) (str.in_re regex_exec_42 (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))) (str.in_re regex_exec_43 (str.to_re ":")) (and (str.in_re regex_exec_44 (re.+ (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))) (str.in_re regex_exec_44 (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))) (and (str.in_re regex_exec_45 (re.opt (str.to_re ".git"))) (str.in_re regex_exec_45 (str.to_re ".git"))))) (and (str.in_re regex_exec_46 (re.opt (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}"))))) (and (= regex_exec_46 (str.++ regex_exec_47 regex_exec_48)) (str.in_re regex_exec_47 (str.to_re "#")) (and (= regex_capture_49 (Str regex_exec_48)) (and (str.in_re regex_exec_48 (re.* (re.range "\u{0}" "\u{ffff}"))) (str.in_re regex_exec_48 (re.range "\u{0}" "\u{ffff}")))))) (str.in_re regex_exec_50 (str.to_re ""))))
+(assert (and 
+  (= regex_exec_37 (str.++ regex_exec_38 regex_exec_39 regex_exec_40 regex_exec_46 regex_exec_50)) 
+  (str.in_re regex_exec_38 (str.to_re "")) 
+  (str.in_re regex_exec_39 (str.to_re "git+ssh://")) 
+  (and 
+    (= regex_capture_41 (Str regex_exec_40)) 
+    (and 
+      (= regex_exec_40 (str.++ regex_exec_42 regex_exec_43 regex_exec_44 regex_exec_45)) 
+      (and 
+        (str.in_re regex_exec_42 (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))) 
+        ; (str.in_re regex_exec_42 (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}"))))
+      ) 
+      (str.in_re regex_exec_43 (str.to_re ":")) 
+      (and 
+        (str.in_re regex_exec_44 (re.+ (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))) 
+        ; (str.in_re regex_exec_44 (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}")))
+      ) 
+      (and 
+        (str.in_re regex_exec_45 (re.opt (str.to_re ".git"))) 
+        ; (str.in_re regex_exec_45 (str.to_re ".git"))
+      )
+    )
+  ) 
+  (and 
+    (str.in_re regex_exec_46 (re.opt (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}"))))) 
+    (and 
+      (= regex_exec_46 (str.++ regex_exec_47 regex_exec_48)) 
+      (str.in_re regex_exec_47 (str.to_re "#")) 
+      (and 
+        (= regex_capture_49 (Str regex_exec_48)) 
+        (and 
+          (str.in_re regex_exec_48 (re.* (re.range "\u{0}" "\u{ffff}"))) 
+          ; (str.in_re regex_exec_48 (re.range "\u{0}" "\u{ffff}"))
+        )
+      )
+    )
+  ) 
+  (str.in_re regex_exec_50 (str.to_re ""))
+))
 (assert (not (or (is-undefined (GetField (store (store (store EmptyObject "0" (Just (Str regex_exec_37))) "1" (Just regex_capture_41)) "2" (Just regex_capture_49)) (Num 1))) (is-null (GetField (store (store (store EmptyObject "0" (Just (Str regex_exec_37))) "1" (Just regex_capture_41)) "2" (Just regex_capture_49)) (Num 1))))))
 ; (push 1)
 ; (declare-const regex_exec_51 String)
@@ -3188,11 +3302,11 @@
       (str.in_re regex_exec_43 (str.to_re ":")) 
       (and 
         (str.in_re regex_exec_44  (re.+ (re.union (re.range "\u{0}" """") (re.range "$" "\u{ff}") ) ) ) 
-        (str.in_re regex_exec_44  (re.union (re.range "\u{0}" """")  (re.range "$" "\u{ff}") ) )
+        ; (str.in_re regex_exec_44  (re.union (re.range "\u{0}" """")  (re.range "$" "\u{ff}") ) )
       ) 
       (and 
         (str.in_re regex_exec_45 (re.opt (str.to_re ".git"))) 
-        (str.in_re regex_exec_45 (str.to_re ".git"))
+        ; (str.in_re regex_exec_45 (str.to_re ".git"))
       )
     )
   ) 
@@ -3205,7 +3319,7 @@
         (= regex_capture_49 (Str regex_exec_48)) 
         (and 
           (str.in_re regex_exec_48 (re.* (re.range "\u{0}" "\u{ffff}"))) 
-          (str.in_re regex_exec_48 (re.range "\u{0}" "\u{ffff}"))
+          ; (str.in_re regex_exec_48 (re.range "\u{0}" "\u{ffff}"))
         )
       )
     )
@@ -3267,7 +3381,7 @@
 
 (declare-const infix_s String)
 
-(assert (str.in_re infix_s ((_ re.^ 5) infix)))
+(assert (str.in_re infix_s ((_ re.^ 20) infix)))
 
 ; (assert (>= (str.len infix_s) 10))
 
