@@ -413,15 +413,15 @@ class DSE {
             let item = this._workQueue[i];
             for (let j = 0; j < item.constraints.length; j++) {
                 let constraint = item.constraints[j];
-                if (constraint instanceof TypeConstraint && constraint.subject instanceof RegExpExec && constraint.subject._temps[0].name === "regex_exec_37") {
+                if (constraint instanceof TypeConstraint && constraint.subject instanceof RegExpExec && constraint.subject._temps[0].name === "regex_exec_38") {
                     myFavoriteWorkIndex = i
-                    console.log("regex_exec_37 get!")
-                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof RegExpExec && constraint.expr._temps[0].name === "regex_exec_37") {
+                    console.log("regex_exec_38 get!")
+                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof RegExpExec && constraint.expr._temps[0].name === "regex_exec_38") {
                     myFavoriteWorkIndex = i
-                    console.log("regex_exec_37 get!")
-                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof Unary && constraint.expr.expr instanceof RegExpExec && constraint.expr.expr._temps[0].name === "regex_exec_51") {
+                    console.log("regex_exec_38 get!")
+                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof Unary && constraint.expr.expr instanceof RegExpExec && constraint.expr.expr._temps[0].name === "regex_exec_49") {
                     myFavoriteWorkIndex = i
-                    console.log("regex_exec_51 get!")
+                    console.log("regex_exec_49 get!")
                     J$.ReDoS51 = true
                 }
             }

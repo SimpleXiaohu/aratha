@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c7c47fc-adbc-4ae6-905c-56d2c57c984a" name="更改" comment="" />
+    <list default="true" id="1c7c47fc-adbc-4ae6-905c-56d2c57c984a" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/string_test/npa/before_merge/test.smt2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/0_0_0_0.log" beforeDir="false" afterPath="$PROJECT_DIR$/output/0_0_0_0.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/0_0_0_0.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/output/0_0_0_0.smt2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dse.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/dse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/smt2/smt.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/smt2/smt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/string_test/npa/success_log.log" beforeDir="false" afterPath="$PROJECT_DIR$/string_test/npa/before_merge/success_log.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/string_test/npa/success_log.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/string_test/npa/before_merge/success_log.smt2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/string_test/npa/test.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/string_test/npa/test.smt2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/string_test/npa/test2.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/string_test/npa/before_merge/test2.smt2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/string_test/npa/test3_target.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/string_test/npa/before_merge/test3_target.smt2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/string_test/npa/test4.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/string_test/npa/before_merge/test4.smt2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/string_test/npa/test5.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/string_test/npa/before_merge/test5.smt2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmpLog.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/tmpLog.smt2" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,27 +48,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;MaxineLocal&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Documents/ISSTA/aratha/string_test/npa&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.analyze -- string_test/minicase.js.executor&quot;: &quot;Debug&quot;,
-    &quot;npm.analyze -- string_test/npa.js.executor&quot;: &quot;Debug&quot;,
-    &quot;npm.analyze -- string_test/npa/motivation_example.js.executor&quot;: &quot;Debug&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Settings.JavaScript.Linters.JSHint&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\25865\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "front__end",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Documents/ISSTA/aratha/string_test/npa",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.analyze -- string_test/minicase.js.executor": "Debug",
+    "npm.analyze -- string_test/npa.js.executor": "Debug",
+    "npm.analyze -- string_test/npa/motivation_example.js.executor": "Debug",
+    "settings.editor.selected.configurable": "Settings.JavaScript.Linters.JSHint",
+    "ts.external.directory.path": "C:\\Users\\25865\\AppData\\Local\\Programs\\WebStorm\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Documents\ISSTA\aratha\string_test\npa" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Documents\ISSTA\aratha\string_test\npa\before_merge" />
     </key>
   </component>
   <component name="RunManager" selected="npm.analyze -- string_test/npa/motivation_example.js">
@@ -103,6 +122,7 @@
       <workItem from="1729254112043" duration="1328000" />
       <workItem from="1729255829640" duration="21029000" />
       <workItem from="1729325190414" duration="1504000" />
+      <workItem from="1729331468087" duration="2197000" />
     </task>
     <servers />
   </component>
@@ -115,22 +135,22 @@
         <line-breakpoint type="javascript">
           <condition expression="J$.ReDoSInItem" language="JavaScript" />
           <url>file://$PROJECT_DIR$/src/dse.js</url>
-          <line>342</line>
+          <line>347</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/symbolic.js</url>
-          <line>1658</line>
+          <line>1682</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/symbolic.js</url>
-          <line>1692</line>
+          <line>1750</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dse.js</url>
-          <line>367</line>
+          <line>380</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
@@ -140,50 +160,50 @@
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/symbolic.js</url>
-          <line>1689</line>
+          <line>1747</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <condition expression="J$.ReDoSInItem&amp;&amp;output==&quot;(get-model)\n&quot;" language="JavaScript" />
           <url>file://$PROJECT_DIR$/src/smt2/smt.js</url>
-          <line>122</line>
+          <line>196</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dse.js</url>
-          <line>376</line>
+          <line>389</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dse.js</url>
-          <line>371</line>
+          <line>384</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <url>file://$PROJECT_DIR$/src/dse.js</url>
-          <line>397</line>
+          <line>410</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <condition expression="myFavoriteWorkIndex!=-1" language="JavaScript" mode="CODE_FRAGMENT" />
           <url>file://$PROJECT_DIR$/src/dse.js</url>
-          <line>398</line>
+          <line>438</line>
           <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <condition expression="J$.ReDoSInItem" language="JavaScript" />
           <url>file://$PROJECT_DIR$/src/dse.js</url>
-          <line>287</line>
+          <line>290</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
           <condition expression="J$.ReDoSInItem" language="JavaScript" />
           <url>file://$PROJECT_DIR$/src/dse.js</url>
-          <line>343</line>
+          <line>348</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
         <line-breakpoint type="javascript">
-          <condition expression="output.includes(&quot;regex_exec_51&quot;)" language="JavaScript" />
+          <condition expression="output.includes(&quot;regex_exec_49&quot;)" language="JavaScript" />
           <url>file://$PROJECT_DIR$/src/smt2/smt.js</url>
           <line>120</line>
           <option name="timeStamp" value="57" />
@@ -193,6 +213,13 @@
           <url>file://$PROJECT_DIR$/src/smt2/smt.js</url>
           <line>117</line>
           <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <condition expression="J$.ReDoSInItem&amp;&amp;output==&quot;(check-sat)\n&quot;" language="JavaScript" />
+          <url>file://$PROJECT_DIR$/src/smt2/smt.js</url>
+          <line>191</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="59" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

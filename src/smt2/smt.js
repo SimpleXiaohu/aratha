@@ -125,7 +125,7 @@ exports.SMTSolver = class SMTSolver {
                 output.startsWith("(assert (str.in_re (str.++ \"git+ssh://\"") ||
                 output.startsWith("(assert (not (not (js.in (str.++ (str.++ \"git+ssh://\"") ||
                 (output.includes("git+ssh://") && output.includes("js.substr")) ||
-                output.includes("regex_exec_0") || output.includes("regex_exec_23")
+                output.includes("regex_exec_0") || output.includes("regex_exec_20")
             )
                 output = "; " + output;
             // else if (J$.ReDoS51) {
@@ -143,7 +143,7 @@ exports.SMTSolver = class SMTSolver {
         }
 
 
-        if (!J$.meet51&&output==="(declare-const regex_exec_51 String)\n") {
+        if (!J$.meet51&&output==="(declare-const regex_exec_49 String)\n") {
             J$.meet51 = true;
             let stack = 0;
             let constraints = [];
@@ -165,7 +165,7 @@ exports.SMTSolver = class SMTSolver {
                     } else {
                         constraints.unshift(lines[i]);
                     }
-                } else if (popCount===0&&/(?:regex_exec_(?:(?:3[789])|(?:4\d)|(?:5[0-6])))|(?:regex_capture_4[19])/.test(lines[i])) {
+                } else if (popCount===0&&/(?:regex_exec_(?:(?:3[89])|(?:4\d)|(?:5[0-6])))|(?:regex_capture_4[27])/.test(lines[i])) {
                     constraints.unshift(lines[i]);
                 }
             }
@@ -177,8 +177,8 @@ exports.SMTSolver = class SMTSolver {
             // let before = "(pop " + stack + ")\n";
             for (let i = 0; i < constraints.length; i++) {
                 before += constraints[i] + "\n";
-                if (constraints[i]==="; (assert (= (Str regex_exec_37) (Str (str.++ \"git+ssh://\" (js.substr (str var0) 4 undefined)))))") {
-                    before = before + "(assert (= (Str regex_exec_37) var0))\n";
+                if (constraints[i]==="; (assert (= (Str regex_exec_38) (Str (str.++ \"git+ssh://\" (js.substr (str var0) 4 undefined)))))") {
+                    before = before + "(assert (= (Str regex_exec_38) var0))\n";
                 }
             }
             // before = before + "(assert (= (Str regex_exec_37) var0))\n";
