@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :""+"Symbian/3"*10000+"\n@"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[Symbian/3]}}
+infix :  (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x79") (re.++  (str.to.re "\x6d") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x2f")  (str.to.re "\x33")))))))))
+suffix :SmtNode{intersectionRegexes=[
+@]}
+suffix : (re.++  (str.to.re "\x0a")  (str.to.re "\x40"))

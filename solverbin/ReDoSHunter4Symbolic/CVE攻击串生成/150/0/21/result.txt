@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"-*-"+"\t"*5000+"! !"
+prefix :SmtNode{intersectionRegexes=[-*-]}
+prefix : (re.++ (re.*  (str.to.re "\x2d") )  (str.to.re "\x2d"))
+infix :SmtNode{intersectionRegexes=[([ 
+	]*)&(([ 
+	]*)()([^
+]*))&([^
+]*)&(.+)]}
+infix : (re.++ (re.*  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) ) (re.++  (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[! !]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x20")  (str.to.re "\x21")))

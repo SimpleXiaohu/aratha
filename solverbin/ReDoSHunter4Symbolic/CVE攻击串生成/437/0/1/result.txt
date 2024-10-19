@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :";FONE "+"0"*5000+"@"
+prefix :SmtNode{intersectionRegexes=[;FONE ]}
+prefix : (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x46") (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x4e") (re.++  (str.to.re "\x45")  (str.to.re "\x20"))))))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)([^\/;]*), [^\/;]*]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.*  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) )) (re.*  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) )
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

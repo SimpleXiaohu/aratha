@@ -1,0 +1,11 @@
+Vulnerable
+Attack String :"/\n\r"+"\r\n"*32+"◎"
+prefix :SmtNode{intersectionRegexes=[(((\r?\n|\r)?)\/[ \t]*(\r?\n|\r))(.*(\r?\n|\r))]}
+prefix : (re.++  (re.++ (re.opt  (re.union  (re.++ (re.opt  (str.to.re "\x5c\x72") )  (str.to.re "\x5c\x6e"))  (str.to.re "\x5c\x72")) ) (re.++  (str.to.re "\x5c\x2f") (re.++ (re.*  (re.union  (str.to.re "\x20")  (str.to.re "\x5c\x74")) )  (re.union  (re.++ (re.opt  (str.to.re "\x5c\x72") )  (str.to.re "\x5c\x6e"))  (str.to.re "\x5c\x72")))))  (re.++ (re.* re.allchar )  (re.union  (re.++ (re.opt  (str.to.re "\x5c\x72") )  (str.to.re "\x5c\x6e"))  (str.to.re "\x5c\x72"))))
+infix :SmtNode{intersectionRegexes=[([^
+]*)&(.{0,})], next=SmtNode{intersectionRegexes=[(()+(?
+)+)&((?
+)+)&(.*)&(.{0,})], next=SmtNode{intersectionRegexes=[]}}}
+infix : (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26")  (re.++ "" (re.* "" ))))  (re.++  (re.++ (re.+  (str.to.re "\x0d") ) (re.+  (re.++ (re.opt  (str.to.re "\x0d") )  (str.to.re "\x0a")) )) (re.++  (str.to.re "\x26") (re.++ (re.+  (re.++ (re.opt  (str.to.re "\x0d") )  (str.to.re "\x0a")) ) (re.++  (str.to.re "\x26") (re.++  (re.++  (str.to.re "\x0d") (re.* re.allchar )) (re.++  (str.to.re "\x26")  (re.++ "" (re.* "" )))))))) 
+suffix :SmtNode{intersectionRegexes=[◎]}
+suffix : (str.to.re "\x25ce")

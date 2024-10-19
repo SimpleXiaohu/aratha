@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :""&\r"+"&\r\n!\u0000!\u0000\r"*32+"!"
+prefix :SmtNode{intersectionRegexes=[((\w+_)?(["']))(&(\r\n?|\n)(\s*!.+(\r\n?|\n))?)]}
+prefix : (re.++  (re.++ (re.opt  (re.++ (re.+ (re.union (re.range "a" "z") (re.range "A" "Z") (re.range "0" "9") (str.to.re "_")) )  (str.to.re "\x5f")) )  (re.union  (str.to.re "\x22")  (str.to.re "\x27")))  (re.++  (str.to.re "\x26") (re.++  (re.union  (re.++  (str.to.re "\x5c\x72") (re.opt  (str.to.re "\x5c\x6e") ))  (str.to.re "\x5c\x6e")) (re.opt  (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.++  (str.to.re "\x21") (re.++ (re.+ re.allchar )  (re.union  (re.++  (str.to.re "\x5c\x72") (re.opt  (str.to.re "\x5c\x6e") ))  (str.to.re "\x5c\x6e"))))) ))))
+infix :SmtNode{intersectionRegexes=[&(\r\n?|\n)], next=SmtNode{intersectionRegexes=[\s*, \n?], next=SmtNode{intersectionRegexes=[!.+\s*!.+\r], next=SmtNode{intersectionRegexes=[]}}}}
+infix : (re.++  (str.to.re "\x26")  (re.union  (re.++  (str.to.re "\x5c\x72") (re.opt  (str.to.re "\x5c\x6e") ))  (str.to.re "\x5c\x6e"))) (re.inter (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.opt  (str.to.re "\x5c\x6e") ) )  (re.++  (str.to.re "\x21") (re.++ (re.+ re.allchar ) (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.++  (str.to.re "\x21") (re.++ (re.+ re.allchar )  (str.to.re "\x5c\x72")))))) 
+suffix :SmtNode{intersectionRegexes=[!]}
+suffix : (str.to.re "\x21")

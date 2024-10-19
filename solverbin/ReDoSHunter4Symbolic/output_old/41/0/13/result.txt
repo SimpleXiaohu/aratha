@@ -1,0 +1,11 @@
+Vulnerable
+Attack String :"iPod;"+"CPUOS 0"*5000+"@"
+prefix :SmtNode{intersectionRegexes=[iPod;]}
+prefix : (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x64")  (str.to.re "\x3b")))))
+infix :SmtNode{intersectionRegexes=[(([^
+]*)([0-9]+))&(([^
+]*)(CPU[^
+]*OS( |\+))([0-9]+))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.+ (re.range "\x30" "\x39") )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x55") (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x53")  (re.union  (str.to.re "\x20")  (str.to.re "\x5c\x2b")))))))) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

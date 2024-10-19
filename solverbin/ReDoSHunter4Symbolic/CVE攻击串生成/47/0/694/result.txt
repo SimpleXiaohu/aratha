@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"""+"&\r\n!1!1"*32+"!"
+prefix :SmtNode{intersectionRegexes=["]}
+prefix : (str.to.re "\x22")
+infix :SmtNode{intersectionRegexes=[&\r\n!1!1]}
+infix : (re.++  (str.to.re "\x26") (re.++  (str.to.re "\x5c\x72") (re.++  (str.to.re "\x5c\x6e") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x21")  (str.to.re "\x31")))))))
+suffix :SmtNode{intersectionRegexes=[!]}
+suffix : (str.to.re "\x21")

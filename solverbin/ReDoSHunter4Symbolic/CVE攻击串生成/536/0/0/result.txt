@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"asus"+"ASUS"*5000+"~A~"
+prefix :SmtNode{intersectionRegexes=[asus]}
+prefix : (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x75")  (str.to.re "\x73"))))
+infix :SmtNode{intersectionRegexes=[(.*)([ \-;]*), (.*)(ASUS)([ \-;]*)]}
+infix :(re.inter  (re.++ (re.* re.allchar ) (re.*  (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x5c\x2d")  (str.to.re "\x3b"))) ))  (re.++ (re.* re.allchar ) (re.++  (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x55")  (str.to.re "\x53")))) (re.*  (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x5c\x2d")  (str.to.re "\x3b"))) ))) )
+suffix :SmtNode{intersectionRegexes=[~A~]}
+suffix : (re.++  (str.to.re "\x7e") (re.++  (str.to.re "\x41")  (str.to.re "\x7e")))

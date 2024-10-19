@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"iPod;CPU"+"OS 0_0"*5000+" "
+prefix :SmtNode{intersectionRegexes=[iPod;CPU]}
+prefix : (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x50")  (str.to.re "\x55"))))))))
+infix :SmtNode{intersectionRegexes=[(([^
+]*)([0-9]+))&(([^
+]*)(OS ([0-9]+)_)([0-9]+))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.+ (re.range "\x30" "\x39") )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x20") (re.++ (re.+ (re.range "\x30" "\x39") )  (str.to.re "\x5f"))))) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[OS 0_0[\s\S]*＆～(\d+), OS 0_0[\s\S]*＆～((\d+)((_(\d+))?.*Mobile))]}
+suffix :(re.inter  (re.inter  (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x5f") (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))))))) (re.comp (re.+ (re.range "0" "9") )))  (re.inter  (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x5f") (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))))))) (re.comp  (re.++ (re.+ (re.range "0" "9") )  (re.++ (re.opt  (re.++  (str.to.re "\x5f") (re.+ (re.range "0" "9") )) ) (re.++ (re.* re.allchar ) (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c")  (str.to.re "\x65"))))))))))) )

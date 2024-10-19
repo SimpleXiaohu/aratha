@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"Chrome/1.1."+"0"*10000+"!\n!\n"
+prefix :SmtNode{intersectionRegexes=[Chrome/1.1.]}
+prefix : (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6d") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31") (re.++ re.allchar (re.++  (str.to.re "\x31") re.allchar))))))))))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)(.*), .*]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.* re.allchar )) (re.* re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[!
+!
+]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x21")  (str.to.re "\x0a"))))

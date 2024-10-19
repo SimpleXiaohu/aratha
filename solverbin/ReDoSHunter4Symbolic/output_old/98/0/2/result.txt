@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"/؀"+"؀"*1024+"A!A!A!A!A"
+prefix :SmtNode{intersectionRegexes=[([\/؀-ۿ]+\s*)([؀-ۿ]+)]}
+prefix : (re.++  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f") (re.range "\x600" "\x6ff")) ) (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) )) (re.+ (re.range "\x600" "\x6ff") ))
+infix :SmtNode{intersectionRegexes=[(\s*[؀-ۿ]+){1,2}, [؀-ۿ]+]}
+infix :(re.inter  (re.union   (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))  (re.++  (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") ))    (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.+ (re.range "\x600" "\x6ff") )))) (re.+ (re.range "\x600" "\x6ff") ) )
+suffix :SmtNode{intersectionRegexes=[A!A!A!A!A]}
+suffix : (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x21")  (str.to.re "\x41")))))))))

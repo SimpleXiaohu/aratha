@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :""+"VERTU "*5000+";@"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[VERTU ]}}
+infix :  (re.++  (str.to.re "\x56") (re.++  (str.to.re "\x45") (re.++  (str.to.re "\x52") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x55")  (str.to.re "\x20"))))))
+suffix :SmtNode{intersectionRegexes=[;@]}
+suffix : (re.++  (str.to.re "\x3b")  (str.to.re "\x40"))

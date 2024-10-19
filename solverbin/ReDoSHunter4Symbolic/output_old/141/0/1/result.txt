@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"conkeror/1."+"00"*10000+" "
+prefix :SmtNode{intersectionRegexes=[conkeror/1.]}
+prefix : (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x6b") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31") re.allchar))))))))))
+infix :SmtNode{intersectionRegexes=[(\d+)(\d+), (\d+)(\.?)(\d+)]}
+infix :(re.inter  (re.++ (re.+ (re.range "0" "9") ) (re.+ (re.range "0" "9") ))  (re.++ (re.+ (re.range "0" "9") ) (re.++ (re.opt  (str.to.re "\x5c\x2e") ) (re.+ (re.range "0" "9") ))) )
+suffix :SmtNode{intersectionRegexes=[00[\s\S]*＆～(\d+)]}
+suffix : (re.inter  (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))) (re.comp (re.+ (re.range "0" "9") )))

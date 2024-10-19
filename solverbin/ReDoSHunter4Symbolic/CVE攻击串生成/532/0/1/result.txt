@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :"HPiPAQA/"+"000"*5000+" "
+prefix :SmtNode{intersectionRegexes=[HPiPAQA/]}
+prefix : (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x51") (re.++  (str.to.re "\x41")  (str.to.re "\x2f"))))))))
+infix :SmtNode{intersectionRegexes=[([0-9]+)&(([0-9]+)([^
+])([0-9]+))&([0-9]+)&(.+)]}
+infix : (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[000[\s\S]*＆～(\d+)]}
+suffix : (re.inter  (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) )))) (re.comp (re.+ (re.range "0" "9") )))

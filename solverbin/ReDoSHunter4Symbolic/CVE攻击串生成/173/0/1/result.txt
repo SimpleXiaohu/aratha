@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :""+","*32+"\n@"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[,]}
+infix : (str.to.re "\x2c")
+suffix :SmtNode{intersectionRegexes=[
+@]}
+suffix : (re.++  (str.to.re "\x0a")  (str.to.re "\x40"))

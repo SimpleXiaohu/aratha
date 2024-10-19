@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"rgba(\u0000"+" "*10000+"@"
+prefix :SmtNode{intersectionRegexes=[(rgba\([ \n\r\t]*)(.+)]}
+prefix : (re.++  (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x67") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x5c\x28") (re.*  (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x5c\x6e") (re.union  (str.to.re "\x5c\x72")  (str.to.re "\x5c\x74")))) )))))) (re.+ re.allchar ))
+infix :SmtNode{intersectionRegexes=[.+, (.+)([ \n\r\t]*), [ \n\r\t]*]}
+infix :(re.inter (re.+ re.allchar )  (re.++ (re.+ re.allchar ) (re.*  (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x5c\x6e") (re.union  (str.to.re "\x5c\x72")  (str.to.re "\x5c\x74")))) )) (re.*  (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x5c\x6e") (re.union  (str.to.re "\x5c\x72")  (str.to.re "\x5c\x74")))) ) )
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

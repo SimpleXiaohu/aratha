@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"AppleWebKit/"+"00"*5000+"\n1\n"
+prefix :SmtNode{intersectionRegexes=[AppleWebKit/]}
+prefix : (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x70") (re.++  (str.to.re "\x70") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x57") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x4b") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x74")  (str.to.re "\x2f"))))))))))))
+infix :SmtNode{intersectionRegexes=[([0-9]+)&(([0-9]+)(\.?)([0-9]+))&([0-9]+)&(.+)]}
+infix : (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++ (re.opt  (str.to.re "\x5c\x2e") ) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[
+1
+]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x31")  (str.to.re "\x0a")))

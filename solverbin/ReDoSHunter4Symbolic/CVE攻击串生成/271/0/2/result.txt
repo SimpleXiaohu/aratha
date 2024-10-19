@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"HTC"+" "*5000+"A◎\nA◎\n"
+prefix :SmtNode{intersectionRegexes=[HTC]}
+prefix : (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x54")  (str.to.re "\x43")))
+infix :SmtNode{intersectionRegexes=[( *)&(( *)()([^
+]*))&([^
+]*)&(.+)]}
+infix : (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (str.to.re "\x20") ) (re.++  (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[A◎
+A◎
+]}
+suffix : (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x25ce")  (str.to.re "\x0a"))))))

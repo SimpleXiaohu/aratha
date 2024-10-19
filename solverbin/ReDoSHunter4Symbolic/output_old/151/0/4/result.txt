@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"Obigo"+"000"*5000+"!1!"
+prefix :SmtNode{intersectionRegexes=[Obigo]}
+prefix : (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x67")  (str.to.re "\x6f")))))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)(.)(\d+), \d+]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.++ re.allchar (re.+ (re.range "0" "9") ))) (re.+ (re.range "0" "9") ) )
+suffix :SmtNode{intersectionRegexes=[!1!]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x31")  (str.to.re "\x21")))

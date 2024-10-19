@@ -1,0 +1,14 @@
+Vulnerable
+Attack String :"@(A)\n"+"\r\n"*32+":A\n!\nA:A\n!\nA:"
+prefix :SmtNode{intersectionRegexes=[@(A)\n]}
+prefix : (re.++  (str.to.re "\x40") (re.++  (str.to.re "\x41")  (str.to.re "\x5c\x6e")))
+infix :SmtNode{intersectionRegexes=[.*], next=SmtNode{intersectionRegexes=[(()+(?
+)+)&((?
+)+)&(.*)&(.{0,})], next=SmtNode{intersectionRegexes=[()&(.{0,})]}}}
+infix :(re.* re.allchar )  (re.++  (re.++ (re.+  (str.to.re "\x0d") ) (re.+  (re.++ (re.opt  (str.to.re "\x0d") )  (str.to.re "\x0a")) )) (re.++  (str.to.re "\x26") (re.++ (re.+  (re.++ (re.opt  (str.to.re "\x0d") )  (str.to.re "\x0a")) ) (re.++  (str.to.re "\x26") (re.++  (re.++  (str.to.re "\x0d") (re.* re.allchar )) (re.++  (str.to.re "\x26")  (re.++ "" (re.* "" ))))))))  (re.++  (re.++  (str.to.re "\x26")  (re.++ "" (re.* "" ))))
+suffix :SmtNode{intersectionRegexes=[:A
+!
+A:A
+!
+A:]}
+suffix : (re.++  (str.to.re "\x3a") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x3a") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x41")  (str.to.re "\x3a")))))))))))))

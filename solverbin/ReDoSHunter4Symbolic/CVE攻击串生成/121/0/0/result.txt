@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"0"+"00"*5000+"!◎!◎"
+prefix :SmtNode{intersectionRegexes=[(\d+)]}
+prefix :(re.+ (re.range "0" "9") )
+infix :SmtNode{intersectionRegexes=[([0-9]+)&(([0-9]+)(\.?)([0-9]+))&([0-9]+)&(.+)]}
+infix : (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++ (re.opt  (str.to.re "\x5c\x2e") ) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[!◎!◎]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21")  (str.to.re "\x25ce"))))

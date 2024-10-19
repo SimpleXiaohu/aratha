@@ -1,0 +1,15 @@
+Vulnerable
+Attack String :"android\u0000"+"\u0000/\tBNR"*5000+"! !"
+prefix :SmtNode{intersectionRegexes=[(android)(.+)]}
+prefix : (re.++  (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x69")  (str.to.re "\x64"))))))) (re.+ re.allchar ))
+infix :SmtNode{intersectionRegexes=[(([^
+]+)([^
+]*))&(([^
+]+)((\/|;)[ 
+	]+(Barnes(\&|[ 
+	])+Noble[ 
+	]+|BN(R|T))V?)([^
+]*))&(.+)]}
+infix : (re.++  (re.++ (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) (re.++ (re.+  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) ) (re.++  (re.union  (re.++  (str.to.re "\x42") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x73") (re.++ (re.+  (re.union  (str.to.re "\x5c\x26")  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b"))))))) ) (re.++  (str.to.re "\x4e") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x65") (re.+  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) )))))))))))))  (re.++  (str.to.re "\x42") (re.++  (str.to.re "\x4e")  (re.union  (str.to.re "\x52")  (str.to.re "\x54"))))) (re.opt  (str.to.re "\x56") )))) (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[! !]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x20")  (str.to.re "\x21")))

@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"BonEcho/1."+"00"*10000+"!"
+prefix :SmtNode{intersectionRegexes=[BonEcho/1.]}
+prefix : (re.++  (str.to.re "\x42") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x45") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31") re.allchar)))))))))
+infix :SmtNode{intersectionRegexes=[([0-9]+)&(([0-9]+)(\.?(a|b)?)([0-9]+))&([0-9]+)&(.+)]}
+infix : (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (re.++ (re.opt  (str.to.re "\x5c\x2e") ) (re.opt  (re.union  (str.to.re "\x61")  (str.to.re "\x62")) )) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[!]}
+suffix : (str.to.re "\x21")

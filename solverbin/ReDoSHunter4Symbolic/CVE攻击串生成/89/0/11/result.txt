@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"android\u0000"+"\t "*5000+"\nA!\nA!"
+prefix :SmtNode{intersectionRegexes=[(android)(.+)]}
+prefix : (re.++  (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x69")  (str.to.re "\x64"))))))) (re.+ re.allchar ))
+infix :SmtNode{intersectionRegexes=[.+, (.+)([\/\s;]+), [\/\s;]+]}
+infix :(re.inter (re.+ re.allchar )  (re.++ (re.+ re.allchar ) (re.+  (re.union  (str.to.re "\x5c\x2f") (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))  (str.to.re "\x3b"))) )) (re.+  (re.union  (str.to.re "\x5c\x2f") (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))  (str.to.re "\x3b"))) ) )
+suffix :SmtNode{intersectionRegexes=[
+A!
+A!]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x41")  (str.to.re "\x21"))))))

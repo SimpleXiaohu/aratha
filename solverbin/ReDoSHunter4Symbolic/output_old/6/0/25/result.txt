@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"/"+"00"*5000+"\n!\n!"
+prefix :SmtNode{intersectionRegexes=[/]}
+prefix : (str.to.re "\x2f")
+infix :SmtNode{intersectionRegexes=[(\d+)(\d+), (\d+)(\.?)(\d+)]}
+infix :(re.inter  (re.++ (re.+ (re.range "0" "9") ) (re.+ (re.range "0" "9") ))  (re.++ (re.+ (re.range "0" "9") ) (re.++ (re.opt  (str.to.re "\x5c\x2e") ) (re.+ (re.range "0" "9") ))) )
+suffix :SmtNode{intersectionRegexes=[
+!
+!]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a")  (str.to.re "\x21"))))

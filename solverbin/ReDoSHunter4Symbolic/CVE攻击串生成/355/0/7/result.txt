@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"HbbTV/0.0.0 ( "+";A"*5000+"\n1\n"
+prefix :SmtNode{intersectionRegexes=[(HbbTV\/\d+\.\d+\.\d+ \()(((.*)＆[\s\S]{1,}))]}
+prefix : (re.++  (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x56") (re.++  (str.to.re "\x5c\x2f") (re.++ (re.+ (re.range "0" "9") ) (re.++  (str.to.re "\x5c\x2e") (re.++ (re.+ (re.range "0" "9") ) (re.++  (str.to.re "\x5c\x2e") (re.++ (re.+ (re.range "0" "9") ) (re.++  (str.to.re "\x20")  (str.to.re "\x5c\x28")))))))))))))  (re.inter (re.* re.allchar )  (re.++   (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) (re.*   (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))))
+infix :SmtNode{intersectionRegexes=[(([^
+]*)(([A-Z]|[a-z])+))&(([^
+]*)(; ?)(([A-Z]|[a-z])+))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.+  (re.union (re.range "\x41" "\x5a") (re.range "\x61" "\x7a")) )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x3b") (re.opt  (str.to.re "\x20") )) (re.+  (re.union (re.range "\x41" "\x5a") (re.range "\x61" "\x7a")) ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[
+1
+]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x31")  (str.to.re "\x0a")))

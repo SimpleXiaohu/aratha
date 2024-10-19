@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"\\d"+"dd"*10000+"0A0"
+prefix :SmtNode{intersectionRegexes=[(\\)(d+)]}
+prefix : (re.++  (str.to.re "\x5c\x5c") (re.+  (str.to.re "\x64") ))
+infix :SmtNode{intersectionRegexes=[(d+)&((d+)()(([A-Z]|[a-z])+))&(([A-Z]|[a-z])+)&(.+)]}
+infix : (re.++ (re.+  (str.to.re "\x64") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (str.to.re "\x64") ) (re.++  (re.+  (re.union (re.range "\x41" "\x5a") (re.range "\x61" "\x7a")) ))) (re.++  (str.to.re "\x26") (re.++ (re.+  (re.union (re.range "\x41" "\x5a") (re.range "\x61" "\x7a")) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[0A0]}
+suffix : (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x41")  (str.to.re "\x30")))

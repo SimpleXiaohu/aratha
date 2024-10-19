@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"x86_64 1.1."+"0"*5000+"@"
+prefix :SmtNode{intersectionRegexes=[x86_64 1.1.]}
+prefix : (re.++  (str.to.re "\x78") (re.++  (str.to.re "\x38") (re.++  (str.to.re "\x36") (re.++  (str.to.re "\x5f") (re.++  (str.to.re "\x36") (re.++  (str.to.re "\x34") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x31") (re.++ re.allchar (re.++  (str.to.re "\x31") re.allchar))))))))))
+infix :SmtNode{intersectionRegexes=[([0-9]+)&(([0-9]+)()([^
+]*))&([^
+]*)&(.+)]}
+infix : (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

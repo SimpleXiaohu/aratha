@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"HbbTV/1.1.1CE-HTML/1.1;THOM;SW-Version/"+"LF\u0000"*5000+";A;"
+prefix :SmtNode{intersectionRegexes=[HbbTV/1.1.1CE-HTML/1.1;THOM;SW-Version/]}
+prefix : (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x56") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31") (re.++ re.allchar (re.++  (str.to.re "\x31") (re.++ re.allchar (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x45") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x4c") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31") (re.++ re.allchar (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x57") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x56") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e")  (str.to.re "\x2f")))))))))))))))))))))))))))))))))))))))
+infix :SmtNode{intersectionRegexes=[(([^
+]*)([^;]+))&(([^
+]*)(LF)([^;]+))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.+  (str.to.re "\x3b") )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x4c")  (str.to.re "\x46")) (re.+  (str.to.re "\x3b") ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[;A;]}
+suffix : (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x41")  (str.to.re "\x3b")))

@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"x86_64 0.0.0"+"1"*1024+"!\n!\n"
+prefix :SmtNode{intersectionRegexes=[((x86_64|aarch64)\ (\d+)+\.(\d+)+\.)(\d+)]}
+prefix : (re.++  (re.++  (re.union  (re.++  (str.to.re "\x78") (re.++  (str.to.re "\x38") (re.++  (str.to.re "\x36") (re.++  (str.to.re "\x5f") (re.++  (str.to.re "\x36")  (str.to.re "\x34"))))))  (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x36")  (str.to.re "\x34")))))))) (re.++  (str.to.re "\x5c\x20") (re.++ (re.+ (re.+ (re.range "0" "9") ) ) (re.++  (str.to.re "\x5c\x2e") (re.++ (re.+ (re.+ (re.range "0" "9") ) )  (str.to.re "\x5c\x2e")))))) (re.+ (re.range "0" "9") ))
+infix :SmtNode{intersectionRegexes=[1]}
+infix : (str.to.re "\x31")
+suffix :SmtNode{intersectionRegexes=[!
+!
+]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x21")  (str.to.re "\x0a"))))

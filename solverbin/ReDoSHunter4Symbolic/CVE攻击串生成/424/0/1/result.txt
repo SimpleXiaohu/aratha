@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :""+"ARCHOS_"*5000+"\n@A"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[ARCHOS_]}}
+infix :  (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x52") (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x53")  (str.to.re "\x5f")))))))
+suffix :SmtNode{intersectionRegexes=[
+@A]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x40")  (str.to.re "\x41")))

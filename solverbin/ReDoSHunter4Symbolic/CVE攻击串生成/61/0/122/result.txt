@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"+-+\n"+"+"*32+"A-A"
+prefix :SmtNode{intersectionRegexes=[+-+\n]}
+prefix :
+infix :SmtNode{intersectionRegexes=[[+|], .+]}
+infix :(re.inter  (re.union  (str.to.re "\x2b")  (str.to.re "\x7c")) (re.+ re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[A-A]}
+suffix : (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x2d")  (str.to.re "\x41")))

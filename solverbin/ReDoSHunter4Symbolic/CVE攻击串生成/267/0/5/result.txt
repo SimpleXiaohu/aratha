@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"Windows Phone A; "+"IEMobile/\u0000"*5000+";A;"
+prefix :SmtNode{intersectionRegexes=[Windows Phone A; ]}
+prefix : (re.++  (str.to.re "\x57") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x77") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x3b")  (str.to.re "\x20")))))))))))))))))
+infix :SmtNode{intersectionRegexes=[(([^
+]*)([^;\)]+))&(([^
+]*)(IEMobile\/)([^;\)]+))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.+  (re.union  (str.to.re "\x3b")  (str.to.re "\x5c\x29")) )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x49") (re.++  (str.to.re "\x45") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x65")  (str.to.re "\x5c\x2f"))))))))) (re.+  (re.union  (str.to.re "\x3b")  (str.to.re "\x5c\x29")) ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[;A;]}
+suffix : (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x41")  (str.to.re "\x3b")))

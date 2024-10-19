@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"iPod"+"\u0000Version/0.0.0"*5000+"@"
+prefix :SmtNode{intersectionRegexes=[iPod]}
+prefix : (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x6f")  (str.to.re "\x64"))))
+infix :SmtNode{intersectionRegexes=[(.+)(\d+), (.+)(Version\/(\d+)\.(\d+)\.)(\d+)]}
+infix :(re.inter  (re.++ (re.+ re.allchar ) (re.+ (re.range "0" "9") ))  (re.++ (re.+ re.allchar ) (re.++  (re.++  (str.to.re "\x56") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x5c\x2f") (re.++ (re.+ (re.range "0" "9") ) (re.++  (str.to.re "\x5c\x2e") (re.++ (re.+ (re.range "0" "9") )  (str.to.re "\x5c\x2e")))))))))))) (re.+ (re.range "0" "9") ))) )
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

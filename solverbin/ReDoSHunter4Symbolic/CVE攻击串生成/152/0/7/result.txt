@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"```"+"\t"*10000+"!~!~!"
+prefix :SmtNode{intersectionRegexes=[```]}
+prefix : (re.++  (str.to.re "\x60") (re.++  (str.to.re "\x60")  (str.to.re "\x60")))
+infix :SmtNode{intersectionRegexes=[(([ 
+	]*)([ 
+	]*))&(([ 
+	]*)((([A-Za-z0-9_]|\+|\-)+)?)([ 
+	]*))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) ) (re.*  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) ) (re.++ (re.opt (re.+  (re.union  (re.union (re.range "\x41" "\x5a") (re.union (re.range "\x61" "\x7a") (re.union (re.range "\x30" "\x39")  (str.to.re "\x5f")))) (re.union  (str.to.re "\x5c\x2b")  (str.to.re "\x5c\x2d"))) ) ) (re.*  (re.union  (str.to.re "\x0c") (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x0a") (re.union  (str.to.re "\x0d") (re.union  (str.to.re "\x09")  (str.to.re "\x0b")))))) ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[!~!~!]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x7e") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x7e")  (str.to.re "\x21")))))

@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"HTC\u0000"+" "*10000+""
+prefix :SmtNode{intersectionRegexes=[((([;,] *)?)(htccn_chs-)?HTC[ \-_]?)([^;]+)]}
+prefix : (re.++  (re.++ (re.opt  (re.++  (re.union  (str.to.re "\x3b")  (str.to.re "\x2c")) (re.*  (str.to.re "\x20") )) ) (re.++ (re.opt  (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x5f") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x73")  (str.to.re "\x2d")))))))))) ) (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x43") (re.opt  (re.union  (str.to.re "\x20") (re.union  (str.to.re "\x5c\x2d")  (str.to.re "\x5f"))) )))))) (re.+  (str.to.re "\x3b") ))
+infix :SmtNode{intersectionRegexes=[[^;]+, ([^;]+)( *),  *]}
+infix :(re.inter (re.+  (str.to.re "\x3b") )  (re.++ (re.+  (str.to.re "\x3b") ) (re.*  (str.to.re "\x20") )) (re.*  (str.to.re "\x20") ) )
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"Zune 0"+"00"*5000+" "
+prefix :SmtNode{intersectionRegexes=[((Zune|BeyondPod) )(\d+)]}
+prefix : (re.++  (re.++  (re.union  (re.++  (str.to.re "\x5a") (re.++  (str.to.re "\x75") (re.++  (str.to.re "\x6e")  (str.to.re "\x65"))))  (re.++  (str.to.re "\x42") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x79") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x6f")  (str.to.re "\x64"))))))))))  (str.to.re "\x20")) (re.+ (re.range "0" "9") ))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)(\.?)(\d+), \d+]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.++ (re.opt  (str.to.re "\x5c\x2e") ) (re.+ (re.range "0" "9") ))) (re.+ (re.range "0" "9") ) )
+suffix :SmtNode{intersectionRegexes=[00[\s\S]*＆～(\d+), 00[\s\S]*＆～((\d+)([;\)]))]}
+suffix :(re.inter  (re.inter  (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))) (re.comp (re.+ (re.range "0" "9") )))  (re.inter  (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))) (re.comp  (re.++ (re.+ (re.range "0" "9") )  (re.union  (str.to.re "\x3b")  (str.to.re "\x5c\x29"))))) )

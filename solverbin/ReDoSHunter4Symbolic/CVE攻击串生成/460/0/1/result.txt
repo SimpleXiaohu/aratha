@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :";I-Buddy \u0000"+" "*5000+"@"
+prefix :SmtNode{intersectionRegexes=[(; *(I-Buddy)[ _])([^\/;]+)]}
+prefix : (re.++  (re.++  (str.to.re "\x3b") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (re.++  (str.to.re "\x49") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x42") (re.++  (str.to.re "\x75") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x64")  (str.to.re "\x79")))))))  (re.union  (str.to.re "\x20")  (str.to.re "\x5f"))))) (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ))
+infix :SmtNode{intersectionRegexes=[([^\/;]+)&(([^\/;]+)()( *))&( *)&(.+)]}
+infix : (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (re.*  (str.to.re "\x20") ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

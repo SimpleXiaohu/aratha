@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :""+"; NEC-"*5000+"\n@@"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[; NEC-]}}
+infix :  (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x4e") (re.++  (str.to.re "\x45") (re.++  (str.to.re "\x43")  (str.to.re "\x2d"))))))
+suffix :SmtNode{intersectionRegexes=[
+@@]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x40")  (str.to.re "\x40")))

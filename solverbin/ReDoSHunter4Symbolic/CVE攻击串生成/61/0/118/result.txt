@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"+-+\n"+"+"*64+"!"
+prefix :SmtNode{intersectionRegexes=[+-+\n]}
+prefix :
+infix :SmtNode{intersectionRegexes=[[+|], .+]}
+infix :(re.inter  (re.union  (str.to.re "\x2b")  (str.to.re "\x7c")) (re.+ re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[!]}
+suffix : (str.to.re "\x21")

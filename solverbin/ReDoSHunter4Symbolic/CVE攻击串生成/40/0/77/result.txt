@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"0:[\u0000"+"''\u0000"*16+"A"
+prefix :SmtNode{intersectionRegexes=[([\da-z][\d\-a-z]*::?(\S+)?\[)([^\\\]"]|(["'])([^\\]|\\.)*(["'])|\\.)]}
+prefix : (re.++  (re.++  (re.union (re.range "0" "9") (re.range "\x61" "\x7a")) (re.++ (re.*  (re.union (re.range "0" "9") (re.union  (str.to.re "\x5c\x2d") (re.range "\x61" "\x7a"))) ) (re.++  (str.to.re "\x3a") (re.++ (re.opt  (str.to.re "\x3a") ) (re.++ (re.opt (re.+ (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")))) ) )  (str.to.re "\x5c\x5b"))))))  (re.union  (re.union  (str.to.re "\x5c\x5c") (re.union  (str.to.re "\x5c\x5d")  (str.to.re "\x22"))) (re.union  (re.++  (re.union  (str.to.re "\x22")  (str.to.re "\x27")) (re.++ (re.*  (re.union  (str.to.re "\x5c\x5c")  (re.++  (str.to.re "\x5c\x5c") re.allchar)) )  (re.union  (str.to.re "\x22")  (str.to.re "\x27"))))  (re.++  (str.to.re "\x5c\x5c") re.allchar))))
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[((\\[^
+]|((\"|'))((((\"|')))?[^\\]|\\[^
+])*((\"|')))+(\\[^
+]|[^\\\]\"])+)&((\\[^
+]|[^\\\]\"])+)&('.*)&(.{0,})], next=SmtNode{intersectionRegexes=[()&(.{0,})]}}}
+infix :  (re.++  (re.++ (re.+  (re.union  (re.++  (str.to.re "\x5c\x5c")  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")))  (re.++  (re.union  (str.to.re "\x5c\x22")  (str.to.re "\x27")) (re.++ (re.*  (re.union  (re.++ (re.opt  (re.union  (str.to.re "\x5c\x22")  (str.to.re "\x27")) )  (str.to.re "\x5c\x5c"))  (re.++  (str.to.re "\x5c\x5c")  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")))) )  (re.union  (str.to.re "\x5c\x22")  (str.to.re "\x27"))))) ) (re.+  (re.union  (re.++  (str.to.re "\x5c\x5c")  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")))  (re.union  (str.to.re "\x5c\x5c") (re.union  (str.to.re "\x5c\x5d")  (str.to.re "\x5c\x22")))) )) (re.++  (str.to.re "\x26") (re.++ (re.+  (re.union  (re.++  (str.to.re "\x5c\x5c")  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")))  (re.union  (str.to.re "\x5c\x5c") (re.union  (str.to.re "\x5c\x5d")  (str.to.re "\x5c\x22")))) ) (re.++  (str.to.re "\x26") (re.++  (re.++  (str.to.re "\x27") (re.* re.allchar )) (re.++  (str.to.re "\x26")  (re.++ "" (re.* "" ))))))))  (re.++  (re.++  (str.to.re "\x26")  (re.++ "" (re.* "" ))))
+suffix :SmtNode{intersectionRegexes=[A]}
+suffix : (str.to.re "\x41")
