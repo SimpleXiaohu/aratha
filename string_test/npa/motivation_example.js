@@ -522,5 +522,5 @@ function fromRegistry(res) {
   }
   return res;
 }
-resolve("", J$.readString(), "", "");
-
+resolve(null, J$.readString(), null, null);
+// npa(J$.readString(), null);

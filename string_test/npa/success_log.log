@@ -1,0 +1,1043 @@
+"C:\Program Files\nodejs\npm.cmd" run analyze -- string_test/npa/motivation_example.js
+
+> aratha@0.0.1 analyze
+> jalangi2 --analysis . string_test/npa/motivation_example.js
+
+testing input:  { model: {}, step: 0 }
+Since Acorn 8.0.0, options.ecmaVersion is required.
+Defaulting to 2020, but this will stop working in the future.
+execution complete
+adding new constraint set item #0 to work queue
+11 constraints in path condition
+cvc5 finished! true
+solving item #0, step 0
+**model**:  { var0: 'A' }
+testing input:  { model: { var0: 'A' }, step: 1 }
+regexp Constant {
+  objectId: 5,
+  value: /^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$/
+}
+regexp Constant {
+  objectId: 7,
+  value: /^([^:]+):(?:[^@]+@)?(?:([^/]*)\/)?([^#]+)/
+}
+execution complete
+adding new constraint set item #1 to work queue
+29 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: '' }
+solving item #0, step 1
+cvc5 finished! false
+**model**:  { var0: 'A' }
+solving item #1, step 1
+cvc5 finished! false
+**model**:  { var0: '' }
+solving item #0, step 2
+cvc5 finished! false
+**model**:  { var0: 'A' }
+solving item #1, step 2
+**model**:  { var0: 'a:' }
+testing input:  { model: { var0: 'a:' }, step: 3 }
+execution complete
+adding new constraint set item #2 to work queue
+7 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: '' }
+solving item #0, step 3
+cvc5 finished! false
+**model**:  { var0: 'a' }
+solving item #1, step 3
+**model**:  { var0: 'file:' }
+testing input:  { model: { var0: 'file:' }, step: 4 }
+execution complete
+adding new constraint set item #3 to work queue
+8 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'a:' }
+solving item #2, step 3
+**model**:  { var0: 'a:.tar\x00gz' }
+testing input:  { model: { var0: 'a:.tar\x00gz' }, step: 4 }
+execution complete
+adding new constraint set item #4 to work queue
+7 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: '' }
+solving item #0, step 4
+cvc5 finished! false
+**model**:  { var0: 'a' }
+solving item #1, step 4
+cvc5 finished! false
+**model**:  { var0: 'file:' }
+solving item #3, step 4
+**model**:  { var0: 'file:.tar\x00gz' }
+testing input:  { model: { var0: 'file:.tar\x00gz' }, step: 5 }
+execution complete
+adding new constraint set item #5 to work queue
+8 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'a:' }
+solving item #2, step 4
+cvc5 finished! false
+**model**:  { var0: 'a:.tar\x00gz' }
+solving item #4, step 4
+cvc5 finished! false
+**model**:  { var0: '' }
+solving item #0, step 5
+cvc5 finished! false
+**model**:  { var0: 'a' }
+solving item #1, step 5
+**model**:  { var0: 'npm:B' }
+testing input:  { model: { var0: 'npm:B' }, step: 6 }
+run terminated with exception: ReferenceError: validatePackageName is not defined
+    at npa (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:446:122)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:927:121)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+execution complete
+adding new constraint set item #6 to work queue
+17 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'file:' }
+solving item #3, step 5
+cvc5 finished! false
+**model**:  { var0: 'file:.tar\x00gz' }
+solving item #5, step 5
+cvc5 finished! false
+**model**:  { var0: 'a:' }
+solving item #2, step 5
+cvc5 finished! false
+**model**:  { var0: 'a:.tar\x00gz' }
+solving item #4, step 5
+cvc5 finished! false
+**model**:  { var0: '' }
+solving item #0, step 6
+cvc5 finished! false
+**model**:  { var0: 'a' }
+solving item #1, step 6
+cvc5 finished! false
+**model**:  { var0: 'npm:' }
+solving item #6, step 6
+cvc5 finished! false
+**model**:  { var0: 'file:' }
+solving item #3, step 6
+cvc5 finished! false
+**model**:  { var0: 'file:.tar\x00gz' }
+solving item #5, step 6
+cvc5 finished! false
+**model**:  { var0: 'a:' }
+solving item #2, step 6
+cvc5 finished! false
+**model**:  { var0: 'a:.tar\x00gz' }
+solving item #4, step 6
+cvc5 finished! false
+**model**:  { var0: '' }
+solving item #0, step 7
+cvc5 finished! false
+**model**:  { var0: 'undefined' }
+solving item #1, step 7
+**model**:  { var0: 'undefined' }
+testing input:  { model: { var0: 'undefined' }, step: 8 }
+regexp Constant {
+  objectId: 47,
+  value: /^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$/
+}
+regexp Constant {
+  objectId: 49,
+  value: /^([^:]+):(?:[^@]+@)?(?:([^/]*)\/)?([^#]+)/
+}
+execution complete
+cvc5 finished! true
+**model**:  { var0: 'npm:' }
+solving item #6, step 7
+cvc5 finished! false
+**model**:  { var0: 'file:' }
+solving item #3, step 7
+cvc5 finished! false
+**model**:  { var0: 'file:.tar\x00gz' }
+solving item #5, step 7
+cvc5 finished! false
+**model**:  { var0: '' }
+solving item #0, step 8
+cvc5 finished! false
+abandoning work item 1: pre-check failed at step 8: unsat
+failed constraint: (not (js.in (str.++ (str var0) "{""noGitPlus"":true,""noCommittish"":true}") (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined)))
+cvc5 finished! false
+**model**:  { var0: 'npm:' }
+solving item #6, step 8
+cvc5 finished! false
+**model**:  { var0: '' }
+solving item #0, step 9
+cvc5 finished! false
+**model**:  { var0: 'npm:' }
+solving item #6, step 9
+**model**:  { var0: 'npm:@' }
+testing input:  { model: { var0: 'npm:@' }, step: 10 }
+run terminated with exception: ReferenceError: validatePackageName is not defined
+    at npa (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:446:122)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:927:121)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+execution complete
+adding new constraint set item #7 to work queue
+16 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: '' }
+solving item #0, step 10
+cvc5 finished! false
+**model**:  { var0: 'npm:B' }
+solving item #6, step 10
+**model**:  { var0: 'npm:B@' }
+testing input:  { model: { var0: 'npm:B@' }, step: 11 }
+run terminated with exception: ReferenceError: validatePackageName is not defined
+    at Result.setName (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:1052:118)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:242:41
+    at new Result (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:641:98)
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+execution complete
+adding new constraint set item #8 to work queue
+21 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:@' }
+solving item #7, step 10
+cvc5 finished! false
+**model**:  { var0: 'npm:B' }
+solving item #6, step 11
+**model**:  { var0: 'npm:a:' }
+testing input:  { model: { var0: 'npm:a:' }, step: 12 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #9 to work queue
+20 constraints in path condition
+cvc5 finished! true
+(node:43232) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 exit listeners added to [process]. Use emitter.setMaxListeners() to increase limit
+(Use `node --trace-warnings ...` to show where the warning was created)
+**model**:  { var0: 'npm:B@' }
+solving item #8, step 11
+**model**:  { var0: 'npm:a:@' }
+testing input:  { model: { var0: 'npm:a:@' }, step: 12 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #10 to work queue
+20 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:@' }
+solving item #7, step 11
+**model**:  { var0: 'npm:@@' }
+testing input:  { model: { var0: 'npm:@@' }, step: 12 }
+run terminated with exception: ReferenceError: validatePackageName is not defined
+    at Result.setName (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:1052:118)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:242:41
+    at new Result (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:641:98)
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+execution complete
+adding new constraint set item #11 to work queue
+20 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:B' }
+solving item #6, step 12
+cvc5 finished! false
+**model**:  { var0: 'npm:a:' }
+solving item #9, step 12
+cvc5 finished! false
+**model**:  { var0: 'npm:B@' }
+solving item #8, step 12
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+testing input:  { model: { var0: 'npm:\x00@\x00.\x00:\x00' }, step: 13 }
+regexp Constant {
+  objectId: 96,
+  value: /^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$/
+}
+regexp Constant {
+  objectId: 98,
+  value: /^([^:]+):(?:[^@]+@)?(?:([^/]*)\/)?([^#]+)/
+}
+regexp Constant {
+  objectId: 104,
+  value: /^git\+ssh:\/\/([^:#]+:[^#]+(?:\.git)?)(?:#(.*))?$/i
+}
+result Safe
+
+
+regexp Constant { objectId: 106, value: /:[0-9]+\/?.*$/i }
+result (declare-const result String)
+(declare-const attack String)
+(declare-const prefix RegLan)
+(declare-const infix RegLan)
+(declare-const infixs String)
+(declare-const postfix RegLan)
+(declare-const postfixs String)
+
+(assert (str.in_re attack (re.++ prefix ((_ re.loop 40000 40000) infix))))
+(assert (= prefix
+     (re.++  (str.to_re "\u{3a}") (re.+ (re.range "\u{30}" "\u{39}") ))
+))
+(assert (= infix
+         (re.++ (re.+ (re.range "\u{30}" "\u{39}") ) (re.++  (str.to_re "\u{26}") (re.++  (re.++ (re.+ (re.range "\u{30}" "\u{39}") ) (re.++ (re.opt  (str.to_re "\u{2f}") ) (re.* (re.comp  (re.union  (str.to_re "\u{0a}")  (str.to_re "\u{0d}"))) )
+)) (re.++  (str.to_re "\u{26}") (re.++ (re.* (re.comp  (re.union  (str.to_re "\u{0a}")  (str.to_re "\u{0d}"))) ) (re.++  (str.to_re "\u{26}") (re.+ (re.union (re.range "\u{00}" "\u{09}") (re.range "\u{0b}" "\u{0c}") (re.range "\u{0e}" "\u{84}") (re.range "\u{86}" "\u{ff}")) )))))))
+))
+(assert (= postfix
+         (re.++  (str.to_re "\u{0a}") (re.++  (str.to_re "\u{31}")  (str.to_re "\u{0a}")))
+))
+(assert (str.in_re postfixs postfix))
+(assert (>= (str.len postfixs) 1))
+(assert (>= (str.len infixs) 1))
+(assert (= result (str.++ attack postfixs)))
+
+
+meet ReDoS regex
+fromURL: matched!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Concolic {
+  concVal: [
+    'git+ssh://\x00@\x00.\x00:\x00',
+    '\x00@\x00.\x00:\x00',
+    undefined,
+    index: 0,
+    input: 'git+ssh://\x00@\x00.\x00:\x00',
+    groups: undefined
+  ],
+  symVal: RegExpExec {
+    regex: Constant {
+      objectId: 104,
+      value: /^git\+ssh:\/\/([^:#]+:[^#]+(?:\.git)?)(?:#(.*))?$/i
+    },
+    str: StringConcat { base: [Constant], args: [Array] },
+    _temps: [
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary]
+    ],
+    _caps: [ [Variable], [Variable] ],
+    _resultObjId: 105,
+    _formula: [
+      'and',   [Array],
+      [Array], [Array],
+      [Array], [Array],
+      [Array]
+    ]
+  }
+}
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #12 to work queue
+68 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 13
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 14
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 15
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 16
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 19
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 20
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 21
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 22
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 23
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 24
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 25
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+solving item #12, step 26
+the expected value is true
+model error: constraint (not (= (Str regex_exec_0) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))) failed to validate in {"var0":"npm:\u0000@\u0000.\u0000:\u0000"}
+**model**:  { var0: 'npm:\x00@\x00.\x00:\x00' }
+testing input:  { model: { var0: 'npm:\x00@\x00.\x00:\x00' }, step: 27 }
+regexp Constant {
+  objectId: 115,
+  value: /^git\+ssh:\/\/([^:#]+:[^#]+(?:\.git)?)(?:#(.*))?$/i
+}
+regexp Constant { objectId: 117, value: /:[0-9]+\/?.*$/i }
+meet ReDoS regex
+fromURL: matched!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Concolic {
+  concVal: [
+    'git+ssh://\x00@\x00.\x00:\x00',
+    '\x00@\x00.\x00:\x00',
+    undefined,
+    index: 0,
+    input: 'git+ssh://\x00@\x00.\x00:\x00',
+    groups: undefined
+  ],
+  symVal: RegExpExec {
+    regex: Constant {
+      objectId: 115,
+      value: /^git\+ssh:\/\/([^:#]+:[^#]+(?:\.git)?)(?:#(.*))?$/i
+    },
+    str: StringConcat { base: [Constant], args: [Array] },
+    _temps: [
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary]
+    ],
+    _caps: [ [Variable], [Variable] ],
+    _resultObjId: 116,
+    _formula: [
+      'and',   [Array],
+      [Array], [Array],
+      [Array], [Array],
+      [Array]
+    ]
+  }
+}
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #13 to work queue
+32 constraints in path condition
+cvc5 finished! true
+abandoning work item 12: pre-check failed at step 27: unsat
+failed constraint: (not (not (= (Str regex_exec_0) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))))
+cvc5 finished! false
+**model**:  { var0: 'npm:a:@' }
+solving item #10, step 12
+cvc5 finished! false
+**model**:  { var0: 'npm:@B' }
+solving item #7, step 12
+cvc5 finished! false
+**model**:  { var0: 'npm:@@' }
+solving item #11, step 12
+cvc5 finished! false
+**model**:  { var0: 'npm:B' }
+solving item #6, step 13
+cvc5 finished! false
+**model**:  { var0: 'npm:a:' }
+solving item #9, step 13
+cvc5 finished! false
+**model**:  { var0: 'npm:B@' }
+solving item #8, step 13
+cvc5 finished! false
+**model**:  { var0: 'npm:\x00@\x00.\x00:A' }
+solving item #13, step 27
+the expected value is false
+model error: constraint (not (= (Str regex_exec_0) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))) failed to validate in {"var0":"npm:\u0000@\u0000.\u0000:A"}
+**model**:  { var0: 'npm:\x00@\x00.\x00:A' }
+testing input:  { model: { var0: 'npm:\x00@\x00.\x00:A' }, step: 28 }
+regexp Constant {
+  objectId: 127,
+  value: /^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$/
+}
+regexp Constant {
+  objectId: 129,
+  value: /^([^:]+):(?:[^@]+@)?(?:([^/]*)\/)?([^#]+)/
+}
+regexp Constant {
+  objectId: 135,
+  value: /^git\+ssh:\/\/([^:#]+:[^#]+(?:\.git)?)(?:#(.*))?$/i
+}
+regexp Constant { objectId: 137, value: /:[0-9]+\/?.*$/i }
+meet ReDoS regex
+fromURL: matched!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Concolic {
+  concVal: [
+    'git+ssh://\x00@\x00.\x00:A',
+    '\x00@\x00.\x00:A',
+    undefined,
+    index: 0,
+    input: 'git+ssh://\x00@\x00.\x00:A',
+    groups: undefined
+  ],
+  symVal: RegExpExec {
+    regex: Constant {
+      objectId: 135,
+      value: /^git\+ssh:\/\/([^:#]+:[^#]+(?:\.git)?)(?:#(.*))?$/i
+    },
+    str: StringConcat { base: [Constant], args: [Array] },
+    _temps: [
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary],
+      [Temporary], [Temporary]
+    ],
+    _caps: [ [Variable], [Variable] ],
+    _resultObjId: 136,
+    _formula: [
+      'and',   [Array],
+      [Array], [Array],
+      [Array], [Array],
+      [Array]
+    ]
+  }
+}
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+cvc5 finished! true
+**model**:  { var0: 'npm:a:@' }
+solving item #10, step 13
+cvc5 finished! false
+**model**:  { var0: 'npm:@B' }
+solving item #7, step 13
+cvc5 finished! false
+**model**:  { var0: 'npm:@@' }
+solving item #11, step 13
+cvc5 finished! false
+**model**:  { var0: 'npm:B' }
+solving item #6, step 14
+**model**:  { var0: 'npm:/' }
+testing input:  { model: { var0: 'npm:/' }, step: 15 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #14 to work queue
+23 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:a:' }
+solving item #9, step 14
+cvc5 finished! false
+**model**:  { var0: 'npm:B@' }
+solving item #8, step 14
+cvc5 finished! false
+abandoning work item 13: pre-check failed at step 28: unsat
+failed constraint: (= (Str regex_exec_0) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))
+cvc5 finished! false
+**model**:  { var0: 'npm:a:@' }
+solving item #10, step 14
+cvc5 finished! false
+**model**:  { var0: 'npm:@B' }
+solving item #7, step 14
+cvc5 finished! false
+**model**:  { var0: 'npm:@@' }
+solving item #11, step 14
+cvc5 finished! false
+**model**:  { var0: 'npm:B' }
+solving item #6, step 15
+**model**:  { var0: 'npm:.tar\x00gz' }
+testing input:  { model: { var0: 'npm:.tar\x00gz' }, step: 16 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #15 to work queue
+24 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:/' }
+solving item #14, step 15
+cvc5 finished! false
+**model**:  { var0: 'npm:a:' }
+solving item #9, step 15
+**model**:  { var0: 'npm:za:' }
+testing input:  { model: { var0: 'npm:za:' }, step: 16 }
+regexp Constant {
+  objectId: 166,
+  value: /^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$/
+}
+regexp Constant {
+  objectId: 168,
+  value: /^([^:]+):(?:[^@]+@)?(?:([^/]*)\/)?([^#]+)/
+}
+run terminated with exception: Error: Unsupported URL Type "za:": za:
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at unsupportedURLType (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:841:117)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromURL (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:905:137) {
+  code: 'EUNSUPPORTEDPROTOCOL'
+}
+execution complete
+adding new constraint set item #16 to work queue
+33 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:B@' }
+solving item #8, step 15
+**model**:  { var0: 'npm:/@' }
+testing input:  { model: { var0: 'npm:/@' }, step: 16 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #17 to work queue
+24 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:z:@' }
+solving item #10, step 15
+**model**:  { var0: 'npm:git+a:@' }
+testing input:  { model: { var0: 'npm:git+a:@' }, step: 16 }
+regexp Constant {
+  objectId: 187,
+  value: /^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$/
+}
+regexp Constant {
+  objectId: 189,
+  value: /^([^:]+):(?:[^@]+@)?(?:([^/]*)\/)?([^#]+)/
+}
+run terminated with exception: Error: Unsupported URL Type "git+a:": git+a:@
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at unsupportedURLType (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:841:117)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromURL (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:905:137) {
+  code: 'EUNSUPPORTEDPROTOCOL'
+}
+execution complete
+adding new constraint set item #18 to work queue
+38 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:@B' }
+solving item #7, step 15
+cvc5 finished! false
+**model**:  { var0: 'npm:@@' }
+solving item #11, step 15
+cvc5 finished! false
+**model**:  { var0: 'npm:B' }
+solving item #6, step 16
+cvc5 finished! false
+**model**:  { var0: 'npm:.tar\x00gz' }
+solving item #15, step 16
+cvc5 finished! false
+**model**:  { var0: 'npm:/' }
+solving item #14, step 16
+cvc5 finished! false
+**model**:  { var0: 'npm:a:' }
+solving item #9, step 16
+**model**:  { var0: 'npm:a:.tar\x00gz' }
+testing input:  { model: { var0: 'npm:a:.tar\x00gz' }, step: 17 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #19 to work queue
+20 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:git+a:' }
+solving item #16, step 16
+**model**:  { var0: 'npm:file:' }
+testing input:  { model: { var0: 'npm:file:' }, step: 17 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #20 to work queue
+21 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:B@' }
+solving item #8, step 16
+**model**:  { var0: 'npm:.tar\x00gz@' }
+testing input:  { model: { var0: 'npm:.tar\x00gz@' }, step: 17 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #21 to work queue
+25 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:/@' }
+solving item #17, step 16
+cvc5 finished! false
+**model**:  { var0: 'npm:f:@' }
+solving item #10, step 16
+**model**:  { var0: 'npm:f:@.tar\x00gz' }
+testing input:  { model: { var0: 'npm:f:@.tar\x00gz' }, step: 17 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #22 to work queue
+20 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:git+z:@' }
+solving item #18, step 16
+**model**:  { var0: 'npm:file:B@' }
+testing input:  { model: { var0: 'npm:file:B@' }, step: 17 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #23 to work queue
+21 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:@@' }
+solving item #11, step 16
+cvc5 finished! false
+**model**:  { var0: 'npm:.tar\x00gz' }
+solving item #15, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:/' }
+solving item #14, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:f:' }
+solving item #9, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:f:.tar\x00gz' }
+solving item #19, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:git+z:' }
+solving item #16, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:file:' }
+solving item #20, step 17
+**model**:  { var0: 'npm:file:.tar\x00gz' }
+testing input:  { model: { var0: 'npm:file:.tar\x00gz' }, step: 18 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #24 to work queue
+21 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:B@' }
+solving item #8, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:.tar\x00gz@' }
+solving item #21, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:/@' }
+solving item #17, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:f:@' }
+solving item #10, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:f:.tar@gz' }
+solving item #22, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:git+z:B@' }
+solving item #18, step 17
+cvc5 finished! false
+**model**:  { var0: 'npm:file:@' }
+solving item #23, step 17
+**model**:  { var0: 'npm:file:@.tar@gz' }
+testing input:  { model: { var0: 'npm:file:@.tar@gz' }, step: 18 }
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #25 to work queue
+21 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:@@' }
+solving item #11, step 17
+**model**:  { var0: 'npm:@@B' }
+testing input:  { model: { var0: 'npm:@@B' }, step: 18 }
+run terminated with exception: ReferenceError: validatePackageName is not defined
+    at Result.setName (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:1052:118)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:242:41
+    at new Result (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:641:98)
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+execution complete
+adding new constraint set item #26 to work queue
+21 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:.tgz' }
+solving item #15, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:/' }
+solving item #14, step 18
+**model**:  { var0: 'npm:B\\\\' }
+testing input:  { model: { var0: 'npm:B\\\\' }, step: 19 }
+regexp Constant {
+  objectId: 267,
+  value: /^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$/
+}
+regexp Constant {
+  objectId: 269,
+  value: /^([^:]+):(?:[^@]+@)?(?:([^/]*)\/)?([^#]+)/
+}
+run terminated with exception: Error: aliases only work for registry deps
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:932:111)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+execution complete
+adding new constraint set item #27 to work queue
+42 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:f:' }
+solving item #9, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:f:.tar\x00gz' }
+solving item #19, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:git+z:' }
+solving item #16, step 18
+**model**:  { var0: 'npm:npm:' }
+testing input:  { model: { var0: 'npm:npm:' }, step: 19 }
+run terminated with exception: ReferenceError: validatePackageName is not defined
+    at npa (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:446:122)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at fromAlias (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:927:121)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+    at resolve (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:489:116)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+execution complete
+adding new constraint set item #28 to work queue
+29 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:file:' }
+solving item #20, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:file:.tar\x00gz' }
+solving item #24, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:B@' }
+solving item #8, step 18
+**model**:  { var0: 'npm:B@C' }
+testing input:  { model: { var0: 'npm:B@C' }, step: 19 }
+run terminated with exception: ReferenceError: validatePackageName is not defined
+    at Result.setName (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:1052:118)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:242:41
+    at new Result (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:641:98)
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+execution complete
+adding new constraint set item #29 to work queue
+22 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:.tar\x00gz@' }
+solving item #21, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:/@' }
+solving item #17, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:f:@' }
+solving item #10, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:f:.tar@gz' }
+solving item #22, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:git+z:B@' }
+solving item #18, step 18
+**model**:  { var0: 'npm:npm:B@' }
+testing input:  { model: { var0: 'npm:npm:B@' }, step: 19 }
+run terminated with exception: ReferenceError: validatePackageName is not defined
+    at Result.setName (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:1052:118)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:196:51)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:242:41
+    at new Result (D:\Documents\ISSTA\aratha\string_test\npa\motivation_example.js:641:98)
+    at callAsNativeConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:134:20)
+    at callAsConstructor (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:154:19)
+    at callFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:194:26)
+    at invokeFun (D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:217:22)
+    at D:\Documents\ISSTA\aratha\node_modules\jalangi2\src\js\runtime\analysis.js:233:41
+execution complete
+adding new constraint set item #30 to work queue
+33 constraints in path condition
+cvc5 finished! true
+**model**:  { var0: 'npm:file:@' }
+solving item #23, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:file:.tar@gz' }
+solving item #25, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:@@' }
+solving item #11, step 18
+cvc5 finished! false
+**model**:  { var0: 'npm:@@B' }
+solving item #26, step 18
+cvc5 finished! false
+Terminate batch job (Y/N)? 
+进程已结束，退出代码为 1
+
+

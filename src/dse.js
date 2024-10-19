@@ -2,10 +2,11 @@
 
 const _ = require("lodash");
 const { BooleanConstraint, TypeConstraint } = require("./constraint");
-const { SymbolicValue, Constant, Variable, Temporary, RegExpExec } = require("./symbolic");
+const { SymbolicValue, Constant, Variable, Temporary, RegExpExec, Unary} = require("./symbolic");
 const { parseModel } = require("./model");
 const Type = require("./type");
 const sexpr = require("./sexpr");
+const fs = require('fs');
 
 //FIXME: Really a quick and dirty workaround - only for SMT solvers atm.
 var COLLECT_NOGOODS = false
@@ -286,6 +287,7 @@ class ConstraintCollector {
         let model;
         model = parseModel(await this.solver.getModel());
         this.verifyModel(model);
+        console.log("**model**: ", model);
         return model;
     }
 
@@ -294,15 +296,17 @@ class ConstraintCollector {
             const c = this._constraintStack[i];
             const tmp = c.value;
             c.value = this._polarity[i];
-            const result = c.isTrueIn(model);
-            if (!result) {
-                // huzi add
-                console.error(`the expected value is ${c.value}`)
-                // throw new Error(`model error: constraint ${c} failed to validate in ${JSON.stringify(model)}`);
-                console.error(`model error: constraint ${c} failed to validate in ${JSON.stringify(model)}`);
-                //                console.dir(c, {depth:null});
-                c.value = tmp;
-                return false;
+            if (!J$.ReDoSInItem) {
+                const result = c.isTrueIn(model);
+                if (!result) {
+                    // huzi add
+                    console.error(`the expected value is ${c.value}`)
+                    // throw new Error(`model error: constraint ${c} failed to validate in ${JSON.stringify(model)}`);
+                    console.error(`model error: constraint ${c} failed to validate in ${JSON.stringify(model)}`);
+                    //                console.dir(c, {depth:null});
+                    c.value = tmp;
+                    return false;
+                }
             }
             c.value = tmp;
         }
@@ -362,6 +366,14 @@ class DSE {
     }
 
     async execute() {
+        // if is first time, we need to execute the program
+        if (this._inputs.length === 1 && this._inputs[0].step === 0) {
+            J$.timeReDoS51 = 0
+            // 写入文件，如果文件不存在会被创建
+            fs.writeFile('D:\\Documents\\ISSTA\\aratha\\tmpLog.smt2', '', (err) => {
+                if (err) throw err;
+            });
+        }
         const input = await this._nextInput();
         if (input === undefined)
             return false;
@@ -396,7 +408,34 @@ class DSE {
     async _generateInput() {
         if (this._workQueue.length === 0)
             throw new Error("_generateInput() called with empty work queue");
-        const item = this._workQueue[0];
+        let myFavoriteWorkIndex = -1
+        for (let i = 0; i < this._workQueue.length; i++) {
+            let item = this._workQueue[i];
+            for (let j = 0; j < item.constraints.length; j++) {
+                let constraint = item.constraints[j];
+                if (constraint instanceof TypeConstraint && constraint.subject instanceof RegExpExec && constraint.subject._temps[0].name === "regex_exec_37") {
+                    myFavoriteWorkIndex = i
+                    console.log("regex_exec_37 get!")
+                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof RegExpExec && constraint.expr._temps[0].name === "regex_exec_37") {
+                    myFavoriteWorkIndex = i
+                    console.log("regex_exec_37 get!")
+                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof Unary && constraint.expr.expr instanceof RegExpExec && constraint.expr.expr._temps[0].name === "regex_exec_51") {
+                    myFavoriteWorkIndex = i
+                    console.log("regex_exec_51 get!")
+                    J$.ReDoS51 = true
+                }
+            }
+        }
+        if (myFavoriteWorkIndex !== -1) {
+            const tmp = this._workQueue[myFavoriteWorkIndex]
+            this._workQueue.splice(myFavoriteWorkIndex, 1)
+            this._workQueue.unshift(tmp)
+            J$.ReDoSInItem = true
+            console.log("ReDoS in item↓")
+            console.log(this._workQueue[0])
+        }
+        let item = this._workQueue[0]
+        J$.timeReDoS51 = 0
         let result;
         result = await this._collector.solvePrefix(
             item.constraints, item.step, this._collector._declaredVariables

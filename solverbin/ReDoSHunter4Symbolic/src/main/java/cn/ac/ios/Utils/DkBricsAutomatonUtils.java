@@ -556,8 +556,8 @@ public class DkBricsAutomatonUtils {
     // 第四个参数maxLength 表示所生成的串长度最大值  用-1表示无限制
     // 返回null表示生成失败
     public static Pair<String, SmtNode> getExampleByDkBricsAutomaton(List<String> regexList1, List<String> regexList2, boolean accepted, int minLength, int maxLength) throws InterruptedException {
-        Pair<Automaton, String> automaton = getIntersectionAutomaton(regexList1, regexList2, minLength, maxLength);
-        return new Pair<>(automaton.getKey().getShortestExample(accepted), new SmtNode(Collections.singletonList(automaton.getValue())));
+        Pair<Pair<Automaton, String>, SmtNode> automaton = getIntersectionAutomaton(regexList1, regexList2, minLength, maxLength);
+        return new Pair<>(automaton.getKey().getKey().getShortestExample(accepted), new SmtNode(automaton.getValue()));
     }
 
     // 重写getExampleByDkBricsAutomaton
@@ -582,20 +582,22 @@ public class DkBricsAutomatonUtils {
     }
 
     // 返回交集自动机
-    public static Pair<Automaton, String> getIntersectionAutomaton(List<String> regexList1, List<String> regexList2, int minLength, int maxLength) throws InterruptedException {
+    public static Pair<Pair<Automaton, String>, SmtNode> getIntersectionAutomaton(List<String> regexList1, List<String> regexList2, int minLength, int maxLength) throws InterruptedException {
+        ArrayList<String> regexListInter = new ArrayList<>();
         String regex = "";
         if (regexList1 != null) {
             for (int i = 0; i < regexList1.size(); i++) {
-                regex = regex + "(" + regexList1.get(i) + ")";
+                String r_ = reWriteMetaEscape(regexList1.get(i), true);
+                regex = regex + "(" + r_ + ")";
                 if (i != regexList1.size() - 1) {
+                    regexListInter.add(r_);
                     regex = regex + "＆";    // 注意这里是＆不是& 因为&会被加方括号 无法表示交集了 待全拼接完后再统一还原回&
                 }
             }
-            regex = reWriteMetaEscape(regex, true);
+            // regex = reWriteMetaEscape(regex, true);
         }
 
 //        System.out.println("regex = " + regex);
-
         if (regexList2 != null) {
             for (int i = 0; i < regexList2.size(); i++) {
 //                String str = "";
@@ -603,14 +605,16 @@ public class DkBricsAutomatonUtils {
 //                    str = str + addSquareBracketsForSpecialStringForDkBricsAutomaton(String.valueOf(regexList2.get(i).charAt(j)));
 //                }
                 String str = addSquareBracketsForSpecialStringForDkBricsAutomaton(regexList2.get(i));
+                str = reWriteMetaEscape(str, false);
 //                System.out.println("str = " + str);
                 if (regex.equals("")) {
                     regex = str;
                 } else {
+                    regexListInter.add(str);
                     regex = regex + "＆(" + str + ")";
                 }
             }
-            regex = reWriteMetaEscape(regex, false);
+            // regex = reWriteMetaEscape(regex, false);
         }
 //        System.out.println("regex = " + regex);
 
@@ -647,7 +651,7 @@ public class DkBricsAutomatonUtils {
 
         RegExp regExp = new RegExp(regex);
         Automaton automaton = regExp.toAutomaton(false);    // 这里要加第二个参数minimize: false 这样就是nfa了 比dfa快
-        return new Pair<>(automaton, regex);
+        return new Pair<>(new Pair<>(automaton, regex), new SmtNode(regexListInter));
     }
 
     // 返回自动机
@@ -669,16 +673,16 @@ public class DkBricsAutomatonUtils {
     }
 
 
-    public static Automaton getIntersectionAutomaton(List<String> regexList1) throws InterruptedException {
-        return getIntersectionAutomaton(regexList1, null, -1, -1).getKey();
-    }
+    // public static Automaton getIntersectionAutomaton(List<String> regexList1) throws InterruptedException {
+    //     return getIntersectionAutomaton(regexList1, null, -1, -1).getKey();
+    // }
 
-    public static Automaton getIntersectionAutomaton(List<String> regexList1, List<String> regexList2) throws InterruptedException {
-        return getIntersectionAutomaton(regexList1, regexList2, -1, -1).getKey();
-    }
+    // public static Automaton getIntersectionAutomaton(List<String> regexList1, List<String> regexList2) throws InterruptedException {
+    //     return getIntersectionAutomaton(regexList1, regexList2, -1, -1).getKey();
+    // }
 
     public static Automaton getIntersectionAutomaton(List<String> regexList1, List<String> regexList2, int minLength) throws InterruptedException {
-        return getIntersectionAutomaton(regexList1, regexList2, minLength, -1).getKey();
+        return getIntersectionAutomaton(regexList1, regexList2, minLength, -1).getKey().getKey();
     }
 
     // 判断自动机是否接受空串

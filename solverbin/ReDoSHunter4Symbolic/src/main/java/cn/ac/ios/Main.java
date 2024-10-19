@@ -79,8 +79,12 @@ public class Main {
             System.exit(0);
         }
         String regex_base64 = args[0];
+        // String regex_base64 = "L15naXRcK3NzaDpcL1wvKFteOiNdKzpbXiNdKyg/OlwuZ2l0KT8pKD86IyguKikpPyQvaQ==";
         String regex = new String(Base64.getDecoder().decode(regex_base64));
+        // regex = "^[^@]+@[^:.]+\\.[^:]+:.+$";
+        // regex = "^git\\+ssh:\\/\\/([^:#]+:[^#]+(?:\\.git)?)(?:#(.*))?$";
         regex = ":[0-9]+\\/?.*$";
+        // System.out.println(regex);
         System.out.println(getResult(0, regex));
     }
 
