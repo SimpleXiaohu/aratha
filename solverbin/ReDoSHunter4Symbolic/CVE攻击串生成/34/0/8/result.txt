@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"[[\u0000"+"]"*20000+"\nA\nA"
+prefix :SmtNode{intersectionRegexes=[(\[\[)(.+)]}
+prefix : (re.++  (re.++  (str.to.re "\x5c\x5b")  (str.to.re "\x5c\x5b")) (re.+ re.allchar ))
+infix :SmtNode{intersectionRegexes=[([^
+]+)&(([^
+]+)()((\])*))&((\])*)&(.+)]}
+infix : (re.++ (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.*  (str.to.re "\x5c\x5d") ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (str.to.re "\x5c\x5d") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[
+A
+A]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x0a")  (str.to.re "\x41"))))

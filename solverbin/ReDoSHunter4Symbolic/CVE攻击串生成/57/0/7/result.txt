@@ -1,0 +1,11 @@
+Vulnerable
+Attack String :"@("A")\n"+"\r\n"*32+"@"
+prefix :SmtNode{intersectionRegexes=[@("A")\n]}
+prefix : (re.++  (str.to.re "\x40") (re.++  (re.++  (str.to.re "\x22") (re.++  (str.to.re "\x41")  (str.to.re "\x22")))  (str.to.re "\x5c\x6e")))
+infix :SmtNode{intersectionRegexes=[([^
+]*)&(.{0,})], next=SmtNode{intersectionRegexes=[(()+(?
+)+)&((?
+)+)&(.*)&(.{0,})], next=SmtNode{intersectionRegexes=[]}}}
+infix : (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26")  (re.++ "" (re.* "" ))))  (re.++  (re.++ (re.+  (str.to.re "\x0d") ) (re.+  (re.++ (re.opt  (str.to.re "\x0d") )  (str.to.re "\x0a")) )) (re.++  (str.to.re "\x26") (re.++ (re.+  (re.++ (re.opt  (str.to.re "\x0d") )  (str.to.re "\x0a")) ) (re.++  (str.to.re "\x26") (re.++  (re.++  (str.to.re "\x0d") (re.* re.allchar )) (re.++  (str.to.re "\x26")  (re.++ "" (re.* "" )))))))) 
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

@@ -1,0 +1,11 @@
+Vulnerable
+Attack String :"/"+"&bewit="*5000+"\n&\n&\n"
+prefix :SmtNode{intersectionRegexes=[/]}
+prefix : (str.to.re "\x2f")
+infix :SmtNode{intersectionRegexes=[(.*)([^$&]*), (.*)(([\?&])bewit\=)([^$&]*)]}
+infix :(re.inter  (re.++ (re.* re.allchar ) (re.*  (re.union  (str.to.re "\x24")  (str.to.re "\x26")) ))  (re.++ (re.* re.allchar ) (re.++  (re.++  (re.union  (str.to.re "\x5c\x3f")  (str.to.re "\x26")) (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x77") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x74")  (str.to.re "\x5c\x3d"))))))) (re.*  (re.union  (str.to.re "\x24")  (str.to.re "\x26")) ))) )
+suffix :SmtNode{intersectionRegexes=[
+&
+&
+]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x26") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x26")  (str.to.re "\x0a")))))

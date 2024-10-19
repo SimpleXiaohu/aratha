@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :"-iPhone/1"+"00"*5000+"\n@"
+prefix :SmtNode{intersectionRegexes=[-iPhone/1]}
+prefix : (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x2f")  (str.to.re "\x31")))))))))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)(.?)(\d+), \d+]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.++ (re.opt re.allchar ) (re.+ (re.range "0" "9") ))) (re.+ (re.range "0" "9") ) )
+suffix :SmtNode{intersectionRegexes=[
+@]}
+suffix : (re.++  (str.to.re "\x0a")  (str.to.re "\x40"))

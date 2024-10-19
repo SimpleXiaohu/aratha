@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :""+"PlayBook"*10000+"\n@"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[PlayBook]}}
+infix :  (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x79") (re.++  (str.to.re "\x42") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6f")  (str.to.re "\x6b"))))))))
+suffix :SmtNode{intersectionRegexes=[
+@]}
+suffix : (re.++  (str.to.re "\x0a")  (str.to.re "\x40"))

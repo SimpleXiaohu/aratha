@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :"1@"+"\u0000.\u0000"*20000+"\n"
+prefix :SmtNode{intersectionRegexes=[1@]}
+prefix : (re.++  (str.to.re "\x31")  (str.to.re "\x40"))
+infix :SmtNode{intersectionRegexes=[.+, (.+)(\.)(.+), .+]}
+infix :(re.inter (re.+ re.allchar )  (re.++ (re.+ re.allchar ) (re.++  (str.to.re "\x5c\x2e") (re.+ re.allchar ))) (re.+ re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[
+]}
+suffix : (str.to.re "\x0a")

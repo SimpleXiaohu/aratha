@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :";TM-MID"+"00"*5000+""
+prefix :SmtNode{intersectionRegexes=[;TM-MID]}
+prefix : (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x49")  (str.to.re "\x44")))))))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)([^\/;]+), [^\/;]+]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) )) (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) )
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

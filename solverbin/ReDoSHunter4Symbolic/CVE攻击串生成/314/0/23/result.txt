@@ -1,0 +1,14 @@
+Vulnerable
+Attack String :"Mozilla"+"MobileOnefootball/Android\u00000.0"*5000+"\n!\n!"
+prefix :SmtNode{intersectionRegexes=[Mozilla]}
+prefix : (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x7a") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x6c")  (str.to.re "\x61")))))))
+infix :SmtNode{intersectionRegexes=[(([^
+]*)([0-9]+))&(([^
+]*)(Mobile[^
+]*(Onefootball)\/Android[^
+]([0-9]+)\.)([0-9]+))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.+ (re.range "\x30" "\x39") )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x65") (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x66") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6c")  (str.to.re "\x6c"))))))))))) (re.++  (str.to.re "\x5c\x2f") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x64") (re.++  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) (re.++ (re.+ (re.range "\x30" "\x39") )  (str.to.re "\x5c\x2e"))))))))))))))))))) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[
+!
+!]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a")  (str.to.re "\x21"))))

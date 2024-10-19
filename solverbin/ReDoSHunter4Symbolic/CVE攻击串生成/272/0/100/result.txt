@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"HbbTV/1.1.1CE-HTML/1.1;THOM;"+"\u0000\u0000\u0000\u0000\u0000SW-Version/"*128+";A;"
+prefix :SmtNode{intersectionRegexes=[HbbTV/1.1.1CE-HTML/1.1;THOM;]}
+prefix : (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x56") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31") (re.++ re.allchar (re.++  (str.to.re "\x31") (re.++ re.allchar (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x45") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x4c") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31") (re.++ re.allchar (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x54") (re.++  (str.to.re "\x48") (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x4d")  (str.to.re "\x3b"))))))))))))))))))))))))))))
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[.*, .*], next=SmtNode{intersectionRegexes=[SW-Version\/], next=SmtNode{intersectionRegexes=[]}}}}
+infix : (re.inter (re.* re.allchar ) (re.* re.allchar ) )  (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x57") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x56") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e")  (str.to.re "\x5c\x2f"))))))))))) 
+suffix :SmtNode{intersectionRegexes=[;A;]}
+suffix : (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x41")  (str.to.re "\x3b")))

@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :";Cynus \u0000"+" "*5000+"◎\n◎\n◎"
+prefix :SmtNode{intersectionRegexes=[(; *(Cynus)[ _])(.+)]}
+prefix : (re.++  (re.++  (str.to.re "\x3b") (re.++ (re.*  (str.to.re "\x20") ) (re.++  (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x79") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x75")  (str.to.re "\x73")))))  (re.union  (str.to.re "\x20")  (str.to.re "\x5f"))))) (re.+ re.allchar ))
+infix :SmtNode{intersectionRegexes=[.+, (.+)( *),  *]}
+infix :(re.inter (re.+ re.allchar )  (re.++ (re.+ re.allchar ) (re.*  (str.to.re "\x20") )) (re.*  (str.to.re "\x20") ) )
+suffix :SmtNode{intersectionRegexes=[◎
+◎
+◎]}
+suffix : (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0a")  (str.to.re "\x25ce")))))

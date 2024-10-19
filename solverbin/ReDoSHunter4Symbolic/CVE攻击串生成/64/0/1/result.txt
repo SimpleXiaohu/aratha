@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"\u0000\u0000"+"\u0000"*32+"A◎\r◎!A ◎\rA◎\rA◎\r◎!A ◎\rA◎\r"
+prefix :SmtNode{intersectionRegexes=[(([ \t]*)\S,?)([^\n\r,]+)]}
+prefix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x20")  (str.to.re "\x5c\x74")) ) (re.++ (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")))) (re.opt  (str.to.re "\x2c") ))) (re.+  (re.union  (str.to.re "\x5c\x6e") (re.union  (str.to.re "\x5c\x72")  (str.to.re "\x2c"))) ))
+infix :SmtNode{intersectionRegexes=[(,?[^\n\r,]+)*, [^\n\r,]+]}
+infix :(re.inter (re.*  (re.++ (re.opt  (str.to.re "\x2c") ) (re.+  (re.union  (str.to.re "\x5c\x6e") (re.union  (str.to.re "\x5c\x72")  (str.to.re "\x2c"))) )) ) (re.+  (re.union  (str.to.re "\x5c\x6e") (re.union  (str.to.re "\x5c\x72")  (str.to.re "\x2c"))) ) )
+suffix :SmtNode{intersectionRegexes=[A◎◎!A ◎A◎A◎◎!A ◎A◎]}
+suffix : (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0d") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0d") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0d") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0d") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0d") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x25ce")  (str.to.re "\x0d"))))))))))))))))))))))))

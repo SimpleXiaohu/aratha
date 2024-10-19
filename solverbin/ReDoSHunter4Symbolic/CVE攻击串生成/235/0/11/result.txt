@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"1 Mac OS X 1 "+"00000"*5000+"\n1\n"
+prefix :SmtNode{intersectionRegexes=[1 Mac OS X 1 ]}
+prefix : (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x53") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x58") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x31")  (str.to.re "\x20")))))))))))))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)(.(\d+).)(\d+), \d+]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.++  (re.++ re.allchar (re.++ (re.+ (re.range "0" "9") ) re.allchar)) (re.+ (re.range "0" "9") ))) (re.+ (re.range "0" "9") ) )
+suffix :SmtNode{intersectionRegexes=[
+1
+]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x31")  (str.to.re "\x0a")))

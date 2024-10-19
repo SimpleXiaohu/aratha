@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"Mozilla"+"Mobile"*5000+"@"
+prefix :SmtNode{intersectionRegexes=[Mozilla]}
+prefix : (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x7a") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x6c")  (str.to.re "\x61")))))))
+infix :SmtNode{intersectionRegexes=[(([^
+]*)([^
+]*))&(([^
+]*)(Mobile)([^
+]*))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c")  (str.to.re "\x65")))))) (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

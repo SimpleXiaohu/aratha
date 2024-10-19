@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :";IRIS"+" "*5000+"@"
+prefix :SmtNode{intersectionRegexes=[;IRIS]}
+prefix : (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x49") (re.++  (str.to.re "\x52") (re.++  (str.to.re "\x49")  (str.to.re "\x53")))))
+infix :SmtNode{intersectionRegexes=[[^\/;\)]+, ([^\/;\)]+)( *),  *]}
+infix :(re.inter (re.+  (re.union  (str.to.re "\x5c\x2f") (re.union  (str.to.re "\x3b")  (str.to.re "\x5c\x29"))) )  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f") (re.union  (str.to.re "\x3b")  (str.to.re "\x5c\x29"))) ) (re.*  (str.to.re "\x20") )) (re.*  (str.to.re "\x20") ) )
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

@@ -1,0 +1,11 @@
+Vulnerable
+Attack String :""+","*1024+"\n◎\n◎\n"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[,]}
+infix : (str.to.re "\x2c")
+suffix :SmtNode{intersectionRegexes=[
+◎
+◎
+]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x25ce")  (str.to.re "\x0a")))))

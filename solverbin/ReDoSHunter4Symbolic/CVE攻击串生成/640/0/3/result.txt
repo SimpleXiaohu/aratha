@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :"MsnBot-Media /"+"000"*5000+"@"
+prefix :SmtNode{intersectionRegexes=[MsnBot-Media /]}
+prefix : (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x42") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x20")  (str.to.re "\x2f"))))))))))))))
+infix :SmtNode{intersectionRegexes=[(([0-9]+)([0-9]+))&(([0-9]+)([^
+])([0-9]+))&(.+)]}
+infix : (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.+ (re.range "\x30" "\x39") )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

@@ -1,0 +1,12 @@
+Vulnerable
+Attack String :"CFNetwork/"+" Darwin/17.0"*5000+"\n1\n"
+prefix :SmtNode{intersectionRegexes=[CFNetwork/]}
+prefix : (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x46") (re.++  (str.to.re "\x4e") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x77") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6b")  (str.to.re "\x2f"))))))))))
+infix :SmtNode{intersectionRegexes=[(([^
+]*)([0-9]+))&(([^
+]*)( Darwin\/17\.)([0-9]+))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.+ (re.range "\x30" "\x39") )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x44") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x77") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x5c\x2f") (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x37")  (str.to.re "\x5c\x2e"))))))))))) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[
+1
+]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x31")  (str.to.re "\x0a")))

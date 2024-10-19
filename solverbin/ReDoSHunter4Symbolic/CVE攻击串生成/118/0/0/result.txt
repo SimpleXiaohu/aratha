@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"0 "+" "*10000+"\n1\n"
+prefix :SmtNode{intersectionRegexes=[((\w+))(\s+)]}
+prefix : (re.++ (re.+ (re.union (re.range "a" "z") (re.range "A" "Z") (re.range "0" "9") (str.to.re "_")) ) (re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ))
+infix :SmtNode{intersectionRegexes=[\s+, (\s+)(.*), .*]}
+infix :(re.inter (re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) )  (re.++ (re.+ (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.* re.allchar )) (re.* re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[
+1
+]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x31")  (str.to.re "\x0a")))

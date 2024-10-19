@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"AvantGo 0"+"000"*5000+"@"
+prefix :SmtNode{intersectionRegexes=[((AvantGo) )(\d+)]}
+prefix : (re.++  (re.++  (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x76") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x47")  (str.to.re "\x6f")))))))  (str.to.re "\x20")) (re.+ (re.range "0" "9") ))
+infix :SmtNode{intersectionRegexes=[\d+, (\d+)(.)(\d+), \d+]}
+infix :(re.inter (re.+ (re.range "0" "9") )  (re.++ (re.+ (re.range "0" "9") ) (re.++ re.allchar (re.+ (re.range "0" "9") ))) (re.+ (re.range "0" "9") ) )
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :"data:"+","*10000+"\n"
+prefix :SmtNode{intersectionRegexes=[data:]}
+prefix : (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x61")  (str.to.re "\x3a")))))
+infix :SmtNode{intersectionRegexes=[.*, (.*)(,)(.*), .*]}
+infix :(re.inter (re.* re.allchar )  (re.++ (re.* re.allchar ) (re.++  (str.to.re "\x2c") (re.* re.allchar ))) (re.* re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[
+]}
+suffix : (str.to.re "\x0a")

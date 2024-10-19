@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :""+"Vodafone "*5000+"\n@@"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[Vodafone ]}}
+infix :  (re.++  (str.to.re "\x56") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x66") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x65")  (str.to.re "\x20")))))))))
+suffix :SmtNode{intersectionRegexes=[
+@@]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x40")  (str.to.re "\x40")))

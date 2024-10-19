@@ -1,0 +1,14 @@
+Vulnerable
+Attack String :"x86_64 1.1.1"+"Chrome"*5000+"!\n!\n"
+prefix :SmtNode{intersectionRegexes=[x86_64 1.1.1]}
+prefix : (re.++  (str.to.re "\x78") (re.++  (str.to.re "\x38") (re.++  (str.to.re "\x36") (re.++  (str.to.re "\x5f") (re.++  (str.to.re "\x36") (re.++  (str.to.re "\x34") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x31") (re.++ re.allchar (re.++  (str.to.re "\x31") (re.++ re.allchar  (str.to.re "\x31"))))))))))))
+infix :SmtNode{intersectionRegexes=[([^
+]*)&(([^
+]*)(Chrome)([^
+]*))&([^
+]*)&(.+)]}
+infix : (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x68") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x6d")  (str.to.re "\x65")))))) (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[!
+!
+]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x21")  (str.to.re "\x0a"))))

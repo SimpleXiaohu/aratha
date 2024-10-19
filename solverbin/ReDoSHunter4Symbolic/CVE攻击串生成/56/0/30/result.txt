@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"1"+"0000000_"*512+"@"
+prefix :SmtNode{intersectionRegexes=[1]}
+prefix : (str.to.re "\x31")
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[\d+, \d+], next=SmtNode{intersectionRegexes=[_], next=SmtNode{intersectionRegexes=[]}}}}
+infix : (re.inter (re.+ (re.range "0" "9") ) (re.+ (re.range "0" "9") ) )  (str.to.re "\x5f") 
+suffix :SmtNode{intersectionRegexes=[@]}
+suffix : (str.to.re "\x40")

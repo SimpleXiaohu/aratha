@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"<span style="mso-spacerun:yes">"+"\r"*5000+"!A!A!"
+prefix :SmtNode{intersectionRegexes=[<span style="mso-spacerun:yes">]}
+prefix : (re.++  (str.to.re "\x3c") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x70") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x79") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x3d") (re.++  (str.to.re "\x22") (re.++  (str.to.re "\x6d") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x70") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x63") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x75") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x3a") (re.++  (str.to.re "\x79") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x73") (re.++  (str.to.re "\x22")  (str.to.re "\x3e")))))))))))))))))))))))))))))))
+infix :SmtNode{intersectionRegexes=[[\s]*, ([\s]*)([\n\r]+), [\n\r]+]}
+infix :(re.inter (re.* (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) )  (re.++ (re.* (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) ) (re.+  (re.union  (str.to.re "\x5c\x6e")  (str.to.re "\x5c\x72")) )) (re.+  (re.union  (str.to.re "\x5c\x6e")  (str.to.re "\x5c\x72")) ) )
+suffix :SmtNode{intersectionRegexes=[!A!A!]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x41")  (str.to.re "\x21")))))

@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :""+"CFNetwork/"*5000+"\n@◎"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[CFNetwork/]}}
+infix :  (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x46") (re.++  (str.to.re "\x4e") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x77") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x6b")  (str.to.re "\x2f"))))))))))
+suffix :SmtNode{intersectionRegexes=[
+@◎]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x40")  (str.to.re "\x25ce")))

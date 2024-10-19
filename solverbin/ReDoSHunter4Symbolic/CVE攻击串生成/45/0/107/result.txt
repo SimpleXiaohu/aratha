@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :""%"+"\n"*10000+"◎!◎\n%!◎!◎\n%!"
+prefix :SmtNode{intersectionRegexes=["%]}
+prefix : (re.++  (str.to.re "\x22")  (str.to.re "\x25"))
+infix :SmtNode{intersectionRegexes=[\s*, (\s*)(\n)(\s*), \s*]}
+infix :(re.inter (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) )  (re.++ (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) (re.++  (str.to.re "\x5c\x6e") (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ))) (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) )
+suffix :SmtNode{intersectionRegexes=[◎!◎
+%!◎!◎
+%!]}
+suffix : (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x25") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x25")  (str.to.re "\x21"))))))))))))

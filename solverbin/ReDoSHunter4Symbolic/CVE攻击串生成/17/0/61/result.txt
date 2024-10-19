@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :"Aaa"+"a"*10000+"\nA\r\nA\r"
+prefix :SmtNode{intersectionRegexes=[Aaa]}
+prefix : (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x61")  (str.to.re "\x61")))
+infix :SmtNode{intersectionRegexes=[[\\\-0-9a-z]{1,}, ([\\\-0-9a-z]{1,})([^\s]*), [^\s]*]}
+infix :(re.inter  (re.++   (re.union  (str.to.re "\x5c\x5c") (re.union  (str.to.re "\x5c\x2d") (re.union (re.range "\x30" "\x39") (re.range "\x61" "\x7a")))) (re.*   (re.union  (str.to.re "\x5c\x5c") (re.union  (str.to.re "\x5c\x2d") (re.union (re.range "\x30" "\x39") (re.range "\x61" "\x7a")))) ))  (re.++  (re.++   (re.union  (str.to.re "\x5c\x5c") (re.union  (str.to.re "\x5c\x2d") (re.union (re.range "\x30" "\x39") (re.range "\x61" "\x7a")))) (re.*   (re.union  (str.to.re "\x5c\x5c") (re.union  (str.to.re "\x5c\x2d") (re.union (re.range "\x30" "\x39") (re.range "\x61" "\x7a")))) )) (re.* (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) )) (re.* (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) ) )
+suffix :SmtNode{intersectionRegexes=[
+A
+A]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x0d") (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x41")  (str.to.re "\x0d"))))))

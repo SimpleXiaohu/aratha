@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :""+","*32+" "
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[,]}
+infix : (str.to.re "\x2c")
+suffix :SmtNode{intersectionRegexes=[,[\s\S]*＆～(.*,), ,[\s\S]*＆～((.*,)([ \t]*([^ \t]+)[ \t]+realm=(["\']?)([^"\']*)(["\']?)))]}
+suffix :(re.inter  (re.inter  (re.++  (str.to.re "\x2c") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) )) (re.comp  (re.++ (re.* re.allchar )  (str.to.re "\x2c"))))  (re.inter  (re.++  (str.to.re "\x2c") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) )) (re.comp  (re.++  (re.++ (re.* re.allchar )  (str.to.re "\x2c"))  (re.++ (re.*  (re.union  (str.to.re "\x20")  (str.to.re "\x5c\x74")) ) (re.++ (re.+  (re.union  (str.to.re "\x20")  (str.to.re "\x5c\x74")) ) (re.++ (re.+  (re.union  (str.to.re "\x20")  (str.to.re "\x5c\x74")) ) (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x6d") (re.++  (str.to.re "\x3d") (re.++ (re.opt  (re.union  (str.to.re "\x22")  (str.to.re "\x5c\x27")) ) (re.++ (re.*  (re.union  (str.to.re "\x22")  (str.to.re "\x5c\x27")) ) (re.opt  (re.union  (str.to.re "\x22")  (str.to.re "\x5c\x27")) ))))))))))))))) )

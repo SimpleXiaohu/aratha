@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :"webOSP160UNA/0"+"000"*5000+"!1!"
+prefix :SmtNode{intersectionRegexes=[(webOS.*(P160UNA)\/)(\d+)]}
+prefix : (re.++  (re.++  (str.to.re "\x77") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x62") (re.++  (str.to.re "\x4f") (re.++  (str.to.re "\x53") (re.++ (re.* re.allchar ) (re.++  (re.++  (str.to.re "\x50") (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x36") (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x55") (re.++  (str.to.re "\x4e")  (str.to.re "\x41")))))))  (str.to.re "\x5c\x2f")))))))) (re.+ (re.range "0" "9") ))
+infix :SmtNode{intersectionRegexes=[([0-9]+)&(([0-9]+)([^
+])([0-9]+))&([0-9]+)&(.+)]}
+infix : (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[!1!]}
+suffix : (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x31")  (str.to.re "\x21")))

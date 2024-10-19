@@ -1,0 +1,10 @@
+Vulnerable
+Attack String :";IM-A111"+"\u0000"*20000+""
+prefix :SmtNode{intersectionRegexes=[;IM-A111]}
+prefix : (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x49") (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x2d") (re.++  (str.to.re "\x41") (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x31")  (str.to.re "\x31"))))))))
+infix :SmtNode{intersectionRegexes=[([^\/;]+)&(([^\/;]+)()([^
+]*))&([^
+]*)&(.+)]}
+infix : (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++  (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ))) (re.++  (str.to.re "\x26") (re.++ (re.*  (re.union  (str.to.re "\x0a")  (str.to.re "\x0d")) ) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))))
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

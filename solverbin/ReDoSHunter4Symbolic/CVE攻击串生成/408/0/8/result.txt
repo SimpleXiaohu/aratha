@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"Linux/1.1"+"0"*20000+""
+prefix :SmtNode{intersectionRegexes=[Linux/1.1]}
+prefix : (re.++  (str.to.re "\x4c") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x75") (re.++  (str.to.re "\x78") (re.++  (str.to.re "\x2f") (re.++  (str.to.re "\x31") (re.++ re.allchar  (str.to.re "\x31")))))))))
+infix :SmtNode{intersectionRegexes=[(\d+)(.*), (\d+)(.*)]}
+infix :(re.inter  (re.++ (re.+ (re.range "0" "9") ) (re.* re.allchar ))  (re.++ (re.+ (re.range "0" "9") ) (re.* re.allchar )) )
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

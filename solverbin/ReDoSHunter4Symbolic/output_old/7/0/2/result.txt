@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"CFNetwork/0.0"+"00"*5000+" "
+prefix :SmtNode{intersectionRegexes=[((CFNetwork)\/(\d+)\.)(\d+)]}
+prefix : (re.++  (re.++  (re.++  (str.to.re "\x43") (re.++  (str.to.re "\x46") (re.++  (str.to.re "\x4e") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x77") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x72")  (str.to.re "\x6b"))))))))) (re.++  (str.to.re "\x5c\x2f") (re.++ (re.+ (re.range "0" "9") )  (str.to.re "\x5c\x2e")))) (re.+ (re.range "0" "9") ))
+infix :SmtNode{intersectionRegexes=[(([0-9]+)([0-9]+))&(([0-9]+)(\.?)([0-9]+))&(.+)]}
+infix : (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.+ (re.range "\x30" "\x39") )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.+ (re.range "\x30" "\x39") ) (re.++ (re.opt  (str.to.re "\x5c\x2e") ) (re.+ (re.range "\x30" "\x39") ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[00[\s\S]*＆～(\d+)]}
+suffix : (re.inter  (re.++  (str.to.re "\x30") (re.++  (str.to.re "\x30") (re.*  (re.union (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " ")) (re.inter re.allchar (re.comp (re.union (str.to.re "\t") (str.to.re "\n") (str.to.re "\r") (str.to.re " "))))) ))) (re.comp (re.+ (re.range "0" "9") )))

@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"""+"&\r\n!\u0000\r"*32+"!"
+prefix :SmtNode{intersectionRegexes=["]}
+prefix : (str.to.re "\x22")
+infix :SmtNode{intersectionRegexes=[&], next=SmtNode{intersectionRegexes=[\r\n?|\n, \s*], next=SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[!.+(\r\n?|\n)]}}}}
+infix : (str.to.re "\x26") (re.inter  (re.union  (re.++  (str.to.re "\x5c\x72") (re.opt  (str.to.re "\x5c\x6e") ))  (str.to.re "\x5c\x6e")) (re.* (re.union (re.range "\t" "\t") (re.range "\n" "\n") (re.range "\r" "\r") (str.to.re " ")) ) )   (re.++  (str.to.re "\x21") (re.++ (re.+ re.allchar )  (re.union  (re.++  (str.to.re "\x5c\x72") (re.opt  (str.to.re "\x5c\x6e") ))  (str.to.re "\x5c\x6e"))))
+suffix :SmtNode{intersectionRegexes=[!]}
+suffix : (str.to.re "\x21")

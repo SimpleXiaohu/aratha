@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :";Galaxy Note II"+"\u0000"*10000+"◎!;◎!;"
+prefix :SmtNode{intersectionRegexes=[;Galaxy Note II]}
+prefix : (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x47") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x61") (re.++  (str.to.re "\x78") (re.++  (str.to.re "\x79") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x4e") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x20") (re.++  (str.to.re "\x49")  (str.to.re "\x49")))))))))))))))
+infix :SmtNode{intersectionRegexes=[(([^\/;]*)([^\/;]*))&(([^\/;]*)(\/?)([^\/;]*))&(.+)]}
+infix : (re.++  (re.++ (re.*  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.*  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) )) (re.++  (str.to.re "\x26") (re.++  (re.++ (re.*  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ) (re.++ (re.opt  (str.to.re "\x5c\x2f") ) (re.*  (re.union  (str.to.re "\x5c\x2f")  (str.to.re "\x3b")) ))) (re.++  (str.to.re "\x26") (re.+ re.allchar )))))
+suffix :SmtNode{intersectionRegexes=[◎!;◎!;]}
+suffix : (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21") (re.++  (str.to.re "\x3b") (re.++  (str.to.re "\x25ce") (re.++  (str.to.re "\x21")  (str.to.re "\x3b"))))))

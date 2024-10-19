@@ -1,0 +1,8 @@
+Vulnerable
+Attack String :"trident1rv:"+".A"*5000+""
+prefix :SmtNode{intersectionRegexes=[trident1rv:]}
+prefix : (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x64") (re.++  (str.to.re "\x65") (re.++  (str.to.re "\x6e") (re.++  (str.to.re "\x74") (re.++  (str.to.re "\x31") (re.++  (str.to.re "\x72") (re.++  (str.to.re "\x76")  (str.to.re "\x3a")))))))))))
+infix :SmtNode{intersectionRegexes=[[\.\w]+, ([\.\w]+)(.+), .+]}
+infix :(re.inter (re.+  (re.union  (str.to.re "\x5c\x2e") (re.union (re.range "a" "z") (re.range "A" "Z") (re.range "0" "9") (str.to.re "_"))) )  (re.++ (re.+  (re.union  (str.to.re "\x5c\x2e") (re.union (re.range "a" "z") (re.range "A" "Z") (re.range "0" "9") (str.to.re "_"))) ) (re.+ re.allchar )) (re.+ re.allchar ) )
+suffix :SmtNode{intersectionRegexes=[]}
+suffix :

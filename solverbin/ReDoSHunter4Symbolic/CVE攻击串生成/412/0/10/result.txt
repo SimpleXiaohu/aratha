@@ -1,0 +1,9 @@
+Vulnerable
+Attack String :""+"Mozilla"*5000+"\n@@"
+prefix :SmtNode{intersectionRegexes=[]}
+prefix :
+infix :SmtNode{intersectionRegexes=[], next=SmtNode{intersectionRegexes=[Mozilla]}}
+infix :  (re.++  (str.to.re "\x4d") (re.++  (str.to.re "\x6f") (re.++  (str.to.re "\x7a") (re.++  (str.to.re "\x69") (re.++  (str.to.re "\x6c") (re.++  (str.to.re "\x6c")  (str.to.re "\x61")))))))
+suffix :SmtNode{intersectionRegexes=[
+@@]}
+suffix : (re.++  (str.to.re "\x0a") (re.++  (str.to.re "\x40")  (str.to.re "\x40")))

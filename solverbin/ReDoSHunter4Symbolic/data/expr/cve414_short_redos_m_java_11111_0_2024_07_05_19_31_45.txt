@@ -1,0 +1,707 @@
+id:1
+ReDoS-vulnerable Regex
+RESULT-FALSE
+MUST_NOT_BE_REDOS
+-------------------------
+id:2
+^\s*[+-.]?\s*(?:(?:\d+(?:(\.|,)\d+)?(?:e[+-]?\d+)?)|(?:0x[a-f\d]+))\s*$
+RESULT-FALSE
+
+-------------------------
+id:3
+\s*\n\s*
+RESULT-TRUE
+success TYPE: POLYNOMIAL	 AttackString：" "+"\n"*40000+"! !"
+vulnerability Position: ▻\s*\n\s*◅
+vulnerability Source: β1 = \s* β2 = \n\s* (β1.followLast) ∩ (β2.first) ≠ ∅
+success TYPE: POLYNOMIAL	 AttackString：""+"\n"*40000+"! !"
+vulnerability Position: ▻\s*\n\s*◅
+vulnerability Source: β1 = \s* β2 = \n\s* (β1.followLast) ∩ (β2.first) ≠ ∅
+success TYPE: POLYNOMIAL	 AttackString：" "+"\n"*40000+"\u0000"
+vulnerability Position: ▻\s*\n\s*◅
+vulnerability Source: β1 = \s* β2 = \n\s* (β1.followLast) ∩ (β2.first) ≠ ∅
+success TYPE: POLYNOMIAL	 AttackString：""+"\n"*40000+"\u0000"
+vulnerability Position: ▻\s*\n\s*◅
+vulnerability Source: β1 = \s* β2 = \n\s* (β1.followLast) ∩ (β2.first) ≠ ∅
+success TYPE: POLYNOMIAL	 AttackString：" "+"\n"*40000+"!"
+vulnerability Position: ▻\s*\n\s*◅
+vulnerability Source: β1 = \s* β2 = \n\s* (β1.followLast) ∩ (β2.first) ≠ ∅
+success TYPE: POLYNOMIAL	 AttackString：""+"\n"*40000+"!"
+vulnerability Position: ▻\s*\n\s*◅
+vulnerability Source: β1 = \s* β2 = \n\s* (β1.followLast) ∩ (β2.first) ≠ ∅
+-------------------------
+id:4
+([A-Z]+)([A-Z][a-z])
+RESULT-TRUE
+success TYPE: POLYNOMIAL	 AttackString：""+"A"*20000+"A"
+vulnerability Position: Unable to locate Vulnerability position
+vulnerability Source: Unable to find Vulnerability source
+failed TYPE: POLYNOMIAL	 AttackString：""+"A"*160000+"a"
+patternType: SLQ_1
+-------------------------
+id:5
+.*\.
+RESULT-TRUE
+success TYPE: POLYNOMIAL	 AttackString：""+"\u0000"*40000+"\u0000"
+vulnerability Position: Unable to locate Vulnerability position
+vulnerability Source: Unable to find Vulnerability source
+success TYPE: POLYNOMIAL	 AttackString：""+"1"*40000+"◎"
+vulnerability Position: Unable to locate Vulnerability position
+vulnerability Source: Unable to find Vulnerability source
+success TYPE: POLYNOMIAL	 AttackString：""+"1"*40000+"\n@"
+vulnerability Position: Unable to locate Vulnerability position
+vulnerability Source: Unable to find Vulnerability source
+-------------------------
+id:6
+\/?(([A-Z0-9_-]+\/?)+)?
+RESULT-TRUE
+success TYPE: EXPONENT	 AttackString："A"+"A"*32+"a!a!a"
+vulnerability Position: \/?(?P<events>►(▻[A-Z0-9_-]+◅\/?)+◄)?
+vulnerability Source: There is a nested quantifier node [A-Z0-9_-]+ in ([A-Z0-9_-]+\/?)+.
+success TYPE: EXPONENT	 AttackString："A"+"A"*32+" "
+vulnerability Position: \/?(?P<events>►(▻[A-Z0-9_-]+◅\/?)+◄)?
+vulnerability Source: There is a nested quantifier node [A-Z0-9_-]+ in ([A-Z0-9_-]+\/?)+.
+success TYPE: EXPONENT	 AttackString："A"+"A"*32+"aAa"
+vulnerability Position: \/?(?P<events>►(▻[A-Z0-9_-]+◅\/?)+◄)?
+vulnerability Source: There is a nested quantifier node [A-Z0-9_-]+ in ([A-Z0-9_-]+\/?)+.
+failed TYPE: EXPONENT	 AttackString："A"+"0/"*2048+"a!a!a"
+patternType: NQ
+failed TYPE: EXPONENT	 AttackString："A"+"0/"*2048+" "
+patternType: NQ
+failed TYPE: EXPONENT	 AttackString："A"+"0/"*2048+"aAa"
+patternType: NQ
+-------------------------
+id:7
+((\r\n|\r|\n)+) *$
+RESULT-FALSE
+
+failed TYPE:EXPONENT	 AttackString：""+"\r\n"*2048+"\u000b"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString：""+"\r\n\n"*2048+"\u000b"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString："\r"+"\r\n"*2048+"\u000b"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString："\r"+"\r\n\n"*2048+"\u000b"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString：""+"\r\n"*2048+"◎ ◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString：""+"\r\n\n"*2048+"◎ ◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString："\r"+"\r\n"*2048+"◎ ◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString："\r"+"\r\n\n"*2048+"◎ ◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString：""+"\r\n"*2048+"!◎!◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString：""+"\r\n\n"*2048+"!◎!◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString："\r"+"\r\n"*2048+"!◎!◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString："\r"+"\r\n\n"*2048+"!◎!◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString：""+"\r\n"*2048+"◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString：""+"\r\n\n"*2048+"◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString："\r"+"\r\n"*2048+"◎"	 patternType: EOD_i
+failed TYPE:EXPONENT	 AttackString："\r"+"\r\n\n"*2048+"◎"	 patternType: EOD_i
+-------------------------
+id:8
+^" "([^@]*[^@.])" r"@" r"([^@]+(?:\.[^@]+)*)" r"$
+RESULT-FALSE
+
+failed TYPE:EXPONENT	 AttackString："" "\u0000" r"@" r"\u0000.\u0000"+"."*2048+"@"	 patternType: EOA_i3
+failed TYPE:EXPONENT	 AttackString："" "A" r"@" r"A"+"."*2048+"@"	 patternType: EOA_i3
+failed TYPE:EXPONENT	 AttackString："" "\u0000" r"@" r"\u0000.\u0000"+"."*2048+"@!@!@"	 patternType: EOA_i3
+failed TYPE:EXPONENT	 AttackString："" "A" r"@" r"A"+"."*2048+"@!@!@"	 patternType: EOA_i3
+failed TYPE:EXPONENT	 AttackString："" "\u0000" r"@" r"\u0000.\u0000"+"."*2048+""	 patternType: EOA_i3
+failed TYPE:EXPONENT	 AttackString："" "A" r"@" r"A"+"."*2048+""	 patternType: EOA_i3
+-------------------------
+id:9
+\s*$
+RESULT-FALSE
+
+-------------------------
+id:10
+(?:\[(?:[^\]\\"]|(["'])(?:(?!\1)[^\\]|\\.)*\1|\\.)*\])
+RESULT-TRUE
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'''"*16+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'"'"*32+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"''\u0000"*16+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'\u0000'\u0000"*16+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'"""*32+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"''\u0000'"*16+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"'''"*16+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"'"'"*32+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"''\u0000"*16+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"'\u0000'\u0000"*16+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"'"""*32+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"''\u0000'"*16+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+failed TYPE: STACK_ERROR	 AttackString："["\u0000'"+"'''"*1010+" "
+patternType: EOD_i
+success TYPE: EXPONENT	 AttackString："["\u0000'"+"'"'"*32+" "
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+failed TYPE: STACK_ERROR	 AttackString："["\u0000'"+"''\u0000"*1010+" "
+patternType: EOD_i
+failed TYPE: STACK_ERROR	 AttackString："["\u0000'"+"'\u0000'\u0000"*1010+" "
+patternType: EOD_i
+failed TYPE: STACK_ERROR	 AttackString："["\u0000'"+"'"""*1010+" "
+patternType: EOD_i
+failed TYPE: STACK_ERROR	 AttackString："["\u0000'"+"''\u0000'"*1010+" "
+patternType: EOD_i
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'''"*16+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'"'"*32+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"''\u0000"*16+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'\u0000'\u0000"*16+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'"""*32+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"''\u0000'"*16+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"'''"*16+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"'"'"*32+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"''\u0000"*16+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"'\u0000'\u0000"*16+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"'"""*32+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："["+"''\u0000'"*16+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+failed TYPE: STACK_ERROR	 AttackString："["\u0000'"+"'''"*1010+"["""
+patternType: EOD_i
+success TYPE: EXPONENT	 AttackString："["\u0000'"+"'"'"*32+"["""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+failed TYPE: STACK_ERROR	 AttackString："["\u0000'"+"''\u0000"*1010+"["""
+patternType: EOD_i
+failed TYPE: STACK_ERROR	 AttackString："["\u0000'"+"'\u0000'\u0000"*1010+"["""
+patternType: EOD_i
+failed TYPE: STACK_ERROR	 AttackString："["\u0000'"+"'"""*1010+"["""
+patternType: EOD_i
+failed TYPE: STACK_ERROR	 AttackString："["\u0000'"+"''\u0000'"*1010+"["""
+patternType: EOD_i
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'''"*16+""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'"'"*32+""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"''\u0000"*16+""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+success TYPE: EXPONENT	 AttackString："[\u0000"+"'\u0000'\u0000"*16+""
+vulnerability Position: (?:\[►(?:▻[^\]\\"]◅|▻(["'])(?:(?!\1)[^\\]|\\.)*\1◅|\\.)*◄\])
+vulnerability Source: β1 = [^\]\\"] β2 = (["'])(?:(?!\1)[^\\]|\\.)*\1 (β1.first) ∩ (β2.first) ≠ ∅
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'"""*32+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"''\u0000'"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'''"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'"'"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"''\u0000"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000'\u0000"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'"""*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"''\u0000'"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'''"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'"'"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"''\u0000"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000'\u0000"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'"""*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"''\u0000'"*2+""
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'''"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'"'"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"''\u0000"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'\u0000'\u0000"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'"""*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"''\u0000'"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'''"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'"'"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"''\u0000"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000'\u0000"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'"""*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"''\u0000'"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'''"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'"'"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"''\u0000"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000'\u0000"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'"""*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"''\u0000'"*2+"◎"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'''"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'"'"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"''\u0000"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'\u0000'\u0000"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'"""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"''\u0000'"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'''"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'"'"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"''\u0000"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000'\u0000"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"'"""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+"''\u0000'"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'''"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'"'"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"''\u0000"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000'\u0000"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'"""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"''\u0000'"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOD_i
+failed TYPE: EXPONENT	 AttackString："["+""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""\u0000""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""\u0000""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""\u0000""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""\u0000""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""\u0000""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""\u0000""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""\u0000""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""\u0000""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""\u0000""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""\u0000""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""\u0000""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""\u0000""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""\u0000""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""\u0000""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""\u0000""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""A""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000"''"*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""A""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'\u0000"''"*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""A""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000"''"*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""A""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000"''"*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""A""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'\u0000"''"*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""A""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000"''"*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""A""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000"''"*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""A""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'\u0000"''"*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""A""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000"''"*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""A""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000"''"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""A""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'\u0000"''"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""A""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000"''"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""A""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000"''"*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+""A""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"'\u0000"''"*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""A""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000"''"*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""\u0000""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""\u0000""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""\u0000""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""\u0000""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""\u0000""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""\u0000""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""\u0000""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""\u0000""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""\u0000""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""\u0000""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""\u0000""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""\u0000""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""\u0000""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""\u0000""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："[\u0000"+"""\u0000""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""\u0000""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""\u0000""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""\u0000""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""\u0000""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""\u0000""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000'"*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""A""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"'\u0000'"*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""A""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000'"*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""A""*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000'"*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""A""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"'\u0000'"*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""A""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000'"*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""A""*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000'"*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""A""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"'\u0000'"*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""A""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000'"*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""A""*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000'"*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""A""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"'\u0000'"*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""A""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000'"*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""A""*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"'\u0000'"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+""A""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"'\u0000'"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+""A""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"'\u0000'"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+""A""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""\u0000"*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""\u0000"*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""\u0000"*2+" "
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""\u0000"*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""\u0000"*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""\u0000"*2+""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""\u0000"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""\u0000"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""\u0000"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""\u0000"*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""\u0000"*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""\u0000"*2+"["""
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["+"""\u0000"*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""\u0000"*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""\u0000"*2+"◎"
+patternType: EOA_i1
+failed TYPE: EXPONENT	 AttackString："["'"+"""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["'"+"''"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"''"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["+"""*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["+"''"*2+""A\\!\nA!\n\\!\n"A\\!\nA!\n\\!\n"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["'"+"""*2+""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["'"+"''"*2+""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""*2+""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"''"*2+""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["+"""*2+""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["+"''"*2+""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["'"+"""*2+"◎"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["'"+"''"*2+"◎"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""*2+"◎"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"''"*2+"◎"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["+"""*2+"◎"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["+"''"*2+"◎"
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["'"+"""*2+"["""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["'"+"''"*2+"["""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"""*2+"["""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["\u0000'"+"''"*2+"["""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["+"""*2+"["""
+patternType: EOA_i3
+failed TYPE: EXPONENT	 AttackString："["+"''"*2+"["""
+patternType: EOA_i3
+-------------------------
+id:11
+("|')(?:\\(?:\((?:[^()]|\([^)]+\))+\)|\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1
+RESULT-FALSE
+
+-------------------------
