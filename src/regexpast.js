@@ -550,38 +550,49 @@ class CaptureVisitor {
                 return result;
             }
             case Star: {
+                // FIXME: introduce a new string variable at the end, in order
+                // to correctly handle expressions like (a)*, where only the
+                // last iteration should be captured.
+                if (!hasCapture(ast)) {
+                    return ["str.in_re", strName, ast.toRegexFormula()];
+                }
+                const newExec1 = this._genName();
+                const newExec2 = this._genName();
+                return ["and",
+                    ["=", strName, ["str.++", newExec1, newExec2]],
+                    ["str.in_re", newExec1, ast.subject.toRegexFormula()],
+                    this.visit(Opt(ast.subject), newExec2)
+                ]
+
+            }
+            case Plus: {
+                if (!hasCapture(ast)) {
+                    return ["str.in_re", strName, ast.toRegexFormula()];
+                }
                 const newExec1 = this._genName()
                 const newExec2 = this._genName()
                 return ["and",
                     ["=", strName, ["str.++", newExec1, newExec2]],
-                    ["str.in_re", newExec1, ["re.*", ast.subject.toRegexFormula()]],
-                    ["str.in_re", newExec2, ["re.opt", ast.subject.toRegexFormula()]],
+                    ["str.in_re", newExec1, star(ast.subject.toRegexFormula())],
                     this.visit(ast.subject, newExec2)
                 ]
             }
-            case Plus:
-                {
-                    const newExec1 = this._genName()
-                    const newExec2 = this._genName()
-                    return ["and",
-                        ["=", strName, ["str.++", newExec1, newExec2]],
-                        ["str.in_re", newExec1, ["re.*", ast.subject.toRegexFormula()]],
-                        ["str.in_re", newExec2, ast.subject.toRegexFormula()],
-                        this.visit(ast.subject, newExec2)
-                    ]
-                }
             case Opt: {
+                if (!hasCapture(ast)) {
+                    return ["str.in_re", strName, ast.toRegexFormula()];
+                }
+                // over-approximation: sometimes the undefined capture is approximated to ""
                 const newExec = this._genName()
-                return ["and",
-                    ["str.in_re", newExec, ast.subject.toRegexFormula()],
-                    this.visit(ast.subject, strName),
-                    ["or", ["=", strName, newExec], ["=", strName, '""']]
+                return ["or",
+                    this.visit(ast.subject, newExec),
+                    ["=", strName, '""'],
+                    ["=", strName, newExec]
                 ]
             }
             case Repeat: {
-                // FIXME: introduce a new string variable at the end, in order
-                // to correctly handle expressions like (a)*, where only the
-                // last iteration should be captured.
+                if (!hasCapture(ast)) {
+                    return ["str.in_re", strName, ast.toRegexFormula()];
+                }
                 if (ast.max === null) {
                     if (ast.min === 0) // a{0,inf}
                         return this.visit(Star(ast.subject), strName)
@@ -593,13 +604,9 @@ class CaptureVisitor {
                 const newExec2 = this._genName()
                 const newMin = ast.min > 0 ? ast.min - 1 : ast.min
                 const newMax = ast.max > 0 ? ast.max - 1 : ast.max
-                const exec2Constraints = ast.min > 0 ?
-                    ast.subject.toRegexFormula() :
-                    ["re.opt", ast.subject.toRegexFormula()]
                 return ["and",
                     ["=", strName, ["str.++", newExec1, newExec2]],
                     ["str.in_re", newExec1, [`(_ re.loop ${newMin}  ${newMax})`, ast.subject.toRegexFormula()]],
-                    ["str.in_re", newExec2, exec2Constraints],
                     this.visit(ast.subject, newExec2)
                 ]
             }
@@ -608,14 +615,13 @@ class CaptureVisitor {
             case NonCapture:
                 return this.visit(ast.expr, strName);
             case Capture: {
-                const name = this._nextCaptureName();
-                // return ["and", ["=", name, ["Str", strName]], this.visit(ast.expr, strName)];
+                const capture = this._nextCaptureName();
                 return ["and",
-                    ["ite", ["=", strName, '""'],
-                        ["is-undefined", name],
-                        ["=", name, ["Str", strName]]
-                    ],
                     this.visit(ast.expr, strName),
+                    ["or",
+                        ["=", capture, ["Str", strName]],
+                        ["is-undefined", capture]
+                    ]
                 ]
             }
             default:
@@ -643,6 +649,12 @@ class CheckCaptureVisitor {
                 break;
         }
     }
+}
+
+function hasCapture(ast) {
+    const checkCapture = new CheckCaptureVisitor()
+    ast.visit(checkCapture.visitor)
+    return checkCapture._containsCapture
 }
 exports.CaptureVisitor = CaptureVisitor;
 exports.CheckCaptureVisitor = CheckCaptureVisitor;
