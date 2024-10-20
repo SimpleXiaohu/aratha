@@ -197,8 +197,9 @@ exports.SMTSolver = class SMTSolver {
         this.process.stdin.write(output);
     }
 
-    writeRegexConstraint(output) {
+    writeReDoSConstraint(output) {
         output = output.replace("str.in.re", "str.in_re")+ "\n";
+        output = output.replace("str.to.re", "str.to_re")+ "\n";
         this.output_log += output + "\n";
         this.process.stdin.write(output);
     }

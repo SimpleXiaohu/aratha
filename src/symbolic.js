@@ -1655,9 +1655,25 @@ const { debugPrintln } = require("./util/print");
 const TOOLCONFIG = require("../toolconfig.json");
 const sexpr = require("./sexpr");
 
+class RedosResult {
+    constructor(result, constraint) {
+        this.result = result;
+        this.constraint = constraint;
+    }
+
+    getConstraint() {
+        return this.constraint;
+    }
+
+    getResult() {
+        return this.result;
+    }
+}
+exports.RedosResult = RedosResult;
+
 J$.RedosDetectResults = {
-    "^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$": { result: false },
-    "^([^:]+):(?:[^@]+@)?(?:([^/]*)\\/)?([^#]+)": { result: false }
+    "^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$": new RedosResult(false, ""),
+    "^([^:]+):(?:[^@]+@)?(?:([^/]*)\\/)?([^#]+)": new RedosResult(false, ""),
 }
 J$.meetReDoS = false;
 
@@ -1689,6 +1705,7 @@ class RegExpExec extends SymbolicValue {
         console.log("regexp", regex);
 
         // this.constraint = "";
+        this.RedosDetectResult = new RedosResult(false, "");
 
         // // 调用命令"java -jar /home/supermaxine/Test.jar [base64 of regex]"，返回一个字符串，即为约束
         // const command = "java -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -jar "+TOOLCONFIG["ReDoSHunter4Symbolic"].path+" \"" + Buffer.from(regex.value.toString()).toString('base64') + "\""
@@ -1711,10 +1728,11 @@ class RegExpExec extends SymbolicValue {
             return name;
         };
         const visitor = new CaptureVisitor(genName, genCapture);
+        this._formula = visitor.visit(this.getRegexAST(), genName());
 
         // 判断regex.value在J$.RedosDetectResults是否存在
         let key = GetPureRegex(regex.value.toString());
-        let RedosDetectResult = { result: false };
+        let RedosDetectResult = new RedosResult(false, "");
         if (key in J$.RedosDetectResults) {
             RedosDetectResult = J$.RedosDetectResults[key];
         } else {
@@ -1722,35 +1740,40 @@ class RegExpExec extends SymbolicValue {
             let result = execSync(command).toString();
             console.log("result", result);
             if (result === "Safe\r\n\r\n" || result === "") {
-                RedosDetectResult = { result: false };
+                RedosDetectResult = new RedosResult(false, "");
             }
             else {
-                RedosDetectResult = {
-                    result: true,
-                    constraint: result
-                };
+                // RedosDetectResult = {
+                //     result: true,
+                //     constraint: result
+                // };
+                RedosDetectResult = new RedosResult(true, result+"\n(assert (= (Str "+ this._temps[0].name +") (Str regex_exec_ans) ))\n");
             }
             J$.RedosDetectResults[key] = RedosDetectResult;
+            this.RedosDetectResult = RedosDetectResult;
         }
 
-        if (!RedosDetectResult.result) {
-            this._formula = visitor.visit(this.getRegexAST(), genName());
+        if (!RedosDetectResult.getResult()) {
             console.log(this._formula);
         }
         else {
             // this._formula = RedosDetectResult.constraint;
-            this._formula = visitor.visit(this.getRegexAST(), genName());
             J$.meetReDoS = true;
             console.log("meet ReDoS regex")
             console.log(this._formula);
         }
 
-        console.log("this._formula", sexpr.stringify(this._formula));
+        // console.log("this._formula", sexpr.stringify(this._formula));
 
 
     }
 
     visit(visitor) {
+        if (this.RedosDetectResult.getResult()) {
+            this._visitChild(this._temps[0], visitor);
+            visitor(this.RedosDetectResult)
+            return;
+        }
         visitor(this);
         this._visitChild(this.regex, visitor);
         this._visitChild(this.str, visitor);

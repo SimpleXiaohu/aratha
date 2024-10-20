@@ -86,7 +86,7 @@ public class Main {
         String regex = new String(Base64.getDecoder().decode(regex_base64));
         // regex = "^[^@]+@[^:.]+\\.[^:]+:.+$";
         // regex = "^git\\+ssh:\\/\\/([^:#]+:[^#]+(?:\\.git)?)(?:#(.*))?$";
-        regex = ":[0-9]+\\/?.*$";
+        // regex = ":[0-9]+\\/?.*$";
         // System.out.println(regex);
         System.out.println(getResult(0, regex));
     }

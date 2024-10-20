@@ -371,11 +371,11 @@
 
 (declare-const var0 Val)
 
-(assert (is-Str var0))
-
-(assert (not (not (distinct (str var0) ""))))
+; (assert (not (distinct (str var0) "")))
 
 (check-sat)
+
+(assert (is-Str var0))
 
 (get-model)
 
@@ -387,26 +387,6 @@
 
 (assert (is-Str var0))
 
-(assert (not (distinct (str var0) "")))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(check-sat)
-
-(pop 2)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
 (assert (not (not (distinct (str var0) ""))))
 
 (check-sat)
@@ -415,43 +395,13 @@
 
 (push 1)
 
-(assert (not (distinct (str var0) "")))
-
-(check-sat)
-
-(pop 2)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
+; (assert (not (distinct (str var0) "")))
 
 (check-sat)
 
 (get-model)
 
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(check-sat)
-
-(pop 3)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (not (distinct (str var0) ""))))
+(pop 1)
 
 (push 1)
 
@@ -460,62 +410,22 @@
 (check-sat)
 
 (get-model)
+
+(push 1)
 
 (assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all)))
 
-(push 1)
-
 (check-sat)
 
 (get-model)
-
-(pop 3)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (distinct (str (js.typeof var0)) "string"))
-
-(check-sat)
-
-(pop 4)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (not (distinct (str var0) ""))))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
 
 (push 1)
 
 (assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all))))
 
 (check-sat)
+
+(pop 1)
 
 (get-model)
 
@@ -527,11 +437,11 @@
 
 (get-model)
 
-(pop 2)
+(pop 1)
 
 (push 1)
 
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all)))
+(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
 
 (check-sat)
 
@@ -539,29 +449,47 @@
 
 (push 1)
 
-(assert (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re "")))))
+; (assert (not (distinct (str var0) "")))
 
 (check-sat)
 
 (get-model)
 
-(pop 4)
+(pop 1)
 
 (push 1)
 
-(declare-const var0 Val)
+(assert (distinct (str var0) ""))
 
-(assert (is-Str var0))
+(check-sat)
 
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
+(get-model)
 
 (push 1)
 
-(assert (not (distinct (str var0) "")))
+(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all)))
+
+(check-sat)
+
+(get-model)
+
+(pop 1)
+
+(push 1)
+
+(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all))))
+
+(check-sat)
+
+(get-model)
+
+(push 1)
+
+(assert (distinct (str (js.typeof var0)) "string"))
+
+(check-sat)
+
+(pop 1)
 
 (push 1)
 
@@ -577,113 +505,7 @@
 
 (check-sat)
 
-(pop 5)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (not (not (distinct (str var0) ""))))
-
-(assert (is-Str var0))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all))))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(check-sat)
-
-(pop 2)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re "")))))
-
-(check-sat)
-
-(get-model)
-
-(pop 3)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all)))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re ""))))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (not (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))))
-
-(check-sat)
-
-(pop 2)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re "")))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (not (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))))
-
-(check-sat)
-
-(pop 5)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str (js.typeof var0)) "string")))
+(pop 1)
 
 (push 1)
 
@@ -695,153 +517,13 @@
 
 (push 1)
 
-(assert false)
-
-(check-sat)
-
-(pop 6)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (not (distinct (str var0) ""))))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all))))
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(check-sat)
-
-(push 1)
-
-(get-model)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all)))
+; (assert false)
 
 (check-sat)
 
 (get-model)
 
-(pop 3)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re ""))))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(check-sat)
-
-(pop 2)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re "")))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(check-sat)
-
-(pop 4)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all)))
-
-(assert (not (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re ""))))))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(push 1)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert false)
-
-(check-sat)
-
-(pop 3)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re "")))))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert false)
-
-(check-sat)
-
-(pop 6)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (not (distinct (str var0) "")))
-
-(assert (is-Str var0))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str (js.typeof var0)) "string")))
-
-(push 1)
-
-(assert (not (js.in (str.++ (str var0) "{""noGitPlus"":true,""noCommittish"":true}") EmptyObject)))
+(pop 1)
 
 (push 1)
 
@@ -850,6 +532,14 @@
 (check-sat)
 
 (get-model)
+
+(push 1)
+
+(assert (= (str var0) ""))
+
+(check-sat)
+
+(pop 1)
 
 (push 1)
 
@@ -857,791 +547,21 @@
 
 (check-sat)
 
-(pop 7)
+(get-model)
 
 (push 1)
 
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (not (distinct (str var0) ""))))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all))))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all))))
+(assert (str.in_re (str var0) (re.++ (str.to_re "") (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")) (re.union (re.range "\u{0}" "$") (re.range "&" "\u{ff}")) (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}")) (re.union (re.range "\u{0}" "r") (re.range "t" "\u{ff}")) (re.union (re.range "\u{0}" "-") (re.range "/" "\u{ff}")) (re.union (re.range "\u{0}" ",") (re.range "." "\u{ff}"))) (re.* (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")) (re.union (re.range "\u{0}" "$") (re.range "&" "\u{ff}")) (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}")) (re.union (re.range "\u{0}" "r") (re.range "t" "\u{ff}")))) (str.to_re "/") (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")) (re.union (re.range "\u{0}" "r") (re.range "t" "\u{ff}")) (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}")) (re.union (re.range "\u{0}" "$") (re.range "&" "\u{ff}")))) (re.opt (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (str.to_re ""))))
 
 (check-sat)
 
 (get-model)
 
-(push 1)
-
-(assert (distinct (str (js.typeof var0)) "string"))
-
-(check-sat)
-
-(pop 2)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all)))
-
-(push 1)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert false)
-
-(check-sat)
-
-(pop 4)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re ""))))))
-
-(push 1)
-
-(assert (not (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert false)
-
-(check-sat)
-
-(pop 3)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re "")))))
-
-(push 1)
-
-(assert (not (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert false)
-
-(check-sat)
-
-(pop 5)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all)))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re ""))))))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(push 1)
-
-(assert true)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (str.in_re (str.replace (str.++ "file:" (str var0)) "/^file:/" "") (re.++ (re.++ (str.to_re "") ((_ re.loop 1 3) (str.to_re "/")) (str.to_re ".") (re.opt (str.to_re ".")) (re.union (str.to_re "/") (str.to_re ""))) re.all)))
-
-(check-sat)
-
-(pop 4)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re "")))))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(push 1)
-
-(assert true)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (str.in_re (str.replace (str.++ "file:" (str var0)) "/^file:/" "") (re.++ (re.++ (str.to_re "") ((_ re.loop 1 3) (str.to_re "/")) (str.to_re ".") (re.opt (str.to_re ".")) (re.union (str.to_re "/") (str.to_re ""))) re.all)))
-
-(check-sat)
-
-(pop 7)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (not (distinct (str var0) "")))
-
-(assert (is-Str var0))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str (js.typeof var0)) "string")))
-
-(push 1)
-
-(assert (not (js.in (str.++ (str var0) "{""noGitPlus"":true,""noCommittish"":true}") EmptyObject)))
-
-(push 1)
-
-(assert (not false))
-
-(push 1)
-
-(assert (= (str var0) ""))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert false)
-
-(check-sat)
-
-(pop 8)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (not (distinct (str var0) ""))))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all))))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all))))
-
-(push 1)
-
-(assert (not (distinct (str (js.typeof var0)) "string")))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (not (not (js.in (str.++ (str var0) "{""noGitPlus"":true,""noCommittish"":true}") (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined)))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(pop 3)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all)))
-
-(push 1)
-
-(assert true)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (= (str (js.typeof (Str (js.substr (str var0) 4 undefined)))) "object"))
-
-(check-sat)
-
-(pop 5)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re ""))))))
-
-(push 1)
-
-(assert (not (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))))
-
-(push 1)
-
-(assert true)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (str.in_re (str.replace (str.++ "" (str var0)) "/^file:/" "") (re.++ (re.++ (str.to_re "") ((_ re.loop 1 3) (str.to_re "/")) (str.to_re ".") (re.opt (str.to_re ".")) (re.union (str.to_re "/") (str.to_re ""))) re.all)))
-
-(check-sat)
-
-(pop 4)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ re.all (re.++ (str.to_re ".") (re.union (str.to_re "tgz") (re.++ (str.to_re "tar") (re.range "\u{0}" "\u{ffff}") (str.to_re "gz")) (str.to_re "tar")) (str.to_re "")))))
-
-(push 1)
-
-(assert (not (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))))
-
-(push 1)
-
-(assert true)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (str.in_re (str.replace (str.++ "" (str var0)) "/^file:/" "") (re.++ (re.++ (str.to_re "") ((_ re.loop 1 3) (str.to_re "/")) (str.to_re ".") (re.opt (str.to_re ".")) (re.union (str.to_re "/") (str.to_re ""))) re.all)))
-
-(check-sat)
-
-(pop 8)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str (js.typeof var0)) "string")))
-
-(push 1)
-
-(assert (not (js.in (str.++ (str var0) "{""noGitPlus"":true,""noCommittish"":true}") EmptyObject)))
-
-(push 1)
-
-(assert (not false))
-
-(push 1)
-
-(assert (= (str var0) ""))
-
-(push 1)
-
-(assert true)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (js.ToBoolean (GetField (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")))))
-
-(check-sat)
-
-(pop 9)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (not (not (distinct (str var0) ""))))
-
-(push 1)
-
-(assert (is-Str var0))
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all))))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all))))
-
-(push 1)
-
-(assert (not (distinct (str (js.typeof var0)) "string")))
-
-(push 1)
-
-(assert (not (js.in (str.++ (str var0) "{""noGitPlus"":true,""noCommittish"":true}") (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined))))
-
-(check-sat)
-
-(pop 3)
-
-(push 1)
+(pop 1)
 
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all)))
-
-(push 1)
-
-(assert true)
-
-(push 1)
-
-(assert (not (= (str (js.typeof (Str (js.substr (str var0) 4 undefined)))) "object")))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert false)
-
-(check-sat)
-
-(pop 9)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(push 1)
-
-(assert (not (distinct (str (js.typeof var0)) "string")))
-
-(push 1)
-
-(assert (not (js.in (str.++ (str var0) "{""noGitPlus"":true,""noCommittish"":true}") EmptyObject)))
-
-(push 1)
-
-(assert (not false))
-
-(push 1)
-
-(assert (= (str var0) ""))
-
-(push 1)
-
-(assert true)
-
-(push 1)
-
-(assert (not (js.ToBoolean (GetField (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}"))))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert false)
-
-(check-sat)
-
-(pop 10)
-
-(declare-const var0 Val)
-
-(push 1)
-
-(assert (not (not (distinct (str var0) ""))))
-
-(assert (is-Str var0))
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all))))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all)))
-
-(push 1)
-
-(assert true)
-
-(push 1)
-
-(assert (not (= (str (js.typeof (Str (js.substr (str var0) 4 undefined)))) "object")))
-
-(push 1)
-
-(assert true)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (= (str.at (js.substr (str var0) 4 undefined) 0) "@"))
-
-(check-sat)
-
-(get-model)
-
-(pop 10)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(push 1)
-
-(assert (not (distinct (str (js.typeof var0)) "string")))
-
-(push 1)
-
-(assert (not (js.in (str.++ (str var0) "{""noGitPlus"":true,""noCommittish"":true}") EmptyObject)))
-
-(push 1)
-
-(assert (not false))
-
-(push 1)
-
-(assert (= (str var0) ""))
-
-(push 1)
-
-(assert true)
-
-(push 1)
-
-(assert (not (js.ToBoolean (GetField (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}"))))))
-
-(push 1)
-
-(assert (not false))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert false)
-
-(check-sat)
-
-(pop 11)
-
-(declare-const var0 Val)
-
-(push 1)
-
-(assert (is-Str var0))
-
-(assert (not (not (distinct (str var0) ""))))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all))))
-
-(push 1)
-
-(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all)))
-
-(push 1)
-
-(assert true)
-
-(push 1)
-
-(assert (not (= (str (js.typeof (Str (js.substr (str var0) 4 undefined)))) "object")))
-
-(push 1)
-
-(assert true)
-
-(push 1)
-
-(assert (not (= (str.at (js.substr (str var0) 4 undefined) 0) "@")))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (> (str.indexof (js.substr (str var0) 4 undefined) "@" 0) 0))
-
-(check-sat)
-
-(get-model)
-
-(pop 2)
-
-(push 1)
-
-(assert (= (str.at (js.substr (str var0) 4 undefined) 0) "@"))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert false)
-
-(check-sat)
-
-(pop 2)
-
-(push 1)
-
-(assert (not (= (str.at (js.substr (str var0) 4 undefined) 0) "@")))
-
-(push 1)
-
-(assert (not (> (str.indexof (js.substr (str var0) 4 undefined) "@" 0) 0)))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (str.in_re (js.substr (str var0) 4 undefined) (re.++ (re.++ (str.to_re "") (re.opt (re.++ (str.to_re "git") (str.to_re "+"))) (re.+ (re.range "a" "z")) (str.to_re ":")) re.all)))
-
-(check-sat)
-
-(get-model)
-
-(pop 2)
-
-(push 1)
-
-(assert (> (str.indexof (js.substr (str var0) 4 undefined) "@" 0) 0))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (str.in_re (js.substr (str var0) 4 undefined) (re.++ (re.++ (str.to_re "") (re.opt (re.++ (str.to_re "git") (str.to_re "+"))) (re.+ (re.range "a" "z")) (str.to_re ":")) re.all)))
-
-(check-sat)
-
-(get-model)
-
-(pop 3)
-
-(push 1)
-
-(assert (= (str.at (js.substr (str var0) 4 undefined) 0) "@"))
-
-(push 1)
-
-(assert true)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (> (+ (str.indexof (js.slice (js.substr (str var0) 4 undefined) 1 undefined) "@" 0) 1) 0))
-
-(check-sat)
-
-(get-model)
-
-(pop 3)
-
-(push 1)
-
-(assert (not (= (str.at (js.substr (str var0) 4 undefined) 0) "@")))
-
-(push 1)
-
-(assert (not (> (str.indexof (js.substr (str var0) 4 undefined) "@" 0) 0)))
-
-(assert (not (str.in_re (js.substr (str var0) 4 undefined) (re.++ (re.++ (str.to_re "") (re.opt (re.++ (str.to_re "git") (str.to_re "+"))) (re.+ (re.range "a" "z")) (str.to_re ":")) re.all))))
-
-(push 1)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (str.in_re (js.substr (str var0) 4 undefined) (re.++ (str.to_re "") (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@") (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "-") (re.range "/" "\u{ff}")))) (str.to_re ".") (re.+ (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}"))) (str.to_re ":") (re.+ (re.range "\u{0}" "\u{ffff}")) (str.to_re ""))))
-
-(check-sat)
-
-(pop 2)
-
-(push 1)
-
-(assert (str.in_re (js.substr (str var0) 4 undefined) (re.++ (re.++ (str.to_re "") (re.opt (re.++ (str.to_re "git") (str.to_re "+"))) (re.+ (re.range "a" "z")) (str.to_re ":")) re.all)))
-
-(check-sat)
-
-(get-model)
-
-(check-sat)
-
-(push 1)
-
-(assert false)
-
-(pop 3)
-
-(push 1)
-
-(assert (> (str.indexof (js.substr (str var0) 4 undefined) "@" 0) 0))
-
-(push 1)
-
-(assert (not (str.in_re (js.substr (str var0) 4 undefined) (re.++ (re.++ (str.to_re "") (re.opt (re.++ (str.to_re "git") (str.to_re "+"))) (re.+ (re.range "a" "z")) (str.to_re ":")) re.all))))
-
-(check-sat)
-
-(get-model)
-
 (push 1)
-
-(assert (str.in_re (js.substr (str var0) 4 undefined) (re.++ (str.to_re "") (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@") (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "-") (re.range "/" "\u{ff}")))) (str.to_re ".") (re.+ (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}"))) (str.to_re ":") (re.+ (re.range "\u{0}" "\u{ffff}")) (str.to_re ""))))
-
-(check-sat)
 
-(get-model)
+(assert (not (str.in_re (str var0) (re.++ (str.to_re "") (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")) (re.union (re.range "\u{0}" "$") (re.range "&" "\u{ff}")) (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}")) (re.union (re.range "\u{0}" "r") (re.range "t" "\u{ff}")) (re.union (re.range "\u{0}" "-") (re.range "/" "\u{ff}")) (re.union (re.range "\u{0}" ",") (re.range "." "\u{ff}"))) (re.* (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")) (re.union (re.range "\u{0}" "$") (re.range "&" "\u{ff}")) (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}")) (re.union (re.range "\u{0}" "r") (re.range "t" "\u{ff}")))) (str.to_re "/") (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")) (re.union (re.range "\u{0}" "r") (re.range "t" "\u{ff}")) (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}")) (re.union (re.range "\u{0}" "$") (re.range "&" "\u{ff}")))) (re.opt (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (str.to_re "")))))
 
 (check-sat)
 
@@ -1659,195 +579,9 @@
 
 (push 1)
 
-(assert (not false))
-
 (check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (not (distinct (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) "")))
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (not (not (distinct (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) ""))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (not (distinct (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) "")))
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (distinct (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) ""))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (str.in_re (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all)))
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (not (str.in_re (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (str.in_re (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all)))
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (not (str.in_re (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) (re.++ (re.++ (str.to_re "") (str.to_re "file:")) re.all))))
-
-(check-sat)
-
-(get-model)
-
-; (assert (not (distinct (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) "")))
-
-(push 1)
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (distinct (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) ""))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (str.in_re (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all)))
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (not (str.in_re (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) (re.++ (re.++ (str.to_re "") (str.to_re "npm:")) re.all))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (distinct (str (js.typeof (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))) "string"))
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (not (distinct (str (js.typeof (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))) "string")))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (not (not (js.in (str.++ (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) "{""noGitPlus"":true,""noCommittish"":true}") (PutField (PutField (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined)))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert false)
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (= (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) ""))
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (not (= (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) "")))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (str.in_re (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) (re.++ (str.to_re "") (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")) (re.union (re.range "\u{0}" "$") (re.range "&" "\u{ff}")) (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}")) (re.union (re.range "\u{0}" "r") (re.range "t" "\u{ff}")) (re.union (re.range "\u{0}" "-") (re.range "/" "\u{ff}")) (re.union (re.range "\u{0}" ",") (re.range "." "\u{ff}"))) (re.* (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")) (re.union (re.range "\u{0}" "$") (re.range "&" "\u{ff}")) (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}")) (re.union (re.range "\u{0}" "r") (re.range "t" "\u{ff}")))) (str.to_re "/") (re.+ (re.inter (re.union (re.range "\u{0}" "9") (re.range ";" "\u{ff}")) (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")) (re.union (re.range "\u{0}" "r") (re.range "t" "\u{ff}")) (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}")) (re.union (re.range "\u{0}" "$") (re.range "&" "\u{ff}")))) (re.opt (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (str.to_re ""))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert false)
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
 
 (assert true)
-
-(check-sat)
 
 (get-model)
 
@@ -1901,11 +635,23 @@
 
 (assert (or (is-undefined regex_capture_18) (is-Str regex_capture_18)))
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
-; (assert (not (= (Str regex_exec_0) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))))
+(check-sat)
+
+; (assert (not (= (Str regex_exec_0) var0)))
+
+(get-model)
+
+(push 1)
+
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+
+; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
+
+; (assert (not (not (or (is-undefined (ite (= (Str regex_exec_0) var0) (Obj 6) null)) (is-null (ite (= (Str regex_exec_0) var0) (Obj 6) null))))))
 
 (check-sat)
 
@@ -1913,33 +659,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
-
-; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
-
-; (assert (not (not (or (is-undefined (ite (= (Str regex_exec_0) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 97) null)) (is-null (ite (= (Str regex_exec_0) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 97) null))))))
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
-
-; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
-
-; (assert (not (or (is-undefined (ite (= (Str regex_exec_0) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 97) null)) (is-null (ite (= (Str regex_exec_0) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 97) null)))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -1949,9 +669,23 @@
 
 (get-model)
 
+(pop 1)
+
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
+
+; (assert (not (js.ToBoolean (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 4)))))
+
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+
+(check-sat)
+
+(get-model)
+
+(push 1)
+
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -1961,23 +695,9 @@
 
 (get-model)
 
-(pop 1)
-
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
-
-; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
-
-; (assert (js.ToBoolean (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 1))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -1987,13 +707,27 @@
 
 (get-model)
 
+(pop 1)
+
+(push 1)
+
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+
+; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
+
+; (assert (not (js.ToBoolean (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 4)))))
+
+(check-sat)
+
+(get-model)
+
 (push 1)
 
 ; (declare-const regex_exec_20 String)
 
-(declare-const regex_exec_21 String)
-
 (declare-const regex_exec_22 String)
+
+(declare-const regex_exec_21 String)
 
 (declare-const regex_exec_24 String)
 
@@ -2031,11 +765,11 @@
 
 (assert (or (is-undefined regex_capture_37) (is-Str regex_capture_37)))
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
-; (assert (not (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))))
+; (assert (not (= (Str regex_exec_20) var0)))
 
 (check-sat)
 
@@ -2087,11 +821,11 @@
 
 (assert (or (is-undefined regex_capture_37) (is-Str regex_capture_37)))
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
-; (assert (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))))
+; (assert (= (Str regex_exec_20) var0))
 
 (check-sat)
 
@@ -2099,25 +833,11 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
-; (assert (not (not (or (is-undefined (ite (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 99) null)) (is-null (ite (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 99) null))))))
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
-
-; (assert (not (or (is-undefined (ite (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 99) null)) (is-null (ite (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 99) null)))))
-
-; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
+; (assert (not (not (or (is-undefined (ite (= (Str regex_exec_20) var0) (Obj 8) null)) (is-null (ite (= (Str regex_exec_20) var0) (Obj 8) null))))))
 
 (check-sat)
 
@@ -2125,7 +845,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
@@ -2135,49 +855,21 @@
 
 (get-model)
 
-(pop 1)
-
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
-
-; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
-
-; (assert (not (js.=== (GetField (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37)) (Num 1)) (Str "github"))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
-
-; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (not (js.ToBoolean (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2)))))
 
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
-
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
-; (assert (js.ToBoolean (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2))))
-
 (check-sat)
 
 (get-model)
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2191,7 +883,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2203,33 +895,19 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
-
-(check-sat)
 
 ; (assert (not (not (or (is-undefined (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2))) (is-null (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2)))))))
 
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
-
-; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
-
-; (assert (not (or (is-undefined (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2))) (is-null (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2))))))
-
 (check-sat)
 
 (get-model)
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2239,49 +917,21 @@
 
 (get-model)
 
-(pop 1)
-
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
-
-; (assert (distinct (str.replace (js.ToString (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2))) "/^www[.]/" "") "github.com"))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
-
-; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
-
-(check-sat)
 
 ; (assert (not (js.ToBoolean (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 1)))))
 
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
-
-; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
-
 (check-sat)
 
-; (assert (js.ToBoolean (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 1))))
-
 (get-model)
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2295,7 +945,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2307,11 +957,11 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
-; (assert (not (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))))
+; (assert (not (= (Str regex_exec_20) var0)))
 
 (check-sat)
 
@@ -2321,45 +971,31 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
-(check-sat)
+; (assert (= (Str regex_exec_20) var0))
 
-; (assert (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))))
+(check-sat)
 
 (get-model)
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
+
+(check-sat)
 
 ; (assert (js.=== (GetField (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37)) (Num 1)) (Str "bitbucket")))
 
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
-
-; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
-
-(check-sat)
-
-; (assert (not (js.=== (GetField (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37)) (Num 1)) (Str "bitbucket"))))
-
 (get-model)
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2369,28 +1005,14 @@
 
 (get-model)
 
-(pop 1)
-
 (push 1)
-
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
-
-; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
-
-(check-sat)
-
-; (assert (js.ToBoolean (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2))))
-
-(get-model)
-
-(push 1)
-
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
 ; (assert (not (js.!== (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2)) (Str "bitbucket.org"))))
 
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+
 (check-sat)
 
 (get-model)
@@ -2399,9 +1021,9 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
-
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
+
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (js.!== (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2)) (Str "bitbucket.org")))
 
@@ -2411,7 +1033,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2425,25 +1047,25 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
-; (assert (distinct (str.replace (js.ToString (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2))) "/^www[.]/" "") "bitbucket.org"))
-
 (check-sat)
+
+; (assert (distinct (str.replace (js.ToString (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2))) "/^www[.]/" "") "bitbucket.org"))
 
 (get-model)
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
-(check-sat)
-
 ; (assert (not (js.ToBoolean (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 1)))))
+
+(check-sat)
 
 (get-model)
 
@@ -2451,7 +1073,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2463,13 +1085,13 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
-(check-sat)
-
 ; (assert (js.ToBoolean (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 4))))
+
+(check-sat)
 
 (get-model)
 
@@ -2477,7 +1099,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2489,13 +1111,13 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
-(check-sat)
+; (assert (not (= (Str regex_exec_20) var0)))
 
-; (assert (not (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))))
+(check-sat)
 
 (get-model)
 
@@ -2503,11 +1125,11 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
-; (assert (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))))
+; (assert (= (Str regex_exec_20) var0))
 
 (check-sat)
 
@@ -2515,7 +1137,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
@@ -2529,7 +1151,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
@@ -2541,7 +1163,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2555,7 +1177,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2567,7 +1189,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2581,7 +1203,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2593,7 +1215,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2607,7 +1229,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2619,7 +1241,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2633,7 +1255,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2645,7 +1267,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2659,7 +1281,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2671,13 +1293,13 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
-(check-sat)
+; (assert (not (= (Str regex_exec_20) var0)))
 
-; (assert (not (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))))
+(check-sat)
 
 (get-model)
 
@@ -2685,11 +1307,11 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
-; (assert (= (Str regex_exec_20) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))))
+; (assert (= (Str regex_exec_20) var0))
 
 (check-sat)
 
@@ -2697,7 +1319,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
@@ -2711,7 +1333,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 99) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
+; (assert (= (GetProperties 8) (store (store (store (store EmptyObject "0" (Just (Str regex_exec_20))) "1" (Just regex_capture_23)) "2" (Just regex_capture_34)) "3" (Just regex_capture_37))))
 
 ; (assert (and (= regex_exec_20 (str.++ regex_exec_21 regex_exec_22 regex_exec_24 regex_exec_25 regex_exec_31 regex_exec_36)) (str.in_re regex_exec_21 (str.to_re "")) (ite (= regex_exec_22 "") (is-undefined regex_capture_23) (= regex_capture_23 (Str regex_exec_22))) (str.in_re regex_exec_24 (str.to_re ":")) (and (str.in_re regex_exec_26 (re.++ (re.+ (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.to_re "@"))) (and (= regex_exec_25 (str.++ regex_exec_27 regex_exec_30)) (and (= regex_exec_27 (str.++ regex_exec_28 regex_exec_29)) (str.in_re regex_exec_28 (re.* (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}"))) (str.in_re regex_exec_29 (re.union (re.range "\u{0}" "?") (re.range "A" "\u{ff}")))) (str.in_re regex_exec_30 (str.to_re "@"))) (or (= regex_exec_25 regex_exec_26) (= regex_exec_25 ""))) (and (str.in_re regex_exec_32 (re.++ (re.* (re.union (re.range "\u{0}" ".") (re.range "0" "\u{ff}"))) (str.to_re "/"))) (and (= regex_exec_31 (str.++ regex_exec_33 regex_exec_35)) (ite (= regex_exec_33 "") (is-undefined regex_capture_34) (= regex_capture_34 (Str regex_exec_33))) (str.in_re regex_exec_35 (str.to_re "/"))) (or (= regex_exec_31 regex_exec_32) (= regex_exec_31 ""))) (ite (= regex_exec_36 "") (is-undefined regex_capture_37) (= regex_capture_37 (Str regex_exec_36)))))
 
@@ -2723,7 +1345,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2737,7 +1359,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2749,7 +1371,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2763,7 +1385,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2775,13 +1397,13 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
-; (assert (not (distinct (str.replace (js.ToString (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2))) "/^www[.]/" "") "gist.github.com")))
-
 (check-sat)
+
+; (assert (not (distinct (str.replace (js.ToString (GetField (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18)) (Num 2))) "/^www[.]/" "") "gist.github.com")))
 
 (get-model)
 
@@ -2789,7 +1411,7 @@
 
 (push 1)
 
-; (assert (= (GetProperties 97) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
+; (assert (= (GetProperties 6) (store (store (store (store (store EmptyObject "0" (Just (Str regex_exec_0))) "1" (Just regex_capture_3)) "2" (Just regex_capture_6)) "3" (Just regex_capture_11)) "4" (Just regex_capture_18))))
 
 ; (assert (and (= regex_exec_0 (str.++ regex_exec_1 regex_exec_2 regex_exec_4 regex_exec_5 regex_exec_7 regex_exec_8 regex_exec_10 regex_exec_12 regex_exec_16 regex_exec_19)) (str.in_re regex_exec_1 (str.to_re "")) (ite (= regex_exec_2 "") (is-undefined regex_capture_3) (= regex_capture_3 (Str regex_exec_2))) (str.in_re regex_exec_4 (str.to_re "@")) (ite (= regex_exec_5 "") (is-undefined regex_capture_6) (= regex_capture_6 (Str regex_exec_5))) (str.in_re regex_exec_7 (str.to_re ":")) (and (str.in_re regex_exec_9 (str.to_re "/")) (str.in_re regex_exec_8 (str.to_re "/")) (or (= regex_exec_8 regex_exec_9) (= regex_exec_8 ""))) (ite (= regex_exec_10 "") (is-undefined regex_capture_11) (= regex_capture_11 (Str regex_exec_10))) (and (str.in_re regex_exec_13 (re.++ (str.to_re ".") (str.to_re "git"))) (and (= regex_exec_12 (str.++ regex_exec_14 regex_exec_15)) (str.in_re regex_exec_14 (str.to_re ".")) (str.in_re regex_exec_15 (str.to_re "git"))) (or (= regex_exec_12 regex_exec_13) (= regex_exec_12 ""))) (and (str.in_re regex_exec_17 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (ite (= regex_exec_16 "") (is-undefined regex_capture_18) (= regex_capture_18 (Str regex_exec_16))) (or (= regex_exec_16 regex_exec_17) (= regex_exec_16 ""))) (str.in_re regex_exec_19 (str.to_re ""))))
 
@@ -2819,7 +1441,23 @@
 
 (push 1)
 
-; (assert (js.ToBoolean (GetField (PutField (PutField (PutField (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))) (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))) (Str "{""noGitPlus"":true,""noCommittish"":true}")))))
+(assert (js.ToBoolean (GetField (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")))))
+
+(check-sat)
+
+(pop 1)
+
+(push 1)
+
+(assert (not (js.ToBoolean (GetField (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}"))))))
+
+(check-sat)
+
+(get-model)
+
+(push 1)
+
+; (assert (not (distinct (str var0) "")))
 
 (check-sat)
 
@@ -2829,7 +1467,7 @@
 
 (push 1)
 
-; (assert (not (js.ToBoolean (GetField (PutField (PutField (PutField (PutField EmptyObject (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ var0 (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))) (Str "{""noGitPlus"":true,""noCommittish"":true}")) undefined) (js.+ (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))) (Str "{""noGitPlus"":true,""noCommittish"":true}"))))))
+(assert (distinct (str var0) ""))
 
 (check-sat)
 
@@ -2837,7 +1475,7 @@
 
 (push 1)
 
-; (assert (not (distinct (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) "")))
+(assert (not (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.opt (re.++ (str.to_re "git") (str.to_re "+"))) (re.+ (re.range "a" "z")) (str.to_re ":")) re.all))))
 
 (check-sat)
 
@@ -2847,7 +1485,7 @@
 
 (push 1)
 
-; (assert (distinct (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) ""))
+(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.opt (re.++ (str.to_re "git") (str.to_re "+"))) (re.+ (re.range "a" "z")) (str.to_re ":")) re.all)))
 
 (check-sat)
 
@@ -2855,21 +1493,43 @@
 
 (push 1)
 
-; (assert (not (str.in_re (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) (re.++ (re.++ (str.to_re "") (re.opt (re.++ (str.to_re "git") (str.to_re "+"))) (re.+ (re.range "a" "z")) (str.to_re ":")) re.all))))
+(declare-const regex_exec_38 String)
+
+(declare-const regex_exec_39 String)
+
+(declare-const regex_exec_40 String)
+
+(declare-const regex_exec_43 String)
+
+(declare-const regex_exec_41 String)
+
+(declare-const regex_exec_44 String)
+
+(declare-const regex_exec_45 String)
+
+(declare-const regex_exec_46 String)
+
+(declare-const regex_exec_48 String)
+
+(declare-const regex_capture_42 Val)
+
+(assert (or (is-undefined regex_capture_42) (is-Str regex_capture_42)))
+
+(declare-const regex_capture_47 Val)
+
+(assert (or (is-undefined regex_capture_47) (is-Str regex_capture_47)))
+
+(assert (= (GetProperties 15) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
+
+(assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
+
+(assert (not (= (Str regex_exec_38) var0)))
 
 (check-sat)
 
 (get-model)
 
 (pop 1)
-
-(push 1)
-
-; (assert (str.in_re (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)) (re.++ (re.++ (str.to_re "") (re.opt (re.++ (str.to_re "git") (str.to_re "+"))) (re.+ (re.range "a" "z")) (str.to_re ":")) re.all)))
-
-(check-sat)
-
-(get-model)
 
 (push 1)
 
@@ -2899,85 +1559,43 @@
 
 (assert (or (is-undefined regex_capture_47) (is-Str regex_capture_47)))
 
-(assert (= (GetProperties 105) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
+(assert (= (GetProperties 15) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
 
 (assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
 
-; (assert (not (= (Str regex_exec_38) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined))))))
+(assert (= (Str regex_exec_38) var0))
 
 (check-sat)
 
 (get-model)
+
+(push 1)
+
+(assert (= (GetProperties 15) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
+
+(assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
+
+(assert (not (not (or (is-undefined (ite (= (Str regex_exec_38) var0) (Obj 15) null)) (is-null (ite (= (Str regex_exec_38) var0) (Obj 15) null))))))
+
+(check-sat)
 
 (pop 1)
 
 (push 1)
 
-(declare-const regex_exec_38 String)
-
-(declare-const regex_exec_39 String)
-
-(declare-const regex_exec_40 String)
-
-(declare-const regex_exec_41 String)
-
-(declare-const regex_exec_43 String)
-
-(declare-const regex_exec_44 String)
-
-(declare-const regex_exec_45 String)
-
-(declare-const regex_exec_46 String)
-
-(declare-const regex_exec_48 String)
-
-(declare-const regex_capture_42 Val)
-
-(assert (or (is-undefined regex_capture_42) (is-Str regex_capture_42)))
-
-(declare-const regex_capture_47 Val)
-
-(assert (or (is-undefined regex_capture_47) (is-Str regex_capture_47)))
-
-(assert (= (GetProperties 105) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
-
-(assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
-
-; (assert (= (Str regex_exec_38) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (= (GetProperties 105) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
-
-(assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
-
-; (assert (not (not (or (is-undefined (ite (= (Str regex_exec_38) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 105) null)) (is-null (ite (= (Str regex_exec_38) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 105) null))))))
-
-(check-sat)
-
-(get-model)
-
-(pop 1)
-
-(push 1)
-
-(assert (= (GetProperties 105) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
+(assert (= (GetProperties 15) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
 
 (assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
 
 (check-sat)
 
-; (assert (not (or (is-undefined (ite (= (Str regex_exec_38) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 105) null)) (is-null (ite (= (Str regex_exec_38) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))) (Obj 105) null)))))
+(assert (not (or (is-undefined (ite (= (Str regex_exec_38) var0) (Obj 15) null)) (is-null (ite (= (Str regex_exec_38) var0) (Obj 15) null)))))
 
 (get-model)
 
 (push 1)
 
-(assert (= (GetProperties 105) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
+(assert (= (GetProperties 15) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
 
 (assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
 
@@ -2991,7 +1609,7 @@
 
 (push 1)
 
-(assert (= (GetProperties 105) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
+(assert (= (GetProperties 15) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
 
 (assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
 
@@ -3000,4 +1618,94 @@
 (check-sat)
 
 (get-model)
+
+(push 1)
+
+(pop 53)
+(declare-const var0 Val)
+(assert (is-Str var0))
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(push 1)
+(declare-const regex_exec_38 String)
+(declare-const regex_exec_39 String)
+(declare-const regex_exec_40 String)
+(declare-const regex_exec_41 String)
+(declare-const regex_exec_43 String)
+(declare-const regex_exec_44 String)
+(declare-const regex_exec_45 String)
+(declare-const regex_exec_46 String)
+(declare-const regex_exec_48 String)
+(declare-const regex_capture_42 Val)
+(assert (or (is-undefined regex_capture_42) (is-Str regex_capture_42)))
+(declare-const regex_capture_47 Val)
+(assert (or (is-undefined regex_capture_47) (is-Str regex_capture_47)))
+(assert (= (GetProperties 15) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
+(assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
+(assert (= (Str regex_exec_38) var0))
+(push 1)
+(assert (= (GetProperties 15) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
+(assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
+(assert (not (or (is-undefined (ite (= (Str regex_exec_38) var0) (Obj 15) null)) (is-null (ite (= (Str regex_exec_38) var0) (Obj 15) null)))))
+(push 1)
+(assert (= (GetProperties 15) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
+(assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
+(assert (not (or (is-undefined (GetField (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47)) (Num 1))) (is-null (GetField (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47)) (Num 1))))))
+(push 1)
+(declare-const regex_exec_49 String)
+
+(assert (not (not (= (Str regex_exec_49) (GetField (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47)) (Num 1))))))
+
+(check-sat)
+
+(get-model)
+
+(exit)
 
