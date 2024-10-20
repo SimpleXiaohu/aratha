@@ -40,7 +40,8 @@ function range(a, b) {
 }
 
 // huzi add, ostrich supports unicode and use \u{0000} to stand for null
-const ALL_CLASS = range("\u{0000}", "\u{FFFF}");
+const ALL_CLASS = "re.allchar";
+// const ALL_CLASS = range("\u{0000}", "\u{FFFF}");
 // const ALL_CLASS = union([range("\x01", "\xFF"), range("\0", "\0")]);
 
 function star(a) {
@@ -157,7 +158,7 @@ class Or {
     visit(visitor) {
         visitor(this);
         for (const child of this.disjuncts) {
-            switch(child.constructor) {
+            switch (child.constructor) {
                 case Array:
                     for (const grandChildren of child)
                         if (grandChildren.visit)
@@ -292,7 +293,7 @@ class Repeat extends Quantifier {
             } else if (this.min === 1) {
                 return ["re.+", regex];
             } else {
-                return ["re.++", 
+                return ["re.++",
                     [`(_ re.loop ${this.min} ${this.min})`, regex],
                     ["re.*", regex]
                 ];
@@ -493,7 +494,6 @@ class CaptureVisitor {
         this.captureIdx = 0;
     }
 
-    handle 
 
     visit(ast, strName) {
         switch (ast.constructor) {
@@ -572,7 +572,7 @@ class CaptureVisitor {
                 }
             case Opt: {
                 const newExec = this._genName()
-                return ["and", 
+                return ["and",
                     ["str.in_re", newExec, ast.subject.toRegexFormula()],
                     this.visit(ast.subject, strName),
                     ["or", ["=", strName, newExec], ["=", strName, '""']]
@@ -591,9 +591,9 @@ class CaptureVisitor {
                 // do not handle {0,0} because it is meaningless
                 const newExec1 = this._genName()
                 const newExec2 = this._genName()
-                const newMin = ast.min > 0 ? ast.min - 1: ast.min 
-                const newMax = ast.max > 0 ? ast.max - 1: ast.max
-                const exec2Constraints = ast.min > 0 ? 
+                const newMin = ast.min > 0 ? ast.min - 1 : ast.min
+                const newMax = ast.max > 0 ? ast.max - 1 : ast.max
+                const exec2Constraints = ast.min > 0 ?
                     ast.subject.toRegexFormula() :
                     ["re.opt", ast.subject.toRegexFormula()]
                 return ["and",
@@ -610,9 +610,12 @@ class CaptureVisitor {
             case Capture: {
                 const name = this._nextCaptureName();
                 // return ["and", ["=", name, ["Str", strName]], this.visit(ast.expr, strName)];
-                return ["ite", ["=", strName, '""'],
-                    ["is-undefined", name],
-                    ["=", name, ["Str", strName]]
+                return ["and",
+                    ["ite", ["=", strName, '""'],
+                        ["is-undefined", name],
+                        ["=", name, ["Str", strName]]
+                    ],
+                    this.visit(ast.expr, strName),
                 ]
             }
             default:
@@ -627,7 +630,7 @@ class CaptureVisitor {
     }
 }
 class CheckCaptureVisitor {
-    constructor () {
+    constructor() {
         this._containsCapture = false
         this.visitor = this.visitor.bind(this)
     }
