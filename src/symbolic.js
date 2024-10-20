@@ -1572,9 +1572,10 @@ class RegExpInstance extends SymbolicValue {
         }
         const val = this.regexp.value;
         const regexFormula = RegExpParser.parse(_.isRegExp(val) ? val.source : val);
-        const temp = [["str.in_re", this.instance.toStringFormula(), regexFormula.toRegexFormula()]];
-        console.log("temp", temp);
-        return temp;
+        // const temp = [["str.in_re", this.instance.toStringFormula(), regexFormula.toRegexFormula()]];
+        // console.log("temp", temp);
+        // return temp;
+        return [["str.in_re", this.instance.toStringFormula(), regexFormula.toRegexFormula()]];
     }
 
     toFormula() {
@@ -1648,10 +1649,33 @@ class Temporary {
 }
 exports.Temporary = Temporary;
 
-const { CaptureVisitor, CheckCaptureVisitor } = require("./regexpast");
+const { CaptureVisitor } = require("./regexpast");
 const { debugPrintln } = require("./util/print");
 
 const TOOLCONFIG = require("../toolconfig.json");
+
+J$.RedosDetectResults = {
+    "^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$": { result: false },
+    "^([^:]+):(?:[^@]+@)?(?:([^/]*)\\/)?([^#]+)": { result: false }
+}
+J$.meetReDoS = false;
+
+function GetPureRegex(str) {
+    // 检查字符串是否以 "/" 开头
+    if (str.startsWith('/')) {
+        // 使用正则表达式匹配字符串
+        const regex = /\/([\s\S]*)\/([gymusy])?/;
+        const match = str.match(regex);
+        if (match && match[1]) {
+            // 如果匹配到了，返回第一个捕获组中的内容
+            return match[1];
+        }
+        // 如果没有匹配到，返回原字符串
+        return str;
+    }
+    // 如果不是以 "/" 开头，直接返回该字符串
+    return str;
+}
 
 
 class RegExpExec extends SymbolicValue {
@@ -1663,13 +1687,13 @@ class RegExpExec extends SymbolicValue {
 
         console.log("regexp", regex);
 
-        this.constraint = "";
+        // this.constraint = "";
 
-        // 调用命令"java -jar /home/supermaxine/Test.jar [base64 of regex]"，返回一个字符串，即为约束
-        const command = "java -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -jar "+TOOLCONFIG["ReDoSHunter4Symbolic"].path+" \"" + Buffer.from(regex.value.toString()).toString('base64') + "\""
-        console.log("command:\n", command, "\n\n");
-        this.constraint = execSync(command).toString();
-        console.log("\n\nregex constraint:\n", this.constraint, "\n\n");
+        // // 调用命令"java -jar /home/supermaxine/Test.jar [base64 of regex]"，返回一个字符串，即为约束
+        // const command = "java -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -jar "+TOOLCONFIG["ReDoSHunter4Symbolic"].path+" \"" + Buffer.from(regex.value.toString()).toString('base64') + "\""
+        // console.log("command:\n", command, "\n\n");
+        // this.constraint = execSync(command).toString();
+        // console.log("\n\nregex constraint:\n", this.constraint, "\n\n");
 
         this._temps = [];
         this._caps = [];
@@ -1686,15 +1710,41 @@ class RegExpExec extends SymbolicValue {
             return name;
         };
         const visitor = new CaptureVisitor(genName, genCapture);
-        const checkCapture = new CheckCaptureVisitor()
-        const regexAst = this.getRegexAST()
-        regexAst.visit(checkCapture.visitor)
-        if (checkCapture._containsCapture)
-            this._formula = visitor.visit(regexAst, genName());
-        else {
-            const wholeExec = genName()
-            this._formula = ["str.in_re", wholeExec, regexAst.toRegexFormula()]
+
+        // 判断regex.value在J$.RedosDetectResults是否存在
+        let key = GetPureRegex(regex.value.toString());
+        let RedosDetectResult = { result: false };
+        if (key in J$.RedosDetectResults) {
+            RedosDetectResult = J$.RedosDetectResults[key];
+        } else {
+            const command = "java -Dorg.slf4j.simpleLogger.defaultLogLevel=warn -jar "+TOOLCONFIG["ReDoSHunter4Symbolic"].path+" \"" + Buffer.from(key).toString('base64') + "\""
+            let result = execSync(command).toString();
+            console.log("result", result);
+            if (result === "Safe\r\n\r\n" || result === "") {
+                RedosDetectResult = { result: false };
+            }
+            else {
+                RedosDetectResult = {
+                    result: true,
+                    constraint: result
+                };
+            }
+            J$.RedosDetectResults[key] = RedosDetectResult;
         }
+
+        if (!RedosDetectResult.result) {
+            this._formula = visitor.visit(this.getRegexAST(), genName());
+            console.log(this._formula);
+        }
+        else {
+            // this._formula = RedosDetectResult.constraint;
+            this._formula = visitor.visit(this.getRegexAST(), genName());
+            J$.meetReDoS = true;
+            console.log("meet ReDoS regex")
+            console.log(this._formula);
+        }
+
+
     }
 
     visit(visitor) {

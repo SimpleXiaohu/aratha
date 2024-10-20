@@ -1,20 +1,20 @@
 {
   "z3" : {
-    "path" : "/home/hudh/github/aratha/solverbin/z3/z3"
+    "path" : "D:/Documents/ISSTA/aratha/solverbin/z3/z3"
   },
   "cvc5" : {
-      "path" : "/home/hudh/github/aratha/solverbin/cvc5/cvc5"
+    "path" : "D:/Documents/ISSTA/aratha/solverbin/cvc5win64/bin/cvc5.exe"
   },
   "z3str" : {
-      "path" : "/home/hudh/github/aratha/solverbin/z3str3/z3"
+      "path" : "D:/Documents/ISSTA/aratha/solverbin/z3str3/z3"
   },
   "ostrich" : {
-      "path" : "/home/hudh/github/aratha/solverbin/ostrich/ostrich"
+      "path" : "D:/Documents/ISSTA/aratha/solverbin/ostrich/ostrich"
   },
   "ostrichcea" : {
-      "path" : "/home/hudh/github/aratha/../ostrich/ostrichCEA"
+      "path" : "D:/Documents/ISSTA/aratha/../ostrich/ostrichCEA"
   },
   "ReDoSHunter4Symbolic" : {
-    "path" : "/home/hudh/github/aratha/solverbin/ReDoSHunter4Symbolic/Main.jar"
+    "path" : "D:/Documents/ISSTA/aratha/solverbin/ReDoSHunter4Symbolic/Main.jar"
   }
 }
