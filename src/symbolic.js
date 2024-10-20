@@ -1653,6 +1653,7 @@ const { CaptureVisitor } = require("./regexpast");
 const { debugPrintln } = require("./util/print");
 
 const TOOLCONFIG = require("../toolconfig.json");
+const sexpr = require("./sexpr");
 
 J$.RedosDetectResults = {
     "^([^@]+)@([^:/]+):[/]?((?:[^/]+[/])?[^/]+?)(?:[.]git)?(#.*)?$": { result: false },
@@ -1743,6 +1744,8 @@ class RegExpExec extends SymbolicValue {
             console.log("meet ReDoS regex")
             console.log(this._formula);
         }
+
+        console.log("this._formula", sexpr.stringify(this._formula));
 
 
     }

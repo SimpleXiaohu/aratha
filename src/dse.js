@@ -367,14 +367,18 @@ class DSE {
 
     async execute() {
         // if is first time, we need to execute the program
+        // if (this._inputs.length === 1 && this._inputs[0].step === 0) {
+        let input = ""
         if (this._inputs.length === 1 && this._inputs[0].step === 0) {
             J$.timeReDoS51 = 0
             // 写入文件，如果文件不存在会被创建
             fs.writeFile('D:\\Documents\\ISSTA\\aratha\\tmpLog.smt2', '', (err) => {
                 if (err) throw err;
             });
+            input = "git+ssh://git@github.com:user/repo.git"
+        } else {
+            input = await this._nextInput();
         }
-        const input = await this._nextInput();
         if (input === undefined)
             return false;
         console.log("testing input: ", input);
