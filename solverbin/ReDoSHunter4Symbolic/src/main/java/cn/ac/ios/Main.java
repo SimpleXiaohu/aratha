@@ -4,6 +4,9 @@ import cn.ac.ios.Bean.ReDoSBean;
 import cn.ac.ios.Utils.multithread.ITask;
 import cn.ac.ios.Utils.multithread.MultiBaseBean;
 import cn.ac.ios.Utils.multithread.MultiThreadUtils;
+import com.github.hycos.regex2smtlib.Translator;
+import com.github.hycos.regex2smtlib.translator.exception.FormatNotAvailableException;
+import com.github.hycos.regex2smtlib.translator.exception.TranslationException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -42,7 +45,7 @@ public class Main {
      *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TranslationException, FormatNotAvailableException {
         Logger.getGlobal().setLevel(Level.OFF);
         commandLineSettings = new HashMap<>();
         for (String arg : args) {
@@ -83,13 +86,14 @@ public class Main {
         String regex = new String(Base64.getDecoder().decode(regex_base64));
         // regex = "^[^@]+@[^:.]+\\.[^:]+:.+$";
         // regex = "^git\\+ssh:\\/\\/([^:#]+:[^#]+(?:\\.git)?)(?:#(.*))?$";
-        regex = ":[0-9]+\\/?.*$";
+        // regex = ":[0-9]+\\/?.*$";
         // System.out.println(regex);
         System.out.println(getResult(0, regex));
     }
 
 
-    public static String getResult(int regexId, String regex) {
+    public static String getResult(int regexId, String regex) throws TranslationException, FormatNotAvailableException {
+        String regexInSmtlib = Translator.INSTANCE.translate("cvc4", regex);
         int timeout = Integer.parseInt(commandLineSettings.getOrDefault(TIMEOUT_SETTING, String.valueOf(DEFAULT_TIMEOUT)));
         // String model = commandLineSettings.getOrDefault(ATTACK_MODEL, ATTACK_MODEL_MULTI);
         String model = commandLineSettings.getOrDefault(ATTACK_MODEL, ATTACK_MODEL_SINGLE);
@@ -150,30 +154,36 @@ public class Main {
 
                             String smtlib =
                                     // "(set-logic QF_SLIA)\n" +
-                                    "(declare-const result String)\n" +
-                                    "(declare-const attack String)\n" +
+                                    "(declare-const attack RegLan)\n" +
                                     "(declare-const prefix RegLan)\n" +
                                     "(declare-const infix RegLan)\n" +
-                                    "(declare-const infixs String)\n" +
-                                    "(declare-const postfix RegLan)\n" +
-                                    "(declare-const postfixs String)\n" +
+                                    "(declare-const suffix RegLan)\n" +
                                     "\n" +
-                                    "(assert (str.in_re attack (re.++ prefix ((_ re.loop " + bean.getAttackBeanList().get(i).getRepeatTimes() + " " + bean.getAttackBeanList().get(i).getRepeatTimes() + ") infix))))\n" +
                                     "(assert (= prefix \n" +
                                     "    " + ((smtOfPrefix.isEmpty()) ? "(str.to_re \"\")" : smtOfPrefix) + "\n" +
                                     "))\n" +
                                     "(assert (= infix \n" +
                                     "        " + ((smtOfInfix.isEmpty() ? "(str.to_re \"\")" : smtOfInfix)) + "\n" +
                                     "))\n" +
-                                    "(assert (= postfix \n" +
-                                    "        " + ((smtOfSuffix.isEmpty() ? "(str.to_re \"\")" : smtOfSuffix)) + "\n" +
+                                    "\n" +
+                                    "(declare-const infix_s String)\n" +
+                                    // "(assert (str.in_re infix_s ((_ re.loop "+bean.getAttackBeanList().get(i).getRepeatTimes()+" "+bean.getAttackBeanList().get(i).getRepeatTimes()+") infix)))" +
+                                    "(assert (str.in_re infix_s ((_ re.loop 20 20) infix)))\n" +
+                                    "(assert (>= (str.len infix_s) 20))\n" +
+                                    "\n" +
+                                    // "(assert (= suffix re.all))\n" +
+                                    "(assert (= suffix \n" +
+                                    "    " + ((smtOfSuffix.isEmpty()) ? "(str.to_re \"\")" : smtOfSuffix) + "\n" +
                                     "))\n" +
-                                    "(assert (str.in_re postfixs postfix))\n" +
-                                    "(assert (>= (str.len postfixs) 1))\n" +
-                                    "(assert (>= (str.len infixs) 1))\n" +
-                                    "(assert (= result (str.++ attack postfixs)))\n"
+                                    "\n" +
+                                    "(assert (= attack (re.++ prefix (str.to_re infix_s) suffix)))\n" +
+                                    "(declare-const regex_exec_ans String)\n" +
+                                    "(assert (str.in_re regex_exec_ans attack))\n"
+                                            // +
+                                    // "(assert (not (str.in_re regex_exec_ans " + regexInSmtlib + ")))\n"
+                                            // +
                                     // "(check-sat)\n" +
-                                    // "(get-model)"
+                                    // "(get-model)\n" +
                                             ;
 
 

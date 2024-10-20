@@ -271,6 +271,9 @@ const { myLog, debugPrintln } = require("./util/print");
                         } else if (timedOut) {
                             console.log("terminated: timed out");
                             delete searchers[s];
+                        } else if (J$.ReDosGenSuccess) {
+                            console.log("terminated: ReDoS generated");
+                            delete searchers[s];
                         }
                     }
                 }

@@ -2,7 +2,7 @@
 
 const _ = require("lodash");
 const { BooleanConstraint, TypeConstraint } = require("./constraint");
-const { SymbolicValue, Constant, Variable, Temporary, RegExpExec, Unary} = require("./symbolic");
+const { SymbolicValue, Constant, Variable, Temporary, RegExpExec, Unary, RedosResult} = require("./symbolic");
 const { parseModel } = require("./model");
 const Type = require("./type");
 const sexpr = require("./sexpr");
@@ -248,10 +248,15 @@ class ConstraintCollector {
                     this.solver.declareConst(expr.name, expr.sort);
                 }
             }
-            // else if (expr instanceof RegExpExec) {
+            // if (expr instanceof RegExpExec && expr.RedosDetectResult.getResult()) {
             //     // console.log("RegExpExec", expr)
-            //     this.solver.writeRegexConstraint(expr.constraint+"\n"+"(assert = "+ expr.str.name +" result )\n")
+            //     // this.solver.writeReDoSConstraint(expr.RedosDetectResult.constraint+"\n"+"(assert = "+ expr.str.name +" result )\n")
+            //     this.solver.writeReDoSConstraint(expr.RedosDetectResult.getConstraint()+"\n"+"(assert (= (Str "+ expr._temps[0] +") (Str regex_exec_ans) ))\n")
             // }
+            else if (expr instanceof RedosResult && expr.getResult()) {
+                J$.addReDosConstraint = true;
+                this.solver.writeReDoSConstraint(expr.getConstraint())
+            }
         });
     }
 
@@ -268,7 +273,10 @@ class ConstraintCollector {
 
     _assertExtraConstraints(expr) {
         this._collect(expr, (expr) => {
-            if (!(expr instanceof Temporary)) {
+            if (expr instanceof RedosResult && expr.getResult()) {
+                // this.solver.writeReDoSConstraint(expr.getConstraint())
+            }
+            else if (!(expr instanceof Temporary)) {
                 _.forEach(expr.getConstraints(), (c) => this._assert(sexpr.stringify(c)));
             }
         });
@@ -347,10 +355,20 @@ class ConstraintCollector {
         status = await this.checkSat();
         if (status !== "sat")
             return { status: status };
-        return { status: "sat", model: await this.getModel() };
+        let tmp = { status: "sat", model: await this.getModel() }
+        if (J$.addReDosConstraint && tmp.status === "sat") {
+            J$.ReDosGenSuccess = true;
+            console.log("ReDoS Gen Success!\n", tmp.model)
+            fs.appendFile('D:\\Documents\\ISSTA\\aratha\\tmpLog.smt2', tmp.model, (err) => {
+                if (err) throw err;
+            });
+        }
+        return tmp;
     }
 }
 
+J$.addReDosConstraint = false;
+J$.ReDosGenSuccess = false;
 class DSE {
     constructor(solver, program, options) {
         _.defaults(options, {
@@ -364,17 +382,23 @@ class DSE {
         this._workQueue = [];
         this._itemCount = 0;
     }
-
     async execute() {
+        J$.addReDosConstraint = false;
         // if is first time, we need to execute the program
-        if (this._inputs.length === 1 && this._inputs[0].step === 0) {
+        let input = await this._nextInput();
+        if (!this.notfirst) {
+            this.notfirst = true
             J$.timeReDoS51 = 0
             // 写入文件，如果文件不存在会被创建
             fs.writeFile('D:\\Documents\\ISSTA\\aratha\\tmpLog.smt2', '', (err) => {
                 if (err) throw err;
             });
+            input = { model: { var0: "git+ssh://username@hostname:repo.git"}, step: 0 }
+            // input.model["var0"] = "git+ssh://username@hostname:repo.git"
+        } else if (J$.ReDosGenSuccess) {
+            return true;
         }
-        const input = await this._nextInput();
+        // input = await this._nextInput();
         if (input === undefined)
             return false;
         console.log("testing input: ", input);
@@ -413,15 +437,15 @@ class DSE {
             let item = this._workQueue[i];
             for (let j = 0; j < item.constraints.length; j++) {
                 let constraint = item.constraints[j];
-                if (constraint instanceof TypeConstraint && constraint.subject instanceof RegExpExec && constraint.subject._temps[0].name === "regex_exec_38") {
+                if (constraint instanceof TypeConstraint && constraint.subject instanceof RegExpExec && constraint.subject._temps[0].name === "regex_exec_61") {
                     myFavoriteWorkIndex = i
-                    console.log("regex_exec_38 get!")
-                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof RegExpExec && constraint.expr._temps[0].name === "regex_exec_38") {
+                    console.log("regex_exec_61 get!")
+                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof RegExpExec && constraint.expr._temps[0].name === "regex_exec_61") {
                     myFavoriteWorkIndex = i
-                    console.log("regex_exec_38 get!")
-                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof Unary && constraint.expr.expr instanceof RegExpExec && constraint.expr.expr._temps[0].name === "regex_exec_49") {
+                    console.log("regex_exec_61 get!")
+                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof Unary && constraint.expr.expr instanceof RegExpExec && constraint.expr.expr._temps[0].name === "regex_exec_83") {
                     myFavoriteWorkIndex = i
-                    console.log("regex_exec_49 get!")
+                    console.log("regex_exec_83 get!")
                     J$.ReDoS51 = true
                 }
             }

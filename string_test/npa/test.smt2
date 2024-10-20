@@ -3084,7 +3084,22 @@
 (declare-const regex_capture_47 Val)
 (assert (or (is-undefined regex_capture_47) (is-Str regex_capture_47)))
 (assert (= (GetProperties 105) (store (store (store EmptyObject "0" (Just (Str regex_exec_38))) "1" (Just regex_capture_42)) "2" (Just regex_capture_47))))
-(assert (and (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) (str.in_re regex_exec_39 (str.to_re "")) (str.in_re regex_exec_40 (str.to_re "git+ssh://")) (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) (and (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) (and (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) (str.in_re regex_exec_45 (str.to_re "#")) (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))) (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))) (str.in_re regex_exec_48 (str.to_re ""))))
+(assert (and 
+    (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) 
+    (str.in_re regex_exec_39 (str.to_re "")) 
+    (str.in_re regex_exec_40 (str.to_re "git+ssh://")) 
+    (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) 
+    (and 
+        (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) ;
+        (and 
+            (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) 
+            (str.in_re regex_exec_45 (str.to_re "#")) 
+            (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))
+        ) 
+        (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))
+    ) 
+    (str.in_re regex_exec_48 (str.to_re ""))
+))
 ; (assert (= (Str regex_exec_38) (Str (str.++ "git+ssh://" (js.substr (str var0) 4 undefined)))))
 (assert (= (Str regex_exec_38) var0))
 (push 1)
@@ -3136,68 +3151,92 @@
 
 ;-----------------------------------------------------------
 
+; (declare-const prefix RegLan)
+; (declare-const infix RegLan)
+; (declare-const suffix RegLan)
+; (declare-const attack RegLan)
+
+; ; (assert (str.in_re attack (re.++ prefix ((_ re.loop 40000 40000) infix))))
+; (assert (= prefix ;:
+;      (str.to_re "\u{3a}")
+; ))
+; (assert (= infix 
+;     (re.inter  
+;       (re.++ 
+;         (re.+ (re.range "\u{30}" "\u{39}") ) ;[0-9]+
+;         (re.* ;\S*
+;           (re.union 
+;             (re.range "\u{00}" "\u{09}") 
+;             (re.range "\u{0b}" "\u{0c}") 
+;             (re.range "\u{0e}" "\u{84}") 
+;             (re.range "\u{86}" "\u{ff}")
+;           ) 
+;         )
+;       )  
+;       (re.++ 
+;         (re.+ (re.range "\u{30}" "\u{39}") ) ;[0-9]+
+;         (re.++ ;\/?\S*
+;           (re.opt  (str.to_re "\u{2f}") ) 
+;           (re.* 
+;             (re.union 
+;               (re.range "\u{00}" "\u{09}") 
+;               (re.range "\u{0b}" "\u{0c}") 
+;               (re.range "\u{0e}" "\u{84}") 
+;               (re.range "\u{86}" "\u{ff}")
+;             ) 
+;           )
+;         )
+;       ) 
+;     )
+; ))
+; ; (assert (= postfix 
+; ;          (re.inter  (re.++  (str.to_re "\u{30}") (re.*  (re.union (re.union (re.range "\u{09}" "\u{0d}") (re.range "\u{20}" "\u{20}") (re.range "\u{85}" "\u{85}") (re.range "\u{a0}" "\u{a0}")) (re.union (re.range "\u{00}" "\u{08}") (re.range "\u{0e}" "\u{1f}") (re.range "\u{21}" "\u{84}") (re.range "\u{86}" "\u{9f}") (re.range "\u{a1}" "\u{ff}"))) )) (re.comp  (re.inter (re.* (re.union (re.range "\u{00}" "\u{09}") (re.range "\u{0b}" "\u{0c}") (re.range "\u{0e}" "\u{84}") (re.range "\u{86}" "\u{ff}")) )  (re.++   (re.union (re.union (re.range "\u{09}" "\u{0d}") (re.range "\u{20}" "\u{20}") (re.range "\u{85}" "\u{85}") (re.range "\u{a0}" "\u{a0}")) (re.union (re.range "\u{00}" "\u{08}") (re.range "\u{0e}" "\u{1f}") (re.range "\u{21}" "\u{84}") (re.range "\u{86}" "\u{9f}") (re.range "\u{a1}" "\u{ff}"))) (re.*   (re.union (re.union (re.range "\u{09}" "\u{0d}") (re.range "\u{20}" "\u{20}") (re.range "\u{85}" "\u{85}") (re.range "\u{a0}" "\u{a0}")) (re.union (re.range "\u{00}" "\u{08}") (re.range "\u{0e}" "\u{1f}") (re.range "\u{21}" "\u{84}") (re.range "\u{86}" "\u{9f}") (re.range "\u{a1}" "\u{ff}"))) )))))
+; ; ))
+
+; (declare-const infix_s String)
+
+; (assert (str.in_re infix_s ((_ re.^ 20) infix)))
+
+; ; (assert (>= (str.len infix_s) 10))
+
+; (assert (= suffix re.all))
+
+; (assert (= attack (re.++ prefix (str.to_re infix_s) suffix)))
+
+; ; (assert (str.in_re postfixs postfix))
+; ; (assert (>= (str.len postfixs) 1))
+; ; (assert (>= (str.len infixs) 1))
+; ; (assert (= result (str.++ attack postfixs)))
+
+; ;print hello
+
+
+; (declare-const regex_exec_ans String)
+
+; (assert (str.in_re regex_exec_ans attack))
+
+(declare-const attack RegLan)
 (declare-const prefix RegLan)
 (declare-const infix RegLan)
 (declare-const suffix RegLan)
-(declare-const attack RegLan)
 
-; (assert (str.in_re attack (re.++ prefix ((_ re.loop 40000 40000) infix))))
-(assert (= prefix ;:
+(assert (= prefix 
      (str.to_re "\u{3a}")
 ))
 (assert (= infix 
-    (re.inter  
-      (re.++ 
-        (re.+ (re.range "\u{30}" "\u{39}") ) ;[0-9]+
-        (re.* ;\S*
-          (re.union 
-            (re.range "\u{00}" "\u{09}") 
-            (re.range "\u{0b}" "\u{0c}") 
-            (re.range "\u{0e}" "\u{84}") 
-            (re.range "\u{86}" "\u{ff}")
-          ) 
-        )
-      )  
-      (re.++ 
-        (re.+ (re.range "\u{30}" "\u{39}") ) ;[0-9]+
-        (re.++ ;\/?\S*
-          (re.opt  (str.to_re "\u{2f}") ) 
-          (re.* 
-            (re.union 
-              (re.range "\u{00}" "\u{09}") 
-              (re.range "\u{0b}" "\u{0c}") 
-              (re.range "\u{0e}" "\u{84}") 
-              (re.range "\u{86}" "\u{ff}")
-            ) 
-          )
-        )
-      ) 
-    )
+        (re.inter (re.+ (re.range "\u{30}" "\u{39}") )  (re.++ (re.+ (re.range "\u{30}" "\u{39}") ) (re.++ (re.opt  (str.to_re "\u{2f}") ) (re.* (re.union (re.range "\u{00}" "\u{09}") (re.range "\u{0b}" "\u{0c}") (re.range "\u{0e}" "\u{84}") (re.range "\u{86}" "\u{ff}")) ))) (re.* (re.union (re.range "\u{00}" "\u{09}") (re.range "\u{0b}" "\u{0c}") (re.range "\u{0e}" "\u{84}") (re.range "\u{86}" "\u{ff}")) ) )
 ))
-; (assert (= postfix 
-;          (re.inter  (re.++  (str.to_re "\u{30}") (re.*  (re.union (re.union (re.range "\u{09}" "\u{0d}") (re.range "\u{20}" "\u{20}") (re.range "\u{85}" "\u{85}") (re.range "\u{a0}" "\u{a0}")) (re.union (re.range "\u{00}" "\u{08}") (re.range "\u{0e}" "\u{1f}") (re.range "\u{21}" "\u{84}") (re.range "\u{86}" "\u{9f}") (re.range "\u{a1}" "\u{ff}"))) )) (re.comp  (re.inter (re.* (re.union (re.range "\u{00}" "\u{09}") (re.range "\u{0b}" "\u{0c}") (re.range "\u{0e}" "\u{84}") (re.range "\u{86}" "\u{ff}")) )  (re.++   (re.union (re.union (re.range "\u{09}" "\u{0d}") (re.range "\u{20}" "\u{20}") (re.range "\u{85}" "\u{85}") (re.range "\u{a0}" "\u{a0}")) (re.union (re.range "\u{00}" "\u{08}") (re.range "\u{0e}" "\u{1f}") (re.range "\u{21}" "\u{84}") (re.range "\u{86}" "\u{9f}") (re.range "\u{a1}" "\u{ff}"))) (re.*   (re.union (re.union (re.range "\u{09}" "\u{0d}") (re.range "\u{20}" "\u{20}") (re.range "\u{85}" "\u{85}") (re.range "\u{a0}" "\u{a0}")) (re.union (re.range "\u{00}" "\u{08}") (re.range "\u{0e}" "\u{1f}") (re.range "\u{21}" "\u{84}") (re.range "\u{86}" "\u{9f}") (re.range "\u{a1}" "\u{ff}"))) )))))
-; ))
 
 (declare-const infix_s String)
+(assert (str.in_re infix_s ((_ re.loop 20 20) infix)))
+(assert (>= (str.len infix_s) 20))
 
-(assert (str.in_re infix_s ((_ re.^ 20) infix)))
-
-; (assert (>= (str.len infix_s) 10))
-
-(assert (= suffix re.all))
+(assert (= suffix 
+     (re.inter  (re.++  (str.to_re "\u{30}") (re.*  (re.union (re.union (re.range "\u{09}" "\u{0d}") (re.range "\u{20}" "\u{20}") (re.range "\u{85}" "\u{85}") (re.range "\u{a0}" "\u{a0}")) (re.union (re.range "\u{00}" "\u{08}") (re.range "\u{0e}" "\u{1f}") (re.range "\u{21}" "\u{84}") (re.range "\u{86}" "\u{9f}") (re.range "\u{a1}" "\u{ff}"))) )) (re.comp  (re.inter (re.* (re.union (re.range "\u{00}" "\u{09}") (re.range "\u{0b}" "\u{0c}") (re.range "\u{0e}" "\u{84}") (re.range "\u{86}" "\u{ff}")) )  (re.++   (re.union (re.union (re.range "\u{09}" "\u{0d}") (re.range "\u{20}" "\u{20}") (re.range "\u{85}" "\u{85}") (re.range "\u{a0}" "\u{a0}")) (re.union (re.range "\u{00}" "\u{08}") (re.range "\u{0e}" "\u{1f}") (re.range "\u{21}" "\u{84}") (re.range "\u{86}" "\u{9f}") (re.range "\u{a1}" "\u{ff}"))) (re.*   (re.union (re.union (re.range "\u{09}" "\u{0d}") (re.range "\u{20}" "\u{20}") (re.range "\u{85}" "\u{85}") (re.range "\u{a0}" "\u{a0}")) (re.union (re.range "\u{00}" "\u{08}") (re.range "\u{0e}" "\u{1f}") (re.range "\u{21}" "\u{84}") (re.range "\u{86}" "\u{9f}") (re.range "\u{a1}" "\u{ff}"))) )))))
+))
 
 (assert (= attack (re.++ prefix (str.to_re infix_s) suffix)))
-
-; (assert (str.in_re postfixs postfix))
-; (assert (>= (str.len postfixs) 1))
-; (assert (>= (str.len infixs) 1))
-; (assert (= result (str.++ attack postfixs)))
-
-;print hello
-
-
 (declare-const regex_exec_ans String)
-
 (assert (str.in_re regex_exec_ans attack))
 
 (check-sat)
@@ -3210,3 +3249,21 @@
 (check-sat)
 
 (get-model)
+
+; ;^git\+ssh:\/\/([^:#]+:[^#]+(?:\.git)?)(?:#(.*))?$
+; (and 
+;     (= regex_exec_38 (str.++ regex_exec_39 regex_exec_40 regex_exec_41 regex_exec_43 regex_exec_48)) 
+;     (str.in_re regex_exec_39 (str.to_re "")) 
+;     (str.in_re regex_exec_40 (str.to_re "git+ssh://")) 
+;     (ite (= regex_exec_41 "") (is-undefined regex_capture_42) (= regex_capture_42 (Str regex_exec_41))) 
+;     (and 
+;         (str.in_re regex_exec_44 (re.++ (str.to_re "#") (re.* (re.range "\u{0}" "\u{ffff}")))) 
+;         (and 
+;             (= regex_exec_43 (str.++ regex_exec_45 regex_exec_46)) 
+;             (str.in_re regex_exec_45 (str.to_re "#")) 
+;             (ite (= regex_exec_46 "") (is-undefined regex_capture_47) (= regex_capture_47 (Str regex_exec_46)))
+;         ) 
+;         (or (= regex_exec_43 regex_exec_44) (= regex_exec_43 ""))
+;     ) 
+;     (str.in_re regex_exec_48 (str.to_re ""))
+; )
