@@ -19,11 +19,11 @@ exports.SMTSolver = class SMTSolver {
 
         const parser = new sexpr.Parser();
         process.stdout.on("data", (data) => {
-            // huzi add, do not record the output of smt solver to the commandlogs files.
-            // const comments = data.trim().split("\n").map((s) => "; " + s).join("\n") + "\n";
-            // for (let i = 0; i < this._commandLogs.length; i++) {
-            //     this._commandLogs[i].write(comments, "utf8");
-            // }
+            // record the output of smt solver to the commandlogs files.
+            const comments = data.trim().split("\n").map((s) => "; " + s).join("\n") + "\n";
+            for (let i = 0; i < this._commandLogs.length; i++) {
+                this._commandLogs[i].write(comments, "utf8");
+            }
             parser.parse(data, (stmt) => {
                 this._consume(stmt);
             });
