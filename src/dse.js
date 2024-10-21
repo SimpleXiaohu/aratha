@@ -359,9 +359,9 @@ class ConstraintCollector {
         if (J$.addReDosConstraint && tmp.status === "sat") {
             J$.ReDosGenSuccess = true;
             console.log("ReDoS Gen Success!\n", tmp.model)
-            fs.appendFile('D:\\Documents\\ISSTA\\aratha\\tmpLog.smt2', tmp.model, (err) => {
-                if (err) throw err;
-            });
+            // fs.appendFile('D:\\Documents\\ISSTA\\aratha\\tmpLog.smt2', tmp.model, (err) => {
+            //     if (err) throw err;
+            // });
         }
         return tmp;
     }
