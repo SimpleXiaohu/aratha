@@ -7,6 +7,9 @@ const { parseModel } = require("./model");
 const Type = require("./type");
 const sexpr = require("./sexpr");
 const fs = require('fs');
+const process = require("process");
+const initializer = require('./initializer');
+const {parseInt} = require("lodash");
 
 //FIXME: Really a quick and dirty workaround - only for SMT solvers atm.
 var COLLECT_NOGOODS = false
@@ -393,8 +396,13 @@ class DSE {
             fs.writeFile('D:\\Documents\\ISSTA\\aratha\\tmpLog.smt2', '', (err) => {
                 if (err) throw err;
             });
-            input = { model: { var0: "git+ssh://username@hostname:repo.git"}, step: 0 }
-            // input.model["var0"] = "git+ssh://username@hostname:repo.git"
+
+            let tmp = await initializer(process.argv[4], parseInt(process.argv[5]));
+
+            input = { model: { var0: tmp}, step: 0 }
+
+            // 没有LLM时，直接使用下面的代码
+            // input = { model: { var0: "git+ssh://username@hostname:repo.git"}, step: 0 }
         } else if (J$.ReDosGenSuccess) {
             return true;
         }
