@@ -200,6 +200,8 @@ exports.SMTSolver = class SMTSolver {
     writeReDoSConstraint(output) {
         output = output.replace("str.in.re", "str.in_re")+ "\n";
         output = output.replace("str.to.re", "str.to_re")+ "\n";
+        output = output.replace("(assert (= (Str regex_exec_48) (Str regex_exec_ans) ))","(assert (= (Str regex_exec_36) (Str regex_exec_ans) ))");
+        output = output.replace("(assert (str.in_re regex_exec_ans attack))", "(assert (str.in_re regex_exec_ans (re.++ (re.* re.allchar) attack (re.* re.allchar))))")
         this.output_log += output + "\n";
         this.process.stdin.write(output);
     }

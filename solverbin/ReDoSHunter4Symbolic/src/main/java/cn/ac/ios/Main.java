@@ -87,6 +87,7 @@ public class Main {
         // regex = "^[^@]+@[^:.]+\\.[^:]+:.+$";
         // regex = "^git\\+ssh:\\/\\/([^:#]+:[^#]+(?:\\.git)?)(?:#(.*))?$";
         // regex = ":[0-9]+\\/?.*$";
+        regex = "https:\\/\\/(.*\\/?)*\\/";
         // System.out.println(regex);
         System.out.println(getResult(0, regex));
     }
@@ -140,6 +141,12 @@ public class Main {
                 // System.out.println("Vulnerable");
                 for (int i = 0; i < bean.getAttackBeanList().size(); i++) {
                     if (bean.getAttackBeanList().get(i).isAttackSuccess()) {
+                        // System.out.println("Is attack success: " + bean.getAttackBeanList().get(i).isAttackSuccess());
+                        // System.out.println("Attack time: " + bean.getAttackBeanList().get(i).getAttackTime() + " (ms)");
+                        // System.out.println("Vulnerability Position: " + bean.getAttackBeanList().get(i).getLocateVulnerabilityRegex());
+                        // System.out.println("Attack String: " + bean.getAttackBeanList().get(i).getAttackStringFormat());
+                        // System.out.println("Vulnerability Source: " + bean.getAttackBeanList().get(i).getVulnerabilityRegexSource());
+                        // System.out.println("Vulnerability Degree: " + bean.getAttackBeanList().get(i).getType());
                         // System.out.println("---------------------------------------------------------------------------");
                         try {
                             int validateId = validateBeans.getData().indexOf(bean);
