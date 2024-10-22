@@ -11,11 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8cc436e9-cb34-4ed2-9894-d7cea14a2335" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/0_0_0_0.log" beforeDir="false" afterPath="$PROJECT_DIR$/output/0_0_0_0.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/0_0_0_0.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/output/0_0_0_0.smt2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/ac/ios/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/ac/ios/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../src/dse.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/dse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../string_test/npa/test5.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/../../string_test/npa/test5.smt2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../tmpLog.smt2" beforeDir="false" afterPath="$PROJECT_DIR$/../../tmpLog.smt2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +230,7 @@
       <workItem from="1728986472687" duration="1788000" />
       <workItem from="1729228354786" duration="4883000" />
       <workItem from="1729319467238" duration="2073000" />
-      <workItem from="1729423364742" duration="4099000" />
+      <workItem from="1729423364742" duration="5273000" />
     </task>
     <task id="LOCAL-00001" summary="move to 10FFFF">
       <option name="closed" value="true" />

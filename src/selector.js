@@ -1,7 +1,7 @@
 const fs = require('fs');
 var axios = require('axios');
 
-async function initializer(file, lineNum) {
+async function selector(file, lineNum, constraints) {
     let code = fs.readFileSync(file, 'utf8');
     // line是code中的第lineNum行
     let line = code.split('\n')[lineNum - 1];
@@ -13,10 +13,11 @@ async function initializer(file, lineNum) {
         "inputs": {
             "code": code,
             "line": line,
-            "entry": entry
+            "entry": entry,
+            "constraints": constraints
         },
         "response_mode": "blocking",
-        "user": "initializer"
+        "user": "selector"
     });
 
 
@@ -24,7 +25,7 @@ async function initializer(file, lineNum) {
         method: 'post',
         url: 'http://192.168.31.162/v1/workflows/run',
         headers: {
-            'Authorization': 'Bearer app-Cp3x28vSXzuWftA1V0wRrtEw',
+            'Authorization': 'Bearer app-Ia31aoQ2IrYjq6XniVLQFEr9',
             'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
             'Content-Type': 'application/json',
             'Accept': '*/*',
@@ -39,14 +40,14 @@ async function initializer(file, lineNum) {
     try {
         const response = await axios(config);
         // console.log(JSON.stringify(response.data));
-        return response.data.data.outputs.output;
+        return response.data.data.outputs.text - 1;
     } catch (error) {
         console.error(error);
     }
 }
 
 // 导出模块
-module.exports = initializer;
+module.exports = selector;
 //
 // initializer("D:\\Documents\\ISSTA\\aratha\\string_test\\npa\\motivation_example.js", 445);
 
