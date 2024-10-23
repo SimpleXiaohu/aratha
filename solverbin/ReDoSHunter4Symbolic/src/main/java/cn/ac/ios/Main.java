@@ -87,7 +87,7 @@ public class Main {
         // regex = "^[^@]+@[^:.]+\\.[^:]+:.+$";
         // regex = "^git\\+ssh:\\/\\/([^:#]+:[^#]+(?:\\.git)?)(?:#(.*))?$";
         // regex = ":[0-9]+\\/?.*$";
-        regex = "https:\\/\\/(.*\\/?)*\\/";
+        regex = "(/.*)?$";
         // System.out.println(regex);
         System.out.println(getResult(0, regex));
     }
@@ -161,17 +161,16 @@ public class Main {
 
                             String smtlib =
                                     // "(set-logic QF_SLIA)\n" +
-                                    "(declare-const attack RegLan)\n" +
-                                    "(declare-const prefix RegLan)\n" +
-                                    "(declare-const infix RegLan)\n" +
-                                    "(declare-const suffix RegLan)\n" +
+                                    "(define-fun prefix() RegLan "+((smtOfPrefix.isEmpty()) ? "(str.to_re \"\")" : smtOfPrefix)+")\n" +
+                                    "(define-fun infix() RegLan "+((smtOfInfix.isEmpty() ? "(str.to_re \"\")" : smtOfInfix))+")\n" +
+                                    "(define-fun suffix() RegLan "+((smtOfSuffix.isEmpty()) ? "(str.to_re \"\")" : smtOfSuffix)+")\n" +
                                     "\n" +
-                                    "(assert (= prefix \n" +
-                                    "    " + ((smtOfPrefix.isEmpty()) ? "(str.to_re \"\")" : smtOfPrefix) + "\n" +
-                                    "))\n" +
-                                    "(assert (= infix \n" +
-                                    "        " + ((smtOfInfix.isEmpty() ? "(str.to_re \"\")" : smtOfInfix)) + "\n" +
-                                    "))\n" +
+                                    // "(assert (= prefix \n" +
+                                    // "    " + ((smtOfPrefix.isEmpty()) ? "(str.to_re \"\")" : smtOfPrefix) + "\n" +
+                                    // "))\n" +
+                                    // "(assert (= infix \n" +
+                                    // "        " + ((smtOfInfix.isEmpty() ? "(str.to_re \"\")" : smtOfInfix)) + "\n" +
+                                    // "))\n" +
                                     "\n" +
                                     "(declare-const infix_s String)\n" +
                                     // "(assert (str.in_re infix_s ((_ re.loop "+bean.getAttackBeanList().get(i).getRepeatTimes()+" "+bean.getAttackBeanList().get(i).getRepeatTimes()+") infix)))" +
@@ -179,11 +178,12 @@ public class Main {
                                     "(assert (>= (str.len infix_s) 20))\n" +
                                     "\n" +
                                     // "(assert (= suffix re.all))\n" +
-                                    "(assert (= suffix \n" +
-                                    "    " + ((smtOfSuffix.isEmpty()) ? "(str.to_re \"\")" : smtOfSuffix) + "\n" +
-                                    "))\n" +
+                                    // "(assert (= suffix \n" +
+                                    // "    " + ((smtOfSuffix.isEmpty()) ? "(str.to_re \"\")" : smtOfSuffix) + "\n" +
+                                    // "))\n" +
                                     "\n" +
-                                    "(assert (= attack (re.++ prefix (str.to_re infix_s) suffix)))\n" +
+                                    "(define-fun attack() RegLan (re.++ prefix (str.to_re infix_s) suffix))\n" +
+                                    // "(assert (= attack (re.++ prefix (str.to_re infix_s) suffix)))\n" +
                                     "(declare-const regex_exec_ans String)\n" +
                                     "(assert (str.in_re regex_exec_ans attack))\n"
                                             // +

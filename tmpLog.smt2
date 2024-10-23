@@ -367,53 +367,5 @@
 
 (define-fun js.~ ((x Val)) Val
     (Num (IntNot32 (js.ToNumber x))))
-(declare-const var0 Val)
-
-(push 1)
-
-(assert (is-Str var0))
-
-(assert (not (distinct (str var0) "")))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(declare-const var0 Val)
-
-(assert (is-Str var0))
-
-(assert (not (not (distinct (str var0) ""))))
-
-(check-sat)
-
-(pop 1)
-
-(get-model)
-
-(push 1)
-
-(assert (not (distinct (str var0) "")))
-
-(check-sat)
-
-(pop 1)
-
-(push 1)
-
-(assert (distinct (str var0) ""))
-
-(check-sat)
-
-(get-model)
-
-(push 1)
-
-(assert (str.in_re (str var0) (re.++ (re.++ (str.to_re "") (re.union (str.to_re ".") (re.++ (str.to_re "~") (str.to_re "/")) (re.union (str.to_re "/") (str.to_re "\\")) (re.++ (re.union (re.range "a" "z") (re.range "A" "Z")) (str.to_re ":")))) re.all)))
-
-(check-sat)
-
-(get-model)
+(exit)
 

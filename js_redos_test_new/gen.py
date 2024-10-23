@@ -57,24 +57,54 @@ def download_file(url, destination):
 # destination = "path/to/save/file.xlsx"
 # download_file(url, destination)
 
-for root, dirs, files in os.walk(".\instances"):
-  if len(root.split("\\")) > 2:
+# for root, dirs, files in os.walk(".\instances"):
+#   if len(root.split("\\")) > 2:
+for root, dirs, files in os.walk("."):
+  if len(root.split("\\")) > 1:
     continue
   for dir in dirs:
+    if not re.match(r'^\d+$', dir):
+      continue
     # print(root + "\t" + dir)
     # 如果存在raw文件夹则删除
     if os.path.exists(os.path.join(root, dir, 'raw')):
       shutil.rmtree(os.path.join(root, dir, 'raw'))
     os.makedirs(os.path.join(root, dir, 'raw'))
+    # 如果存在info.json文件则删除
+    if os.path.exists(os.path.join(root, dir, 'info.json')):
+      os.remove(os.path.join(root, dir, 'info.json'))
     # 将文件夹对应的信息写入info.json文件
-    with open(os.path.join(root, dir, 'info.json'), 'w') as f:
-      # f.write(str(instances[int(dir)]))
-      json.dump(instances[int(dir)-1], f)
+    with open(os.path.join(root, dir, 'raw', 'info.json'), 'w') as f:
+      json.dump(instances[int(dir)-1], f, indent=4)
     # 下载文件
     url = instances[int(dir)-1]["file_addr"]
     destination = os.path.join(root, dir, 'raw', url.split("/")[-1])
     download_file(url, destination)
     print(url, destination)
     
+
+for root, dirs, files in os.walk(".\directly input str"):
+  if len(root.split("\\")) > 2:
+    continue
+  for dir in dirs:
+    if not re.match(r'^\d+$', dir):
+      continue
+    # print(root + "\t" + dir)
+    # 如果存在raw文件夹则删除
+    if os.path.exists(os.path.join(root, dir, 'raw')):
+      shutil.rmtree(os.path.join(root, dir, 'raw'))
+    os.makedirs(os.path.join(root, dir, 'raw'))
+    # 如果存在info.json文件则删除
+    if os.path.exists(os.path.join(root, dir, 'info.json')):
+      os.remove(os.path.join(root, dir, 'info.json'))
+    # 将文件夹对应的信息写入info.json文件
+    with open(os.path.join(root, dir, 'raw', 'info.json'), 'w') as f:
+      # f.write(str(instances[int(dir)]))
+      json.dump(instances[int(dir)-1], f, indent=4)
+    # 下载文件
+    url = instances[int(dir)-1]["file_addr"]
+    destination = os.path.join(root, dir, 'raw', url.split("/")[-1])
+    download_file(url, destination)
+    print(url, destination)
 
     

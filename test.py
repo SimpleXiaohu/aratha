@@ -7,5 +7,5 @@ def main(arg1) -> dict:
         if i != len(arg1) - 1:
             res += "\n\n"
     return {
-        "result": arg1 + arg2,
+        "result": arg1,
     }

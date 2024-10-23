@@ -1,0 +1,1339 @@
+                                 
+                                 
+┌───────────────────────────────┐
+│ 60 Non-blocking Code Findings │
+└───────────────────────────────┘
+                     
+    13/consoleMock.js
+    ❯❱ javascript.lang.security.audit.incomplete-sanitization.incomplete-sanitization
+          `message.replace` method will only replace the first occurrence when used with a string argument
+          ('\n'). If this method is used for escaping of dangerous data then there is a possibility for a 
+          bypass. Try to use sanitization library instead or use a Regex with a global flag.              
+          Details: https://sg.run/1GbQ                                                                    
+                                                                                                          
+          526┆ return message.replace('\n', ' ');
+            ⋮┆----------------------------------------
+          529┆ receivedLogs.map(message => message.replace('\n', ' ')).join('\n'),
+                         
+    13/raw/consoleMock.js
+     ❱ javascript.lang.security.audit.unsafe-formatstring.unsafe-formatstring
+          Detected string concatenation with a non-literal variable in a util.format / console.log function.
+          If an attacker injects a format specifier in the string, it will forge the log message. Try to use
+          constant values for the format string.                                                            
+          Details: https://sg.run/7Y5R                                                                      
+                                                                                                            
+           81┆ util.format(format, ...args),
+    
+    
+          Taint comes from:
+    
+           57┆ format += '%s';
+    
+    
+          Taint flows through these intermediate variables:
+    
+           57┆ format += '%s';
+    
+    
+                This is how taint reaches the sink:
+    
+           81┆ util.format(format, ...args),
+    
+    
+            ⋮┆----------------------------------------
+   
+    ❯❱ javascript.lang.security.audit.incomplete-sanitization.incomplete-sanitization
+          `message.replace` method will only replace the first occurrence when used with a string argument
+          ('\n'). If this method is used for escaping of dangerous data then there is a possibility for a 
+          bypass. Try to use sanitization library instead or use a Regex with a global flag.              
+          Details: https://sg.run/1GbQ                                                                    
+                                                                                                          
+          522┆ return message.replace('\n', ' ');
+            ⋮┆----------------------------------------
+          525┆ receivedLogs.map(message => message.replace('\n', ' ')).join('\n'),
+                     
+    205/jsdocUtils.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `regexString` function argument, this might allow an attacker to cause a     
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1652┆ return new RegExp(regex, flags);
+    
+    
+          Taint comes from:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+          1636┆ let regex = regexString;
+    
+    
+                This is how taint reaches the sink:
+    
+          1652┆ return new RegExp(regex, flags);
+    
+    
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `requiredFlags` function argument, this might allow an attacker to cause a   
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1652┆ return new RegExp(regex, flags);
+    
+    
+          Taint comes from:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+          1650┆ flags = uniqueFlags.join('');
+    
+    
+                This is how taint reaches the sink:
+    
+          1652┆ return new RegExp(regex, flags);
+    
+                         
+    205/raw/jsdocUtils.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `regexString` function argument, this might allow an attacker to cause a     
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1652┆ return new RegExp(regex, flags);
+    
+    
+          Taint comes from:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+          1636┆ let regex = regexString;
+    
+    
+                This is how taint reaches the sink:
+    
+          1652┆ return new RegExp(regex, flags);
+    
+    
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `requiredFlags` function argument, this might allow an attacker to cause a   
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1652┆ return new RegExp(regex, flags);
+    
+    
+          Taint comes from:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+          1650┆ flags = uniqueFlags.join('');
+    
+    
+                This is how taint reaches the sink:
+    
+          1652┆ return new RegExp(regex, flags);
+    
+                      
+    206/jsdocUtils.cjs
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `regexString` function argument, this might allow an attacker to cause a     
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1314┆ return new RegExp(regex, flags);
+    
+    
+          Taint comes from:
+    
+          1302┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          1302┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+          1305┆ let regex = regexString;
+    
+    
+                This is how taint reaches the sink:
+    
+          1314┆ return new RegExp(regex, flags);
+    
+    
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `requiredFlags` function argument, this might allow an attacker to cause a   
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1314┆ return new RegExp(regex, flags);
+    
+    
+          Taint comes from:
+    
+          1302┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          1302┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+          1313┆ flags = uniqueFlags.join('');
+    
+    
+                This is how taint reaches the sink:
+    
+          1314┆ return new RegExp(regex, flags);
+    
+                          
+    206/raw/jsdocUtils.cjs
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `regexString` function argument, this might allow an attacker to cause a     
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1314┆ return new RegExp(regex, flags);
+    
+    
+          Taint comes from:
+    
+          1302┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          1302┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+          1305┆ let regex = regexString;
+    
+    
+                This is how taint reaches the sink:
+    
+          1314┆ return new RegExp(regex, flags);
+    
+    
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `requiredFlags` function argument, this might allow an attacker to cause a   
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1314┆ return new RegExp(regex, flags);
+    
+    
+          Taint comes from:
+    
+          1302┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          1302┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+          1313┆ flags = uniqueFlags.join('');
+    
+    
+                This is how taint reaches the sink:
+    
+          1314┆ return new RegExp(regex, flags);
+    
+                                             
+    Github Issues/mermaid/PoCs/491/ganttDb.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `t` function argument, this might allow an attacker to cause a Regular       
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          809┆ const regex = new RegExp(pattern);
+    
+    
+          Taint comes from:
+    
+          807┆ tags.forEach(function (t) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          807┆ tags.forEach(function (t) {
+    
+          808┆ const pattern = '^\\s*' + t + '\\s*$';
+    
+    
+                This is how taint reaches the sink:
+    
+          809┆ const regex = new RegExp(pattern);
+    
+                                             
+    Github Issues/node/PoCs/205/jsdocUtils.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `regexString` function argument, this might allow an attacker to cause a     
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1652┆ return new RegExp(regex, flags);
+    
+    
+          Taint comes from:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+          1636┆ let regex = regexString;
+    
+    
+                This is how taint reaches the sink:
+    
+          1652┆ return new RegExp(regex, flags);
+    
+    
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `requiredFlags` function argument, this might allow an attacker to cause a   
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          1652┆ return new RegExp(regex, flags);
+    
+    
+          Taint comes from:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          1633┆ const getRegexFromString = (regexString, requiredFlags) => {
+    
+          1650┆ flags = uniqueFlags.join('');
+    
+    
+                This is how taint reaches the sink:
+    
+          1652┆ return new RegExp(regex, flags);
+    
+                                              
+    Github Issues/react/PoCs/13/consoleMock.js
+    ❯❱ javascript.lang.security.audit.incomplete-sanitization.incomplete-sanitization
+          `message.replace` method will only replace the first occurrence when used with a string argument
+          ('\n'). If this method is used for escaping of dangerous data then there is a possibility for a 
+          bypass. Try to use sanitization library instead or use a Regex with a global flag.              
+          Details: https://sg.run/1GbQ                                                                    
+                                                                                                          
+          526┆ return message.replace('\n', ' ');
+            ⋮┆----------------------------------------
+          529┆ receivedLogs.map(message => message.replace('\n', ' ')).join('\n'),
+                                                     
+    Github Issues/webpack/PoCs/597/template-common.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `regExpStr` function argument, this might allow an attacker to cause a       
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+           26┆ const cwdRegExp = new RegExp(cwdRegExpStr, "g");
+    
+    
+          Taint comes from:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           26┆ const cwdRegExp = new RegExp(cwdRegExpStr, "g");
+    
+    
+            ⋮┆----------------------------------------
+           27┆ const cwdSlashRegExp = new RegExp(cwdRegExpStr + "[\\/\\\\]", "g");
+    
+    
+          Taint comes from:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           27┆ const cwdSlashRegExp = new RegExp(cwdRegExpStr + "[\\/\\\\]", "g");
+    
+    
+            ⋮┆----------------------------------------
+           29┆ webpack = new RegExp(webpack, "g");
+    
+    
+          Taint comes from:
+    
+           28┆ webpack = lessStrict(webpack.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           28┆ webpack = lessStrict(webpack.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           29┆ webpack = new RegExp(webpack, "g");
+    
+    
+            ⋮┆----------------------------------------
+           31┆ webpackParent = new RegExp(webpackParent, "g");
+    
+    
+          Taint comes from:
+    
+           30┆ webpackParent = lessStrict(webpackParent.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           30┆ webpackParent = lessStrict(webpackParent.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           31┆ webpackParent = new RegExp(webpackParent, "g");
+    
+    
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `prefix` function argument, this might allow an attacker to cause a Regular  
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+           55┆ const regExp = prefix ? new RegExp(`_\\{\\{${prefix}:`) : /_\{\{/;
+    
+    
+          Taint comes from:
+    
+           54┆ exports.needResults = (template, prefix) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           54┆ exports.needResults = (template, prefix) => {
+    
+    
+                This is how taint reaches the sink:
+    
+           55┆ const regExp = prefix ? new RegExp(`_\\{\\{${prefix}:`) : /_\{\{/;
+    
+    
+            ⋮┆----------------------------------------
+           60┆ const regexp = new RegExp("_\\{\\{" + (prefix ? prefix + ":" : "") + "([^:\\}]+)\\}\\}_",
+               "g");                                                                                    
+    
+    
+          Taint comes from:
+    
+           59┆ exports.replaceResults = (template, baseDir, stdout, prefix) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           59┆ exports.replaceResults = (template, baseDir, stdout, prefix) => {
+    
+    
+                This is how taint reaches the sink:
+    
+           60┆ const regexp = new RegExp("_\\{\\{" + (prefix ? prefix + ":" : "") + "([^:\\}]+)\\}\\}_",
+               "g");                                                                                    
+    
+                                           
+    directly input str/433/perf_helpfunc.js
+   ❯❯❱ javascript.browser.security.insecure-document-method.insecure-document-method
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+          Details: https://sg.run/LwA9                                                                        
+                                                                                                              
+          128┆ logElement.innerHTML += `\n${'\t' + message}`;
+   
+    ❯❱ javascript.browser.security.eval-detected.eval-detected
+          Detected the use of eval(). eval() can be dangerous if used to evaluate dynamic content. If this 
+          content can be input from outside the program, this may be a code injection vulnerability. Ensure
+          evaluated content is not definable by external sources.                                          
+          Details: https://sg.run/7ope                                                                     
+                                                                                                           
+          261┆ let reg = eval(paramReg[index]);
+                                               
+    directly input str/433/raw/perf_helpfunc.js
+   ❯❯❱ javascript.browser.security.insecure-document-method.insecure-document-method
+          User controlled data in methods like `innerHTML`, `outerHTML` or `document.write` is an anti-pattern
+          that can lead to XSS vulnerabilities                                                                
+          Details: https://sg.run/LwA9                                                                        
+                                                                                                              
+          128┆ logElement.innerHTML += `\n${'\t' + message}`;
+   
+    ❯❱ javascript.browser.security.eval-detected.eval-detected
+          Detected the use of eval(). eval() can be dangerous if used to evaluate dynamic content. If this 
+          content can be input from outside the program, this may be a code injection vulnerability. Ensure
+          evaluated content is not definable by external sources.                                          
+          Details: https://sg.run/7ope                                                                     
+                                                                                                           
+          261┆ let reg = eval(paramReg[index]);
+                                      
+    directly input str/477/helpers.mjs
+    ❯❱ javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal
+          Detected possible user input going into a `path.join` or `path.resolve` function. This could   
+          possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files
+          stored in the file system. Instead, be sure to sanitize or validate user input first.          
+          Details: https://sg.run/OPqk                                                                   
+                                                                                                         
+           42┆ fs.writeFileSync(path.join(outputDirectory, fileName), '', 'utf-8')
+    
+    
+          Taint comes from:
+    
+           41┆ export const resetFile = (fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           41┆ export const resetFile = (fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           42┆ fs.writeFileSync(path.join(outputDirectory, fileName), '', 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           42┆ fs.writeFileSync(path.join(outputDirectory, fileName), '', 'utf-8')
+    
+    
+          Taint comes from:
+    
+           41┆ export const resetFile = (fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           41┆ export const resetFile = (fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           42┆ fs.writeFileSync(path.join(outputDirectory, fileName), '', 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           50┆ const readFile = (entry) => fs.readFileSync(path.resolve(__dirname, '../', entry), 'utf-8')
+    
+    
+          Taint comes from:
+    
+           50┆ const readFile = (entry) => fs.readFileSync(path.resolve(__dirname, '../', entry), 'utf-8')
+    
+    
+          Taint flows through these intermediate variables:
+    
+           50┆ const readFile = (entry) => fs.readFileSync(path.resolve(__dirname, '../', entry), 'utf-8')
+    
+    
+                This is how taint reaches the sink:
+    
+           50┆ const readFile = (entry) => fs.readFileSync(path.resolve(__dirname, '../', entry), 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           60┆ fs.appendFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+          Taint comes from:
+    
+           59┆ export const appendFile = (content, fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           59┆ export const appendFile = (content, fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           60┆ fs.appendFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           60┆ fs.appendFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+          Taint comes from:
+    
+           59┆ export const appendFile = (content, fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           59┆ export const appendFile = (content, fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           60┆ fs.appendFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           70┆ fs.writeFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+          Taint comes from:
+    
+           69┆ const writeFile = (content, fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           69┆ const writeFile = (content, fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           70┆ fs.writeFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           70┆ fs.writeFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+          Taint comes from:
+    
+           69┆ const writeFile = (content, fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           69┆ const writeFile = (content, fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           70┆ fs.writeFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           88┆ fs.readFileSync(path.join(directory, fileName), 'utf-8')
+    
+    
+          Taint comes from:
+    
+           87┆ export const readSvg = (fileName, directory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           87┆ export const readSvg = (fileName, directory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           88┆ fs.readFileSync(path.join(directory, fileName), 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           88┆ fs.readFileSync(path.join(directory, fileName), 'utf-8')
+    
+    
+          Taint comes from:
+    
+           87┆ export const readSvg = (fileName, directory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           87┆ export const readSvg = (fileName, directory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           88┆ fs.readFileSync(path.join(directory, fileName), 'utf-8')
+    
+                                          
+    directly input str/477/raw/helpers.mjs
+    ❯❱ javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal
+          Detected possible user input going into a `path.join` or `path.resolve` function. This could   
+          possibly lead to a path traversal vulnerability,  where the attacker can access arbitrary files
+          stored in the file system. Instead, be sure to sanitize or validate user input first.          
+          Details: https://sg.run/OPqk                                                                   
+                                                                                                         
+           42┆ fs.writeFileSync(path.join(outputDirectory, fileName), '', 'utf-8')
+    
+    
+          Taint comes from:
+    
+           41┆ export const resetFile = (fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           41┆ export const resetFile = (fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           42┆ fs.writeFileSync(path.join(outputDirectory, fileName), '', 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           42┆ fs.writeFileSync(path.join(outputDirectory, fileName), '', 'utf-8')
+    
+    
+          Taint comes from:
+    
+           41┆ export const resetFile = (fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           41┆ export const resetFile = (fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           42┆ fs.writeFileSync(path.join(outputDirectory, fileName), '', 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           50┆ const readFile = (entry) => fs.readFileSync(path.resolve(__dirname, '../', entry), 'utf-8')
+    
+    
+          Taint comes from:
+    
+           50┆ const readFile = (entry) => fs.readFileSync(path.resolve(__dirname, '../', entry), 'utf-8')
+    
+    
+          Taint flows through these intermediate variables:
+    
+           50┆ const readFile = (entry) => fs.readFileSync(path.resolve(__dirname, '../', entry), 'utf-8')
+    
+    
+                This is how taint reaches the sink:
+    
+           50┆ const readFile = (entry) => fs.readFileSync(path.resolve(__dirname, '../', entry), 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           60┆ fs.appendFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+          Taint comes from:
+    
+           59┆ export const appendFile = (content, fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           59┆ export const appendFile = (content, fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           60┆ fs.appendFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           60┆ fs.appendFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+          Taint comes from:
+    
+           59┆ export const appendFile = (content, fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           59┆ export const appendFile = (content, fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           60┆ fs.appendFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           70┆ fs.writeFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+          Taint comes from:
+    
+           69┆ const writeFile = (content, fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           69┆ const writeFile = (content, fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           70┆ fs.writeFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           70┆ fs.writeFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+          Taint comes from:
+    
+           69┆ const writeFile = (content, fileName, outputDirectory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           69┆ const writeFile = (content, fileName, outputDirectory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           70┆ fs.writeFileSync(path.join(outputDirectory, fileName), content, 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           88┆ fs.readFileSync(path.join(directory, fileName), 'utf-8')
+    
+    
+          Taint comes from:
+    
+           87┆ export const readSvg = (fileName, directory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           87┆ export const readSvg = (fileName, directory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           88┆ fs.readFileSync(path.join(directory, fileName), 'utf-8')
+    
+    
+            ⋮┆----------------------------------------
+           88┆ fs.readFileSync(path.join(directory, fileName), 'utf-8')
+    
+    
+          Taint comes from:
+    
+           87┆ export const readSvg = (fileName, directory) =>
+    
+    
+          Taint flows through these intermediate variables:
+    
+           87┆ export const readSvg = (fileName, directory) =>
+    
+    
+                This is how taint reaches the sink:
+    
+           88┆ fs.readFileSync(path.join(directory, fileName), 'utf-8')
+    
+                                     
+    directly input str/491/ganttDb.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `t` function argument, this might allow an attacker to cause a Regular       
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          809┆ const regex = new RegExp(pattern);
+    
+    
+          Taint comes from:
+    
+          807┆ tags.forEach(function (t) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          807┆ tags.forEach(function (t) {
+    
+          808┆ const pattern = '^\\s*' + t + '\\s*$';
+    
+    
+                This is how taint reaches the sink:
+    
+          809┆ const regex = new RegExp(pattern);
+    
+                                         
+    directly input str/491/raw/ganttDb.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `t` function argument, this might allow an attacker to cause a Regular       
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+          809┆ const regex = new RegExp(pattern);
+    
+    
+          Taint comes from:
+    
+          807┆ tags.forEach(function (t) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+          807┆ tags.forEach(function (t) {
+    
+          808┆ const pattern = '^\\s*' + t + '\\s*$';
+    
+    
+                This is how taint reaches the sink:
+    
+          809┆ const regex = new RegExp(pattern);
+    
+                                                 
+    directly input str/597/raw/template-common.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `regExpStr` function argument, this might allow an attacker to cause a       
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+           26┆ const cwdRegExp = new RegExp(cwdRegExpStr, "g");
+    
+    
+          Taint comes from:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           26┆ const cwdRegExp = new RegExp(cwdRegExpStr, "g");
+    
+    
+            ⋮┆----------------------------------------
+           27┆ const cwdSlashRegExp = new RegExp(cwdRegExpStr + "[\\/\\\\]", "g");
+    
+    
+          Taint comes from:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           27┆ const cwdSlashRegExp = new RegExp(cwdRegExpStr + "[\\/\\\\]", "g");
+    
+    
+            ⋮┆----------------------------------------
+           29┆ webpack = new RegExp(webpack, "g");
+    
+    
+          Taint comes from:
+    
+           28┆ webpack = lessStrict(webpack.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           28┆ webpack = lessStrict(webpack.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           29┆ webpack = new RegExp(webpack, "g");
+    
+    
+            ⋮┆----------------------------------------
+           31┆ webpackParent = new RegExp(webpackParent, "g");
+    
+    
+          Taint comes from:
+    
+           30┆ webpackParent = lessStrict(webpackParent.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           30┆ webpackParent = lessStrict(webpackParent.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           31┆ webpackParent = new RegExp(webpackParent, "g");
+    
+    
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `prefix` function argument, this might allow an attacker to cause a Regular  
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+           55┆ const regExp = prefix ? new RegExp(`_\\{\\{${prefix}:`) : /_\{\{/;
+    
+    
+          Taint comes from:
+    
+           54┆ exports.needResults = (template, prefix) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           54┆ exports.needResults = (template, prefix) => {
+    
+    
+                This is how taint reaches the sink:
+    
+           55┆ const regExp = prefix ? new RegExp(`_\\{\\{${prefix}:`) : /_\{\{/;
+    
+    
+            ⋮┆----------------------------------------
+           60┆ const regexp = new RegExp("_\\{\\{" + (prefix ? prefix + ":" : "") + "([^:\\}]+)\\}\\}_",
+               "g");                                                                                    
+    
+    
+          Taint comes from:
+    
+           59┆ exports.replaceResults = (template, baseDir, stdout, prefix) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           59┆ exports.replaceResults = (template, baseDir, stdout, prefix) => {
+    
+    
+                This is how taint reaches the sink:
+    
+           60┆ const regexp = new RegExp("_\\{\\{" + (prefix ? prefix + ":" : "") + "([^:\\}]+)\\}\\}_",
+               "g");                                                                                    
+    
+                                             
+    directly input str/597/template-common.js
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `regExpStr` function argument, this might allow an attacker to cause a       
+          Regular Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main      
+          thread. For this reason, it is recommended to use hardcoded regexes instead. If your regex is run on
+          user-controlled input, consider performing input validation or use a regex checking/sanitization    
+          library such as https://www.npmjs.com/package/recheck to verify that the regex does not appear      
+          vulnerable to ReDoS.                                                                                
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+           26┆ const cwdRegExp = new RegExp(cwdRegExpStr, "g");
+    
+    
+          Taint comes from:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           26┆ const cwdRegExp = new RegExp(cwdRegExpStr, "g");
+    
+    
+            ⋮┆----------------------------------------
+           27┆ const cwdSlashRegExp = new RegExp(cwdRegExpStr + "[\\/\\\\]", "g");
+    
+    
+          Taint comes from:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           25┆ const cwdRegExpStr = lessStrict(cwd.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           27┆ const cwdSlashRegExp = new RegExp(cwdRegExpStr + "[\\/\\\\]", "g");
+    
+    
+            ⋮┆----------------------------------------
+           29┆ webpack = new RegExp(webpack, "g");
+    
+    
+          Taint comes from:
+    
+           28┆ webpack = lessStrict(webpack.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           28┆ webpack = lessStrict(webpack.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           29┆ webpack = new RegExp(webpack, "g");
+    
+    
+            ⋮┆----------------------------------------
+           31┆ webpackParent = new RegExp(webpackParent, "g");
+    
+    
+          Taint comes from:
+    
+           30┆ webpackParent = lessStrict(webpackParent.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+          Taint flows through these intermediate variables:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+          then reaches:
+    
+            9┆ function lessStrict(regExpStr) {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           30┆ webpackParent = lessStrict(webpackParent.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"));
+    
+    
+                This is how taint reaches the sink:
+    
+           31┆ webpackParent = new RegExp(webpackParent, "g");
+    
+    
+            ⋮┆----------------------------------------
+    ❯❱ javascript.lang.security.audit.detect-non-literal-regexp.detect-non-literal-regexp
+          RegExp() called with a `prefix` function argument, this might allow an attacker to cause a Regular  
+          Expression Denial-of-Service (ReDoS) within your application as RegExP blocks the main thread. For  
+          this reason, it is recommended to use hardcoded regexes instead. If your regex is run on user-      
+          controlled input, consider performing input validation or use a regex checking/sanitization library 
+          such as https://www.npmjs.com/package/recheck to verify that the regex does not appear vulnerable to
+          ReDoS.                                                                                              
+          Details: https://sg.run/gr65                                                                        
+                                                                                                              
+           55┆ const regExp = prefix ? new RegExp(`_\\{\\{${prefix}:`) : /_\{\{/;
+    
+    
+          Taint comes from:
+    
+           54┆ exports.needResults = (template, prefix) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           54┆ exports.needResults = (template, prefix) => {
+    
+    
+                This is how taint reaches the sink:
+    
+           55┆ const regExp = prefix ? new RegExp(`_\\{\\{${prefix}:`) : /_\{\{/;
+    
+    
+            ⋮┆----------------------------------------
+           60┆ const regexp = new RegExp("_\\{\\{" + (prefix ? prefix + ":" : "") + "([^:\\}]+)\\}\\}_",
+               "g");                                                                                    
+    
+    
+          Taint comes from:
+    
+           59┆ exports.replaceResults = (template, baseDir, stdout, prefix) => {
+    
+    
+          Taint flows through these intermediate variables:
+    
+           59┆ exports.replaceResults = (template, baseDir, stdout, prefix) => {
+    
+    
+                This is how taint reaches the sink:
+    
+           60┆ const regexp = new RegExp("_\\{\\{" + (prefix ? prefix + ":" : "") + "([^:\\}]+)\\}\\}_",
+               "g");                                                                                    
+    
+
