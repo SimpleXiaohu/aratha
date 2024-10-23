@@ -7,6 +7,7 @@ for (var i = 0; i < 100000; i++) {
 }
 str += ":1";
 
+console.log("start");
 console.log(parseSourceFromComponentStack(str));
 
 // real    0m14.727s

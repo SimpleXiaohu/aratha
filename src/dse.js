@@ -404,7 +404,7 @@ class DSE {
             // let tmp = await initializer(process.argv[4], parseInt(process.argv[5]));
             // 没有LLM时，直接使用下面的代码
             // let tmp = "git+ssh://username@hostname:repo.git";
-            let tmp = '';
+            let tmp = 'at  (:1';
             input = { model: { var0: tmp}, step: 0 }
         } else if (J$.ReDosGenSuccess) {
             return true;

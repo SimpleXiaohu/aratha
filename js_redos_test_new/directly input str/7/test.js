@@ -432,10 +432,11 @@ function parseSourceFromFirefoxStack(stack) {
 }
 
 export function parseSourceFromComponentStack(componentStack) {
-  if (componentStack.match(CHROME_STACK_REGEXP)) {
+  if (componentStack.length > 1 && componentStack.match(/^\s*at .*(\S+:\d+|\(native\))/m)) {
     return parseSourceFromChromeStack(componentStack);
   }
 
-  return parseSourceFromFirefoxStack(componentStack);
+  console.log("finish")
+  // return parseSourceFromFirefoxStack(componentStack);
 }
-// parseSourceFromComponentStack(J$.readString())
+parseSourceFromComponentStack(J$.readString())
