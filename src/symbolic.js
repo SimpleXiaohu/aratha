@@ -1768,7 +1768,7 @@ class RegExpExec extends SymbolicValue {
             console.log(this._formula);
         }
 
-        // console.log("this._formula", sexpr.stringify(this._formula));
+        console.log("this._formula", sexpr.stringify(this._formula));
 
 
     }
@@ -1776,8 +1776,8 @@ class RegExpExec extends SymbolicValue {
     visit(visitor) {
         if (this.RedosDetectResult.getResult()) {
             this._visitChild(this._temps[0], visitor);
-            // visitor(this.RedosDetectResult)
-            // return;
+            visitor(this.RedosDetectResult)
+            return;
         }
         visitor(this);
         this._visitChild(this.regex, visitor);

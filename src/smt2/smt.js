@@ -118,75 +118,73 @@ exports.SMTSolver = class SMTSolver {
         for (let i = 0; i < this._commandLogs.length; i++) {
             this._commandLogs[i].write(output, "utf8");
         }
-        if (J$.ReDoSInItem) {
-            if (
-                output==="(assert false)\n" ||
-                (output.startsWith("(assert (not (distinct") && output.endsWith("\"\")))\n")) ||
-                output.startsWith("(assert (str.in_re (str.++ \"git+ssh://\"") ||
-                output.startsWith("(assert (not (not (js.in (str.++ (str.++ \"git+ssh://\"") ||
-                (output.includes("git+ssh://") && output.includes("js.substr")) ||
-                output.includes("regex_exec_0") || output.includes("regex_exec_37")
-            )
-                output = "; " + output;
-            // else if (J$.ReDoS51) {
-            //     if (J$.timeReDoS51===0) {
-            //         J$.timeReDoS51 += 1
-            //         output = "J$.timeReDoS51 = 1\n" + output;
-            //     }
-            //     if (!/(?:regex_exec_(?:(?:3[789])|(?:4\d)|(?:5[0-6])))|(?:regex_capture_4[19])|(?:check-sat)|(?:get-model)|(?:push)|(?:pop)/.test(output)) {
-            //         output = ";; " + output;
-            //     }
-            //     if (output.includes("(assert (= (Str regex_exec_37) (Str (str.++ \"git+ssh://\" (js.substr (str var0) 4 undefined)))))")) {
-            //         output = "(assert (= (Str regex_exec_37) var0))\n";
-            //     }
-            // }
-        }
 
 
-        if (!J$.meet51&&output==="(declare-const regex_exec_83 String)\n") {
-            J$.meet51 = true;
-            let stack = 0;
-            let constraints = [];
-            let popCount = 0;
-            // 将this.output_log按行分割，然后从后往前遍历，遇到\(pop (\d+)\)，则stack-int($1)，遇到\(push (\d+)\)，则stack+int($1)
-            let lines = this.output_log.split("\n");
-            for (let i = lines.length - 1; i >= 0; i--) {
-                // if (lines[i].includes("(declare-const var0 Val)"))
-                //     break;
-                if (lines[i].includes("(pop")) {
-                    let popNum = parseInt(lines[i].match(/\(pop (\d+)\)/)[1]);
-                    stack -= popNum;
-                    popCount += popNum;
-                } else if (lines[i].includes("(push")) {
-                    let pushNum = parseInt(lines[i].match(/\(push (\d+)\)/)[1]);
-                    stack += pushNum;
-                    if (popCount>0) {
-                        popCount -= pushNum;
-                    } else {
-                        constraints.unshift(lines[i]);
-                    }
-                } else if (popCount===0&&/(?:regex_exec_(?:(?:6[1-9])|(?:7\d)|(?:8[0-3])))|(?:regex_capture_65)|(?:regex_capture_79)/.test(lines[i])) {
-                    constraints.unshift(lines[i]);
-                }
-            }
-
-            console.log(stack);
-            let before = "(pop " + stack + ")\n"+
-                "(declare-const var0 Val)\n" +
-                "(assert (is-Str var0))\n";
-            // let before = "(pop " + stack + ")\n";
-            for (let i = 0; i < constraints.length; i++) {
-                before += constraints[i] + "\n";
-                if (constraints[i]==="; (assert (= (Str regex_exec_61) (Str (str.++ \"git+ssh://\" (js.substr (str var0) 4 undefined)))))") {
-                    before = before + "(assert (= (Str regex_exec_61) var0))\n";
-                }
-            }
-            // before = before + "(assert (= (Str regex_exec_37) var0))\n";
-            output = before + output;
-        }
-
-
-
+        // if (J$.ReDoSInItem) {
+        //     if (
+        //         output==="(assert false)\n" ||
+        //         (output.startsWith("(assert (not (distinct") && output.endsWith("\"\")))\n")) ||
+        //         output.startsWith("(assert (str.in_re (str.++ \"git+ssh://\"") ||
+        //         output.startsWith("(assert (not (not (js.in (str.++ (str.++ \"git+ssh://\"") ||
+        //         (output.includes("git+ssh://") && output.includes("js.substr")) ||
+        //         output.includes("regex_exec_0") || output.includes("regex_exec_20")
+        //     )
+        //         output = "; " + output;
+        //     // else if (J$.ReDoS51) {
+        //     //     if (J$.timeReDoS51===0) {
+        //     //         J$.timeReDoS51 += 1
+        //     //         output = "J$.timeReDoS51 = 1\n" + output;
+        //     //     }
+        //     //     if (!/(?:regex_exec_(?:(?:3[789])|(?:4\d)|(?:5[0-6])))|(?:regex_capture_4[19])|(?:check-sat)|(?:get-model)|(?:push)|(?:pop)/.test(output)) {
+        //     //         output = ";; " + output;
+        //     //     }
+        //     //     if (output.includes("(assert (= (Str regex_exec_37) (Str (str.++ \"git+ssh://\" (js.substr (str var0) 4 undefined)))))")) {
+        //     //         output = "(assert (= (Str regex_exec_37) var0))\n";
+        //     //     }
+        //     // }
+        // }
+        //
+        // if (!J$.meet51&&output==="(declare-const regex_exec_48 String)\n") {
+        //     J$.meet51 = true;
+        //     let stack = 0;
+        //     let constraints = [];
+        //     let popCount = 0;
+        //     // 将this.output_log按行分割，然后从后往前遍历，遇到\(pop (\d+)\)，则stack-int($1)，遇到\(push (\d+)\)，则stack+int($1)
+        //     let lines = this.output_log.split("\n");
+        //     for (let i = lines.length - 1; i >= 0; i--) {
+        //         // if (lines[i].includes("(declare-const var0 Val)"))
+        //         //     break;
+        //         if (lines[i].includes("(pop")) {
+        //             let popNum = parseInt(lines[i].match(/\(pop (\d+)\)/)[1]);
+        //             stack -= popNum;
+        //             popCount += popNum;
+        //         } else if (lines[i].includes("(push")) {
+        //             let pushNum = parseInt(lines[i].match(/\(push (\d+)\)/)[1]);
+        //             stack += pushNum;
+        //             if (popCount>0) {
+        //                 popCount -= pushNum;
+        //             } else {
+        //                 constraints.unshift(lines[i]);
+        //             }
+        //         } else if (popCount===0&&/(?:regex_exec_(?:(?:3[3-9])|(?:4\d)|(?:5[0-3])))|(?:regex_capture_37)|(?:regex_capture_46)/.test(lines[i])) {
+        //             constraints.unshift(lines[i]);
+        //         }
+        //     }
+        //
+        //     console.log(stack);
+        //     let before = "(pop " + stack + ")\n"+
+        //         "(declare-const var0 Val)\n" +
+        //         "(assert (is-Str var0))\n";
+        //     // let before = "(pop " + stack + ")\n";
+        //     for (let i = 0; i < constraints.length; i++) {
+        //         before += constraints[i] + "\n";
+        //         if (constraints[i]==="; (assert (= (Str regex_exec_33) (Str (str.++ \"git+ssh://\" (js.substr (str var0) 4 undefined)))))") {
+        //             before = before + "(assert (= (Str regex_exec_33) var0))\n";
+        //         }
+        //     }
+        //     // before = before + "(assert (= (Str regex_exec_37) var0))\n";
+        //     output = before + output;
+        // }
 
         // huzi note, pass the input to solver
         this.output_log += output + "\n";
@@ -200,6 +198,8 @@ exports.SMTSolver = class SMTSolver {
     writeReDoSConstraint(output) {
         output = output.replace("str.in.re", "str.in_re")+ "\n";
         output = output.replace("str.to.re", "str.to_re")+ "\n";
+        output = output.replace("(assert (= (Str regex_exec_48) (Str regex_exec_ans) ))","(assert (= (Str regex_exec_36) (Str regex_exec_ans) ))");
+        output = output.replace("(assert (str.in_re regex_exec_ans attack))", "(assert (str.in_re regex_exec_ans (re.++ (re.* re.allchar) attack (re.* re.allchar))))")
         this.output_log += output + "\n";
         this.process.stdin.write(output);
     }

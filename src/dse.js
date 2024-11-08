@@ -7,6 +7,10 @@ const { parseModel } = require("./model");
 const Type = require("./type");
 const sexpr = require("./sexpr");
 const fs = require('fs');
+const process = require("process");
+const initializer = require('./initializer');
+const selector = require('./selector');
+const {parseInt} = require("lodash");
 
 //FIXME: Really a quick and dirty workaround - only for SMT solvers atm.
 var COLLECT_NOGOODS = false
@@ -359,7 +363,7 @@ class ConstraintCollector {
         if (J$.addReDosConstraint && tmp.status === "sat") {
             J$.ReDosGenSuccess = true;
             console.log("ReDoS Gen Success!\n", tmp.model)
-            fs.appendFile('D:\\Documents\\ISSTA\\aratha\\tmpLog.smt2', tmp.model, (err) => {
+            fs.writeFileSync('D:\\Documents\\ISSTA\\aratha\\result.txt', tmp.model.var0, (err) => {
                 if (err) throw err;
             });
         }
@@ -393,8 +397,15 @@ class DSE {
             fs.writeFile('D:\\Documents\\ISSTA\\aratha\\tmpLog.smt2', '', (err) => {
                 if (err) throw err;
             });
-            input = { model: { var0: "git+ssh://username@hostname:repo.git"}, step: 0 }
-            // input.model["var0"] = "git+ssh://username@hostname:repo.git"
+            fs.writeFile('D:\\Documents\\ISSTA\\aratha\\constraints.log', '', (err) => {
+                if (err) throw err;
+            });
+
+            // let tmp = await initializer(process.argv[4], parseInt(process.argv[5]));
+            // 没有LLM时，直接使用下面的代码
+            // let tmp = "git+ssh://username@hostname:repo.git";
+            let tmp = 'at  (:1';
+            input = { model: { var0: tmp}, step: 0 }
         } else if (J$.ReDosGenSuccess) {
             return true;
         }
@@ -432,24 +443,93 @@ class DSE {
     async _generateInput() {
         if (this._workQueue.length === 0)
             throw new Error("_generateInput() called with empty work queue");
-        let myFavoriteWorkIndex = -1
+
+        let myFavoriteWorkIndex = 0
+        // 手动选择path
+        // for (let i = 0; i < this._workQueue.length; i++) {
+        //     let item = this._workQueue[i];
+        //     for (let j = 0; j < item.constraints.length; j++) {
+        //         let constraint = item.constraints[j];
+        //         if (constraint instanceof TypeConstraint && constraint.subject instanceof RegExpExec && constraint.subject._temps[0].name === "regex_exec_33") {
+        //             myFavoriteWorkIndex = i
+        //             console.log("regex_exec_33 get!")
+        //         } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof RegExpExec && constraint.expr._temps[0].name === "regex_exec_33") {
+        //             myFavoriteWorkIndex = i
+        //             console.log("regex_exec_33 get!")
+        //         } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof Unary && constraint.expr.expr instanceof RegExpExec && constraint.expr.expr._temps[0].name === "regex_exec_48") {
+        //             myFavoriteWorkIndex = i
+        //             console.log("regex_exec_48 get!")
+        //             J$.ReDoS51 = true
+        //         }
+        //     }
+        // }
+
+
+        // 半自动选择path
+        let maxNumOfRegexExec = 0
         for (let i = 0; i < this._workQueue.length; i++) {
             let item = this._workQueue[i];
+            let numOfRegexExec = 0
             for (let j = 0; j < item.constraints.length; j++) {
                 let constraint = item.constraints[j];
-                if (constraint instanceof TypeConstraint && constraint.subject instanceof RegExpExec && constraint.subject._temps[0].name === "regex_exec_61") {
-                    myFavoriteWorkIndex = i
-                    console.log("regex_exec_61 get!")
-                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof RegExpExec && constraint.expr._temps[0].name === "regex_exec_61") {
-                    myFavoriteWorkIndex = i
-                    console.log("regex_exec_61 get!")
-                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof Unary && constraint.expr.expr instanceof RegExpExec && constraint.expr.expr._temps[0].name === "regex_exec_83") {
-                    myFavoriteWorkIndex = i
-                    console.log("regex_exec_83 get!")
-                    J$.ReDoS51 = true
+                if (constraint instanceof TypeConstraint && constraint.subject instanceof RegExpExec) {
+                    numOfRegexExec++
+                } else if (constraint instanceof BooleanConstraint && constraint.expr instanceof RegExpExec) {
+                    numOfRegexExec++
                 }
             }
+            if (numOfRegexExec > maxNumOfRegexExec) {
+                maxNumOfRegexExec = numOfRegexExec
+                myFavoriteWorkIndex = i
+            }
         }
+
+        // debug message
+        console.log("_workQueue.length: " + this._workQueue.length)
+        for (let i = 0; i < this._workQueue.length; i++) {
+            console.log("_workQueue[" + i + "]: " + this._workQueue[i].constraints.length)
+        }
+        // // llm自动选择path
+        // if (this._workQueue.length > 2) {
+        //     let constraints = "";
+        //     for (let i = 0; i < this._workQueue.length; i++) {
+        //         let item = this._workQueue[i];
+        //         // console.log("_workQueue["+i+"]")
+        //         // 将console.log的结果写入文件
+        //         // fs.appendFileSync('D:\\Documents\\ISSTA\\aratha\\constraints.log', "_workQueue["+i+"]" + '\n', (err) => {
+        //         //     if (err) throw err;
+        //         // });
+        //         constraints += "_workQueue[" + i + "]" + '\n'
+        //         for (let j = 0; j < item.constraints.length; j++) {
+        //             // for (let j = 0; j < item.step+1; j++) {
+        //             // console.log("item.constraints["+j+"]:"+item.constraints.toString())
+        //             // 将console.log的结果写入文件
+        //             // fs.appendFileSync('D:\\Documents\\ISSTA\\aratha\\constraints.log', item.constraints[j].toString() + '\n', (err) => {
+        //             //     if (err) throw err;
+        //             // });
+        //             constraints += item.constraints[j].toString() + '\n'
+        //         }
+        //         // console.log("----------------")
+        //         // 将console.log的结果写入文件
+        //         // fs.appendFileSync('D:\\Documents\\ISSTA\\aratha\\constraints.log', "----------------" + '\n', (err) => {
+        //         //     if (err) throw err;
+        //         // });
+        //         constraints += "----------------" + '\n'
+        //     }
+        //     myFavoriteWorkIndex = await selector(process.argv[1], parseInt(process.argv[2]), constraints);
+        // }
+        // console.log("myFavoriteWorkIndex: " + myFavoriteWorkIndex)
+
+        if (myFavoriteWorkIndex < 0 || myFavoriteWorkIndex >= this._workQueue.length) {
+            let error_message = "myFavoriteWorkIndex is out of range"
+            fs.appendFileSync('D:\\Documents\\ISSTA\\aratha\\constraints.log', error_message + '\n', (err) => {
+                if (err) throw err;
+            });
+            myFavoriteWorkIndex = 0
+        }
+
+
+
         if (myFavoriteWorkIndex !== -1) {
             const tmp = this._workQueue[myFavoriteWorkIndex]
             this._workQueue.splice(myFavoriteWorkIndex, 1)
@@ -458,6 +538,8 @@ class DSE {
             console.log("ReDoS in item↓")
             console.log(this._workQueue[0])
         }
+        // 默认path放置到队列开头
+        // let item = this._workQueue[myFavoriteWorkIndex]
         let item = this._workQueue[0]
         J$.timeReDoS51 = 0
         let result;
