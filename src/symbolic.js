@@ -185,6 +185,11 @@ class Constant extends SymbolicValue {
         const v = this.value;
         if (_.isObject(v)) {
             return ["Obj", this.objectId.toString()];
+        } else if (_.isSymbol(v)) {
+            if (v === Symbol.iterator) {
+                // FIXME: wrong smt representation for Symbol.iterator
+                return ["Str", '"Symbol.iterator"'];
+            }
         } else {
             return primitiveToFormula(v);
         }
@@ -1055,7 +1060,7 @@ class StringSplit extends SymbolicValue {
     }
 
 }
-exports.StringSplit = StringSplit;
+// exports.StringSplit = StringSplit;
 
 class StringIndexOf extends SymbolicValue {
     constructor(base, searchString, offset) {

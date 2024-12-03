@@ -561,7 +561,7 @@ class CaptureVisitor {
                 return ["and",
                     ["=", strName, ["str.++", newExec1, newExec2]],
                     ["str.in_re", newExec1, ast.subject.toRegexFormula()],
-                    this.visit(Opt(ast.subject), newExec2)
+                    this.visit(new Opt(ast.subject), newExec2)
                 ]
 
             }

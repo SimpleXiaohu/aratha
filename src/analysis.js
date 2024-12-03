@@ -255,7 +255,7 @@ const { myLog, debugPrintln } = require("./util/print");
                         }
                         catch (error) {
                             console.trace(error);
-                            // console.console.error(s, "terminated with exception:", error);
+                            throw error
                         }
                     }
                     for (let s in searchers) {
