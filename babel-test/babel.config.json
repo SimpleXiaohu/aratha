@@ -1,12 +1,24 @@
 {
   "presets": [
-    "@babel/preset-env",
+    [
+      "@babel/preset-env",
+      {
+        "targets": "defaults and fully supports es5"
+      }
+    ],
     "@babel/preset-typescript",
     "@babel/preset-flow"
   ],
   "plugins": [
     "@babel/plugin-transform-logical-assignment-operators",
-    "./plugins/logicalExp.js"
+    "./plugins/logicalExp.js",
+    "@babel/plugin-transform-object-rest-spread",
+    "@babel/plugin-transform-template-literals",
+    "@babel/plugin-transform-destructuring",
+    "@babel/plugin-transform-arrow-functions",
+    "@babel/plugin-transform-block-scoping"
+    // "@babel/plugin-transform-spread"
+
   ],
   "parserOpts": {
     "sourceType": "unambiguous",
