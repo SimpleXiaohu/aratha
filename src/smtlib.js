@@ -1,9 +1,5 @@
 "use strict";
 
-<<<<<<< HEAD
-// huzi add
-=======
->>>>>>> ostrich-adaptation
 function unicodeToHex(code) {
     return "\\u{" + code.toString(16) + "}";
 }
